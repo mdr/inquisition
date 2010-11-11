@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QuestionSet SYSTEM "inquisitionQuestions.dtd">
+<QuestionSet version="4">
+  <Name>SCJP 5: hashCode() and equals()</Name>
+  <Description><![CDATA[Mock questions on <tt>hashCode()</tt> and
+   <tt>equals()</tt> for the Sun Certified Java Programmer (SCJP) 5.0 exam.  
+<p>
+Resources:
+<ul>
+<li>"The SCJP Tip Line: hashCodes Uncovered" by Corey McGlone, <a href='http://www.javaranch.com/journal/200407/ScjpTipLine-hashCodesUncovered.html'>http://www.javaranch.com/journal/200407/ScjpTipLine-hashCodesUncovered.html</a>
+</ul>
+<hr>
+<b>Info:</b><br>
+<ul>
+<li>Maintainer: Matt Russell <tt>&lt;mattrusselluk@gmail.com&gt;</tt>
+<li>Home page: <a href="http://enigma.vm.bytemark.co.uk/inquisition">http://enigma.vm.bytemark.co.uk/inquisition</a>
+<li>Version: 0.1
+<li>Date published: 25/May/2007
+<li>License: Public domain
+</ul>]]></Description>
+  <RecommendedTimePerQuestion>120</RecommendedTimePerQuestion>
+  <Category>SCJP 5/6</Category>
+  <Questions>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[Given two objects <tt>a</tt> and <tt>b</tt> of the same class, and if <tt>equals()</tt> and <tt>hashCode()</tt> are implemented correctly for that class, which of the following <i>must</i> hold true?]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[If <tt>a.hashCode() == b.hashCode()</tt> then <tt>a.equals(b)</tt>]]></Option>
+        <Option correct="false"><![CDATA[If <tt>a.hashCode() == b.hashCode()</tt> then <tt>!a.equals(b)</tt>]]></Option>
+        <Option correct="true" ><![CDATA[If <tt>a.hashCode() != b.hashCode()</tt> then <tt>!a.equals(b)</tt>]]></Option>
+        <Option correct="false"><![CDATA[If <tt>a.hashCode() != b.hashCode()</tt> then <tt>a.equals(b)</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.
+<p>
+This follows from the contract of <tt>hashCode()</tt>, "if two objects are equal according 
+to the <tt>equals(Object)</tt> method, then calling the <tt>hashCode</tt> method on each of the two objects 
+must produce the same integer result."
+<p>
+And that, "It is <i>not</i> required that if two objects are unequal according to the <tt>equals(java.lang.Object)</tt>
+method, then calling the <tt>hashCode</tt> method on each of the two objects must produce distinct integer results." 
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+        <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[Given two objects <tt>a</tt> and <tt>b</tt> of the same class, and if <tt>equals()</tt> and 
+      <tt>hashCode()</tt> are implemented correctly for that class, which of the following <i>must</i> hold true?]]></QuestionText>
+      <Options>
+        <Option correct="true" ><![CDATA[If <tt>a.equals(b)</tt> then <tt>a.hashCode() == b.hashCode()</tt>]]></Option>
+        <Option correct="false"><![CDATA[If <tt>a.equals(b)</tt> then <tt>a.hashCode() != b.hashCode()</tt>]]></Option>
+        <Option correct="false"><![CDATA[If <tt>!a.equals(b)</tt> then <tt>a.hashCode() == b.hashCode()</tt>]]></Option>
+        <Option correct="false"><![CDATA[If <tt>!a.equals(b)</tt> then <tt>a.hashCode() != b.hashCode()</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.
+<p>
+This follows from the contract of <tt>hashCode()</tt>, "if two objects are equal according 
+to the <tt>equals(Object)</tt> method, then calling the <tt>hashCode</tt> method on each of the two objects 
+must produce the same integer result."
+<p>
+And that, "It is <i>not</i> required that if two objects are unequal according to the <tt>equals(java.lang.Object)</tt>
+method, then calling the <tt>hashCode</tt> method on each of the two objects must produce distinct integer results." 
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <DragAndDropQuestion reuseFragments="true">
+      <QuestionText><![CDATA[Given object(s) <tt>a</tt> and <tt>b</tt> of the same class, and if <tt>equals()</tt> 
+      and <tt>hashCode()</tt> are implemented correctly for that class, fill in the blanks in the table to 
+      indicate which statements:
+      <ol>
+      <li>can be true for some implementations, but not for others,</li>
+      <li>are always true,</li>
+      <li>and are never true.</li>
+      </ol>
+<CopyToExplanation>
+<table border="1">
+<tr>
+<th>Given that...</th>
+<th>Statement</th>
+<th>Validity</th>
+</tr>
+<tr>
+<td><tt>a == b</tt></td>
+<td><tt>a.hashCode() == b.hashCode()</tt></td>
+<td><slot>Always true</slot></td>
+</tr>
+<tr>
+<td><tt>a.equals(b)<tt> and <tt>a != b</tt></td>
+<td><tt>a.hashCode() == b.hashCode()</tt></td>
+<td><slot>Always true</slot></td>
+</tr>
+<tr>
+<td><tt>a.hashCode() != b.hashCode()</tt></td>
+<td><tt>a == b</tt></td>
+<td><slot>Never true</slot></td>
+</tr>
+<tr>
+<td></td>
+<td><tt>a.hashCode() &lt; 0</tt></td>
+<td><slot>Can be true</slot></td>
+</tr>
+</table>
+</CopyToExplanation>
+]]>
+</QuestionText>
+      <ExtraFragments />
+      <ExplanationText><![CDATA[The correct answer is:
+<CopyFromQuestion/>
+<br>
+This follows from the contract of <tt>hashCode()</tt>, "if two objects are equal according 
+to the <tt>equals(Object)</tt> method, then calling the <tt>hashCode</tt> method on each of the two objects 
+must produce the same integer result."
+<p>
+And that, "It is <i>not</i> required that if two objects are unequal according to the <tt>equals(java.lang.Object)</tt>
+method, then calling the <tt>hashCode</tt> method on each of the two objects must produce distinct integer results." 
+<p>
+Hash codes can be any integer value, positive, negative or zero.
+]]></ExplanationText>
+    </DragAndDropQuestion>
+    <DragAndDropQuestion reuseFragments="true">
+      <QuestionText><![CDATA[Given object(s) <tt>a</tt> and <tt>b</tt> of the same class, and if <tt>equals()</tt> 
+      and <tt>hashCode()</tt> are implemented correctly for that class, fill in the blanks in the table to 
+      indicate which statements:
+      <ol>
+      <li>can be true for some implementations, but not for others,</li>
+      <li>are always true,</li>
+      <li>and are never true.</li>
+      </ol>
+<CopyToExplanation>      
+<table border="1">
+<tr>
+<th>Given that...</th>
+<th>Statement</th>
+<th>Validity</th>
+</tr>
+<tr>
+<td><tt>a == b</tt></td>
+<td><tt>a.equals(b)</tt></td>
+<td><slot>Always true</slot></td>
+</tr>
+<tr>
+<td><tt>a != b</tt></td>
+<td><tt>a.equals(b)</tt></td>
+<td><slot>Can be true</slot></td>
+</tr>
+<tr>
+<td><tt>a.equals(b)</tt></td>
+<td><tt>a == b</tt></td>
+<td><slot>Can be true</slot></td>
+</tr>
+<tr>
+<td><tt>!a.equals(b)</tt></td>
+<td><tt>a == b</tt></td>
+<td><slot>Never true</slot></td>
+</tr>
+</table>
+</CopyToExplanation>
+]]></QuestionText>
+      <ExtraFragments />
+      <ExplanationText><![CDATA[The correct answer is:
+<CopyFromQuestion/>
+<br>
+<tt>==</tt> tests for object identity. Therefore if <tt>a==b</tt>, then <tt>a.equals(b)</tt> will be true because a correct
+<tt>equals()</tt> implementation satisfied <i>reflexivity</i>, that is, an object compares equal with itself.
+<p>
+Otherwise, <tt>equals()</tt> is more general than <tt>==</tt>, in that distinct objects can compare equal.
+]]></ExplanationText>
+    </DragAndDropQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[What is the result of attempting to compile and run the following class?
+<java>
+import java.util.*;
+public class Spobbler {
+    private int spobbleCount;
+    public Spobbler(int spobble) { this.spobbleCount = spobble; }
+    public boolean equals(Spobbler other) {
+        if (other == null) return false;
+        return spobbleCount == other.spobbleCount;
+    }
+    public int hashCode() { return spobbleCount; }
+    public static void main(String[] args) {
+        Set<Spobbler> set = new HashSet<Spobbler>();
+        set.add(new Spobbler(100));
+        System.out.println(set.contains(new Spobbler(100)));
+    }
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>true</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>false</tt>]]></Option>
+        <Option correct="false"><![CDATA[An exception is thrown]]></Option>
+        <Option correct="false"><![CDATA[Compile-time error]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.   
+<p>
+The <tt>Object</tt> class defines a method with signature <tt>boolean equals(Object)</tt>, which tests for object
+identity. Subclasses of <tt>Object</tt> can override this to add more a meaningful definition of equality.
+<tt>Spobbler</tt>, however, defines the method with a different signature, <tt>boolean equals(Spobbler)</tt>, 
+which does not correctly override the version from <tt>Object</tt>. As a result, a collection like <tt>HashSet</tt>,
+which uses <tt>equals</tt> to test for membership, will call the default <tt>Object.equals()</tt>, 
+and will therefore view the two <tt>Spobbler</tt> object as distinct.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[Given the following class <tt>House</tt>, which code fragments can be added to complete
+      the <tt>equals()</tt> method without breaking the contract for <tt>hashCode()</tt>?
+<java>
+public class House {
+    private int windows;
+    private int doors;
+    private int chimneys;
+    public House(int windows, int doors, int chimneys) {
+        this.windows = windows;
+        this.doors = doors;
+        this.chimneys = chimneys;
+    }
+    public int hashCode() { return windows + doors; }
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        final House other = (House) obj;
+        return // <-- insert code here
+    }
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>windows == other.windows;</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>windows == other.windows && doors == other.doors;</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>windows == other.windows && doors == other.doors && chimneys == other.chimneys;</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>windows + doors == other.windows + other.doors;</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>windows + doors + chimneys == other.windows + other.doors + other.chimneys;</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct answers are @allcorrect@.
+<p>
+The contract for <tt>hashCode</tt> is that if two objects compare true with <tt>equals()</tt>, then they must return 
+the same <tt>hashCode()</tt>. In this case, if @2@, @3@ or @4@ return true, then it's clear that 
+<tt>windows + doors == other.windows + other.doors</tt> must be true. Hence, equal objects must return the same hash code. @1@
+breaks the contract because it fails to consider <tt>doors</tt>: consider two houses with the same number of windows
+and a different number of doors. They would be compared equal using @1@, but would return different hash codes.
+<p>
+@5@ also breaks the contract, but for a more subtle reason. It is possible for the number of chimneys to compensate for a
+difference in the number of windows and doors, and return true from equals, yet produce a different hash code. For example,
+<tt>new House(2, 4, 3)</tt> and <tt>new House(1, 4, 6)</tt> would compare equal with @5@'s definition, but would produce 
+different hash codes (8 and 4 respectively).
+]]></ExplanationText>
+    </MultipleChoiceQuestion>    
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[Which would be the correct override of <tt>equals</tt> for the following class?
+<java>
+public class BoringClass {
+    private int x;
+    public BoringClass(int x) {
+        this.x = x;
+    }
+...
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>boolean equals(BoringClass other)</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>public boolean equals(BoringClass other)</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>boolean equals(Object other)</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>public boolean equals(Object other)</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct option.
+<p>
+@1@ and @2@ have the wrong signature for <tt>equals</tt>, and so would overload, rather than override, the method.
+@3@ will not compile, because it is not permitted to reduce the visibility of a method when overriding. 
+]]></ExplanationText>
+    </MultipleChoiceQuestion>   
+  </Questions>
+</QuestionSet>

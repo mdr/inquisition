@@ -1,0 +1,2331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QuestionSet SYSTEM "inquisitionQuestions.dtd">
+<QuestionSet version="4">
+  <Name><![CDATA[John Meyers's SCJP 5 mock exam]]></Name>
+  <Description><![CDATA[
+SCJP 5 mock exam
+<hr>
+<b>Info:</b><br>
+<ul>
+<li>Maintainer: John Meyers
+<li>Home page: <a href="http://saloon.javaranch.com/cgi-bin/ubb/ultimatebb.cgi?ubb=forum&f=24">http://saloon.javaranch.com/cgi-bin/ubb/ultimatebb.cgi?ubb=forum&f=24</a>
+<li>Version: 1.0
+<li>Date published: 11/October/2006
+<li>License: Creative Commons Attribution-NonCommercial-ShareAlike 2.5 (<a href="http://creativecommons.org/licenses/by-nc-sa/2.5/">http://creativecommons.org/licenses/by-nc-sa/2.5/</a>)
+<li>Contributors: John Meyers (author), Manuel Comnenus (errata), Matt Russell (conversion to Java.Inquisition format)
+<li>Notes: Please post any errata to the JavaRanch SCJP forum (home page link above)
+</ul>
+]]></Description>
+  <RecommendedTimePerQuestion>120</RecommendedTimePerQuestion>
+  <Category>SCJP 5/6</Category>
+  <Questions>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+int [] arr = {1, 2, 3, 4, 5};
+int [] arr2 = new int[4];
+arr2 = arr;
+System.out.println(arr2[4]);
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime Exception. ArrayOutOfBounds]]></Option>
+        <Option correct="false"><![CDATA[Prints 4]]></Option>
+        <Option correct="true"><![CDATA[Prints 5]]></Option>
+        <Option correct="false"><![CDATA[Compiles with warning]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+<tt>arr2</tt> reference is reassigned to the object that <tt>arr</tt> is pointing to. You can verify this by using the <tt>length</tt> variable of the object.
+<p>
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+int [][] arr = new int[3][3];
+int [] arr2 = { 1, 2 };
+arr[0] = arr2;
+System.out.println(arr[0][0] + " " + arr[0][1]);
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime Exception. ArrayOutOfBounds]]></Option>
+        <Option correct="true"><![CDATA[Prints <tt>1 2</tt>]]></Option>
+        <Option correct="false"><![CDATA[Prints <tt>null</tt>]]></Option>
+        <Option correct="false"><![CDATA[Compiles with warnings]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+<tt>arr[0] = arr2</tt>; This statement assigns the <tt>arr[0]</tt> reference to <tt>arr2</tt> reference.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class test {
+   { System.out.println("one"); }
+   static { System.out.println("static one"); }
+   public static void main(String[] args) 
+   {      new test().run();         }
+
+   private test(){
+
+   { System.out.println("two"); }}
+
+   { System.out.println("three"); }
+
+   static {
+       System.out.println("static two");
+   }
+
+   public void run()
+   {      System.out.println("hmm...");
+   }}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime error.]]></Option>
+        <Option correct="false"><![CDATA[Prints <tt>static one     static two    one    two    three  hmm...</tt>]]></Option>
+        <Option correct="true"><![CDATA[Prints <tt>static one     static two    one    three  two    hmm...</tt>]]></Option>
+        <Option correct="false"><![CDATA[Prints <tt>static one     static two    two    three  one    hmm...</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+The constructor of <tt>test()</tt> has the <tt>two</tt> literal. It is not inside an init block. First the static inits are run in the order in which they appear, then the non static inits and then the constructors and then the <tt>run</tt> method. Phew!
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+int[] a = null ,  b [] = null;
+b = a;
+System.out.println( b );
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Prints <tt>null</tt>]]></Option>
+        <Option correct="false"><![CDATA[Runtime <tt>NullPointerException</tt>]]></Option>
+        <Option correct="true"><![CDATA[Compile time error]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+Incompatible types <tt>b=a</tt>. <tt>b</tt> is a two dimension array. <tt>a</tt> has one dimension
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class test {
+   public static void main(String[] args) {
+      test inst_test = new test();
+      inst_test.method ( 1 , 1 , 1);
+      inst_test.method( new Integer(1) , new Integer(2) , new Integer(3) );
+      inst_test.method ( 1 , new Integer(5) );
+      inst_test.method ( new Integer(10) , 1 );
+   }
+   public void method( Integer... I ){
+      System.out.println("Eye in the sky");
+   }
+   public void method( int... i ){
+      System.out.println("Fly in the pie");
+   }
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>Fly in the pie Eye in the sky Eye in the sky Eye in the sky</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Eye in the sky Eye in the sky Eye in the sky Eye in the sky</tt>]]></Option>
+        <Option correct="true"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime Exception]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+To the compiler <tt>Integer...</tt> and <tt>int...</tt> are pretty much the same. This results in an ambiguous state, which results in an error. The JVM wont know which method to call if this is allowed to be compiled.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class test
+{
+   public static void main(String[] args) 
+   {
+      test inst_test = new test();
+      String pig[][] = {  {"one little piggy"}, {"two little piggies"}, {"three little piggies"} };
+      for ( Object []oink : pig )
+      {
+         for ( Object piggy : oink )
+         {
+            System.out.println(piggy);
+         }
+      }
+   }
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[<tt>one little piggy two little piggies three little piggies</tt>]]></Option>
+        <Option correct="false"><![CDATA[Compile Error incompatible types.]]></Option>
+        <Option correct="false"><![CDATA[<tt>java.lang.String;@187c6c7 java.lang.String;@187c6c8 java.lang.String;@187c6c9</tt> (or something like that)]]></Option>
+        <Option correct="false"><![CDATA[Runtime <tt>NullPointerException</tt>]]></Option>
+        <Option correct="false"><![CDATA[Prints nothing]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+<tt>oink</tt> refers to every object reference in a one dimensional row of <tt>pig[][]</tt>. <tt>piggy</tt> refers to every object within that row.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class test {
+   public static void main(String[] args) {
+      test inst_test = new test();
+      int i1 = 2000;
+      int i2 = 2000;
+      int i3 = 2;
+      int i4 = 2;
+      Integer Ithree = new Integer(2); // 1
+      Integer Ifour = new Integer(2); // 2
+      System.out.println( Ithree == Ifour );
+      inst_test.method( i3 , i4 );
+      inst_test.method( i1 , i2 );
+   }
+   public void method( Integer i , Integer eye ) {
+      System.out.println(i == eye );
+   }
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[true false true]]></Option>
+        <Option correct="true"><![CDATA[false true false]]></Option>
+        <Option correct="false"><![CDATA[false false false]]></Option>
+        <Option correct="false"><![CDATA[true true false]]></Option>
+        <Option correct="false"><![CDATA[Compile error]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+<tt>lthree</tt> and <tt>lfour</tt> are two seperate objects. if the lines 1 and 2 were <tt>lthree = 2</tt> and <tt>lfour = 2</tt> the result would have been true. This is when the objects are created in the pool. When the references <tt>i</tt> and <tt>eye</tt> in the pool are compared <tt>2==2</tt> results in <tt>true</tt> and <tt>2000==2000</tt> is <tt>false</tt> since it exceeds 127.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+interface face
+{
+   void smile();
+}
+class test implements face
+{
+   public static void main(String[] args) 
+   {
+      test evil_laugh = new test();
+      evil_laugh.smile();
+   }
+
+   void smile()
+   {
+      System.out.println("Muahahahahahhahaha");
+   }
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Prints <tt>Muahahahahahhahaha</tt>]]></Option>
+        <Option correct="true"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime Exception]]></Option>
+        <Option correct="false"><![CDATA[Prints nothing]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+Compile error <tt>smile()</tt> is more restrictive in access. By default <tt>smile()</tt> in interface <tt>face</tt>
+             has <tt>public</tt> access. we tried to assign it default access.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+abstract class ab
+{    abstract private void smile();
+}
+class test extends ab
+{   public static void main(String[] args) 
+   {
+      test inst_test = new test();
+   }
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Compile with warnings indicating <tt>smile()</tt> should be <tt>public</tt>.]]></Option>
+        <Option correct="false"><![CDATA[Compiles without warnings.]]></Option>
+        <Option correct="false"><![CDATA[Compiles with warnings indicating <tt>smile()</tt> is not inherited.]]></Option>
+        <Option correct="true"><![CDATA[Compile error ]]></Option>
+        <Option correct="false"><![CDATA[Runtime Exception.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+<tt>abstract</tt> methods cannot be <tt>private</tt>.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+Given that <tt>ex</tt> is a class that extends from <tt>Exception</tt>
+<java>
+public void blah() throws IOException , ex
+   {
+      throw new ex();
+      throw new IOException();
+   }
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[Compile error unreachable code]]></Option>
+        <Option correct="false"><![CDATA[Compile error: can't throw two exceptions at the same time]]></Option>
+        <Option correct="false"><![CDATA[Compile error: both Exceptions need to be handled in <tt>try</tt>-<tt>catch</tt> block]]></Option>
+        <Option correct="false"><![CDATA[Runtime error]]></Option>
+        <Option correct="false"><![CDATA[No errors. Compiles fine without warnings]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+<tt>throw new IOException();</tt> will never be reached.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <DragAndDropQuestion reuseFragments="true">
+      <QuestionText><![CDATA[
+Drag and drop either "true" or "false" above the following options that are based on this code fragment.
+<java>
+List <?> l = new ArrayList<Integer> ();</java><ul>
+<li><slot>false</slot>: This code fragment will not compile
+<li><slot>true</slot>: Nothing can be added to this List.
+<li><slot>true</slot>: Anything beside Integer could be replaced on the right hand side.
+</ul>
+]]></QuestionText>
+      <ExtraFragments />
+      <ExplanationText><![CDATA[The correct answer is:
+<ul>
+<li><slot>false</slot>: This code fragment will not compile
+<li><slot>true</slot>: Nothing can be added to this List.
+<li><slot>true</slot>: Anything beside Integer could be replaced on the right hand side.
+</ul>
+You cannot add data to a List that has the “?” character. And a <tt>List&lt;?&gt;</tt> can accept any type instantiation.
+
+]]></ExplanationText>
+    </DragAndDropQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+If two instances, test_one and test_two of Serializable class test are written to a file named “<tt>serial.serial</tt>” in that order, which of the following are true ?
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[When reading back from the file, <tt>test_two</tt> is the first object that is read.]]></Option>
+        <Option correct="true"><![CDATA[When reading back from the file, <tt>test_one</tt> is the first object that is read.]]></Option>
+        <Option correct="false"><![CDATA[The object cannot be read from a file named “<tt>serial.serial</tt>”.]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct option is @allcorrect@.
+<p>
+<tt>test_one</tt> will be the first object to be read from the file.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class test 
+{
+   public static void main ( String [] args )
+   {
+      final Integer x4 = 8;
+      final int x = 10;
+      switch ( x )
+      {
+         case x4:
+            System.out.println("4");
+            break;
+         case x:
+            System.out.println("x");
+            break;
+      }
+   }
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime error]]></Option>
+        <Option correct="false"><![CDATA[Prints x]]></Option>
+        <Option correct="false"><![CDATA[Prints 4]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+Final objects are not allowed in a case statement. A final object's value can be changed whereas a final variables value cannot be changed.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class num {
+   int x=9;
+}
+
+interface blob {
+   final num n = new num();
+   final Integer number = 1;
+}
+
+class test implements blob {
+   
+   public static void main (  String [] args ) {
+      n.x = 10;    // 1
+      number++;    // 2
+   }
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Compile error at 1]]></Option>
+        <Option correct="false"><![CDATA[Runtime error at 1]]></Option>
+        <Option correct="true"><![CDATA[Compiler error at 2]]></Option>
+        <Option correct="false"><![CDATA[Runtime error at 2]]></Option>
+        <Option correct="false"><![CDATA[Compiles and runs fine]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+number++ will try to reassign the reference of number which will create an error. n.x is ok because we are changing the value not the reference. Internally number++   will reassign the reference.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+enum cafe { 
+    BIG ( 10 ) ,
+    SMALL ( 1 ),
+    MED ( 5 ) 
+    int mySize = 0;      
+    cafe ( int size )
+    {
+    mySize = size;
+    }
+}
+</java>What happens when this <tt>enum</tt> is in the code outside a class?
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Compiles fine]]></Option>
+        <Option correct="true"><![CDATA[Compiler error]]></Option>
+        <Option correct="false"><![CDATA[Runtime Exception occurs if <tt>mySize</tt> is accessed.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+Semicolon missing after <tt>MED ( 5 )</tt>. Watch out for that semicolon when an <tt>enum</tt> has variables and functions.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class Animal
+{
+   void method  throws IOException
+   {}
+}
+
+class dog extends Animal
+{
+   void method  throws FileNotFoundException
+   {}
+}
+
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Compile error : Incompatible types.]]></Option>
+        <Option correct="false"><![CDATA[Runtime error]]></Option>
+        <Option correct="false"><![CDATA[Compiles fine]]></Option>
+        <Option correct="true"><![CDATA[Compile error : incorrect syntax]]></Option>
+        <Option correct="false"><![CDATA[None of the above]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+Method is missing round braces ()
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class Animal {
+    void method () throws Exception
+    {}
+    Animal( String name ) {
+        System.out.println(name);
+    }
+}
+class dog extends Animal {
+    void method () throws Exception
+    {}
+}
+class test { 
+   public static void main ( String [] args ) {
+        new Animal("Giraffe");
+    }
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Prints Giraffe]]></Option>
+        <Option correct="true"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime error]]></Option>
+        <Option correct="false"><![CDATA[Prints nothing]]></Option>
+        <Option correct="false"><![CDATA[None of the above]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+dog extends Animal but the call to super() fails because Animal does not have a no arg constructor. A call to super() is placed in dog's constructor by the compiler.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class test
+{
+   int x;
+   public static void main (  String [] args )
+   {
+      final int i;
+      i = 127;
+      byte b = i;
+      System.out.println(b);
+
+   }
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[Compile error: loss of precision]]></Option>
+        <Option correct="false"><![CDATA[No error. Compiles finPrints 0]]></Option>
+        <Option correct="false"><![CDATA[Runtime error]]></Option>
+        <Option correct="false"><![CDATA[Compiles with a warning]]></Option>
+        <Option correct="false"><![CDATA[No error. Compiles finPrints 127.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+Since the variable is not instantiated in the same line, the compiler cant know what value it will hold at compile time.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class test
+{
+   public static void main (  String [] args )
+   {
+      methodOne(20);
+   }
+   static void methodOne( long l )
+   {
+      System.out.println("long");
+   }
+   static void methodOne( float f )
+   {
+      System.out.println("float");
+   }
+}
+
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[Prints long]]></Option>
+        <Option correct="false"><![CDATA[Prints float]]></Option>
+        <Option correct="false"><![CDATA[Compile error: Too ambiguous]]></Option>
+        <Option correct="false"><![CDATA[Runtime error]]></Option>
+        <Option correct="false"><![CDATA[None of the above]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+ Prints long. It prints long because it is the most specific choice. Likewise between two methods that accept float or double, float will be chosen.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+import java.util.*;
+class test {
+   public static void main (  String [] args ) {
+      List < String > least = new ArrayList < String > ();
+      List list = new ArrayList();
+      meth(list);
+      seth(least);
+   }
+   public static void meth(List < String > list) {
+      System.out.println("List");
+   }
+   public static void seth(List list) {
+      System.out.println("Mist");
+   }
+}
+</java>
+Which function call(s) is/are allowed? Here allowed refers to legality, and that compilations succeeds.
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Both are allowed and there are no warnings]]></Option>
+        <Option correct="false"><![CDATA[Both are not allowed - they don’t compile]]></Option>
+        <Option correct="true"><![CDATA[Both are allowed but the code compiles with warnings]]></Option>
+        <Option correct="false"><![CDATA[Meth is allowed but seth is not]]></Option>
+        <Option correct="false"><![CDATA[Seth is allowed but meth is not.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+ To be more specific a call to meth( ) generates the warning.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+import java.util.*;
+
+class test
+{
+   public static void main (  String [] args )
+   {
+      List < Integer > list = new ArrayList < Integer > ();
+      for ( int i = 1 ; i<10 ; i++ )
+      {
+         list.add(i);
+      }
+      list.remove( new Integer(4) );             //  1
+      list.remove( 1 );                          //  2
+   }
+
+}
+</java>Lines marked 1 and 2 refer to the remove method.
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Both methods remove the 4th and 1st Integer objects.]]></Option>
+        <Option correct="false"><![CDATA[Both methods remove the Integer 4 and 1 from list.]]></Option>
+        <Option correct="true"><![CDATA[Line one removes Integer object 4 and Line 2 removes Integer at index one]]></Option>
+        <Option correct="false"><![CDATA[Line one removes Integer at index 4 and Line 2 removes the Integer Object one]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+remove is interpreted in two ways by the compiler depending on whether you pass it an object or a primitive. If you look at the API for List you will find two remove() method signatures. Autoboxing is omitted here on purpose. If it were not , how would you call the remove method that takes an index as input ? The compiler would automatically box it into an Integer and you end up calling the wrong method.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+import java.util.*;
+
+class test {
+   public static void main (  String [] args ) {
+      Map<Integer, String> map = new LinkedHashMap<Integer, String> ();
+      Map<Integer, String> sap = new HashMap<Integer, String> ();
+      populate( map );
+      populate( sap );
+      System.out.println( map.get(1) + sap.get(1) );
+   }
+
+   static void populate ( Map  m ) {
+      for ( int i = 0 ; i < 10 ; i++ ) {
+         m.put(i,i);
+      }
+   }
+}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Prints 11]]></Option>
+        <Option correct="false"><![CDATA[Prints 2]]></Option>
+        <Option correct="false"><![CDATA[Compile error]]></Option>
+        <Option correct="true"><![CDATA[Runtime error]]></Option>
+        <Option correct="false"><![CDATA[nullnull]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+Runtime Exception. ClassCastException. It looks like 1 and 1 are added to obtain the result 2 but what happens is that, in main() map and sap are expected to return String values based on Integer keys. So when you pass a key, a String is supposed to be returned. At runtime an Integer is returned instead and when the JVM attempts to convert the Integer to String , BAM ! 
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+import java.util.*;
+class test
+{
+   int Identify;
+   public static void main( String args[] )
+   {
+      Set set = new HashSet ();
+      System.out.println( set.add( "new" ) );
+      System.out.println( set.add( "new" ) );
+      System.out.println( set.add( new test(127) ) );
+      System.out.println( set.add( new test(127) ) );
+   }
+   test(int ID)
+   {
+      Identify = ID;
+   }
+}
+
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Prints true false true false]]></Option>
+        <Option correct="false"><![CDATA[Prints true true true true]]></Option>
+        <Option correct="true"><![CDATA[Prints true false true true]]></Option>
+        <Option correct="false"><![CDATA[Prints false true false true]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+ true false true true. The way the Set avoids duplicates is by using the equals and hashCode methods which our class has not overridden. By default the equals method of Object uses the == operator to determine equality. So unless two test references are made to point to the same Object, the Set will not consider them to be duplicates. An example of that would be test t1 = new test(5);  test t2 = t1;  after adding t1 , t2 cannot be added.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+import java.util.*;
+class test implements Comparator < test >
+{
+   int testNumber;
+   public static void main( String args[] )
+   {
+      Set < test > s1 = new TreeSet < test > ();
+      
+      s1.add(new test());
+      s1.add(new test());
+
+   }
+   public int compare( test t1 , test t2 )
+   {
+      return t1.testNumber - t2.testNumber;
+   }
+
+}
+
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[Compiles without warnings]]></Option>
+        <Option correct="false"><![CDATA[Compiles with warnings]]></Option>
+        <Option correct="false"><![CDATA[Only one test Object is added, the other one is considered a duplicate.]]></Option>
+        <Option correct="true"><![CDATA[A Runtime Exception occurs.]]></Option>
+        <Option correct="true"><![CDATA[TreeSet can only accept objects of type test. ( Given that test has no sub classes )]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct options are @allcorrect@.
+<p>
+test needs to implement Comparable rather than Comparator to be able to sort its objects automatically. A RuntimeClassCastException is thrown.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+import java.util.*;
+import java.io.*;
+class test implements Runnable {
+   public static void main( String args[] ) {
+      Thread t = new Thread(this);
+      try {
+         t.start();
+      }
+      catch ( IOException e) {
+         System.out.println(e);
+      }
+   }
+   public void run() throws IOException {
+      File f = new File("f");
+      FileWriter fw = new FileWriter(f);
+   }
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[One Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime error]]></Option>
+        <Option correct="false"><![CDATA[Compiles with warnings.]]></Option>
+        <Option correct="true"><![CDATA[Two Compiler errors]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+this is referenced from a static context and run does not throw any checked exceptions to begin with.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class test 
+{
+   public static void main( String args[] )
+   {
+      test( new int[] { 1 , 2 } );
+   }
+       
+    public static void test (int[] input)
+   {
+        System.out.println("int[]");
+    }
+    
+    public static void test (int... input)
+   {      
+        System.out.println("int ...");    
+    }
+
+}
+
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Prints int[]]]></Option>
+        <Option correct="false"><![CDATA[Prints int...]]></Option>
+        <Option correct="true"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime error]]></Option>
+        <Option correct="false"><![CDATA[None of the above]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+The compiler treats int[] and int... as the same signatures. So the compiler throws an error saying int[] already defined.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class face {
+   public void meth() {
+      System.out.println("hello");
+   }
+}
+
+class test {
+   public static void main( String args[] ) {
+      seth( new face(){} ); // 1
+   }
+
+   public static void seth( face f ) {
+      f.meth();  // 2
+   }
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Compilations fails at 2]]></Option>
+        <Option correct="false"><![CDATA[Compilations fails at 1]]></Option>
+        <Option correct="false"><![CDATA[Runtime error at 2]]></Option>
+        <Option correct="true"><![CDATA[Prints hello after successfully compiling.]]></Option>
+        <Option correct="false"><![CDATA[Compilations fails at 1 and 2.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+ Prints hello. Since the anon class - face{} subclasses the concrete class - face it inherits the method meth().
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class test <T>
+{
+   public static void main( String args[] )
+   {
+      new test<String>().meth("hello"); // 1
+   }
+
+   public void meth(T type) // 2
+   {
+      System.out.println(type); // 3
+   }
+   
+}
+
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Compilations fails at 1. Illegal syntax]]></Option>
+        <Option correct="false"><![CDATA[Compilations fails at 2. Cannot find <tt>T</tt>]]></Option>
+        <Option correct="false"><![CDATA[Compilations fails at 3. Cannot find symbol <tt>println( T )</tt>]]></Option>
+        <Option correct="true"><![CDATA[Prints hello]]></Option>
+        <Option correct="false"><![CDATA[Runtime error.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+Line 1 defines how classes with generics can be instantiated. It also calls <tt>meth( T )</tt>.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class test <T>
+{
+   public static void main( String args[] )
+   {
+      new test().meth(new Integer(42));   // 1
+      new test<String>().meth("hello");     // 2
+      new test<String>().meth(new Object() );  // 3
+
+   }
+
+   public void meth(T type)
+   {
+      System.out.println(type);
+   }
+   
+}
+</java>
+Compilation at which line(s) fails?
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[1]]></Option>
+        <Option correct="false"><![CDATA[2]]></Option>
+        <Option correct="true"><![CDATA[3]]></Option>
+        <Option correct="false"><![CDATA[Compiles without errors.]]></Option>
+        <Option correct="false"><![CDATA[Compiles without errors. But Runtime errors exist.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+An Object is passed where a string is expected.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+public <T> List<T> meth(List<?> type)
+{
+   System.out.println(type);       // 1
+   return new ArrayList<String>(); // 2
+}
+</java>
+
+This code...
+
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Will compile]]></Option>
+        <Option correct="false"><![CDATA[Will not compile at Line 1]]></Option>
+        <Option correct="false"><![CDATA[Has runtime errors.]]></Option>
+        <Option correct="true"><![CDATA[Will not compile at Line 2]]></Option>
+        <Option correct="false"><![CDATA[Will not compile at Line 1 and 2.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+public static void main( String args[] )
+{
+   List<? extends Number> type = new ArrayList<Integer>(); // 1
+   for ( Integer n : type )    // 2
+   {
+      System.out.println(n); // 3
+   }
+}
+public <T> void seth(List<?> type)   // 4
+{
+   type.add("hi");   // 5
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[Lines 2 and 5 have Compile time errors]]></Option>
+        <Option correct="false"><![CDATA[Lines 1 and 5 have Compile time errors.]]></Option>
+        <Option correct="false"><![CDATA[Lines 2 and 5 and 1 have Compile time errors]]></Option>
+        <Option correct="false"><![CDATA[Lines 4 and 5 have Compile time errors]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+You can't add anything to a List reference that has a "?" ( unless it has a super keyword followed by a class name ) and type in main() has to be referenced by a Number not an Integer. So the for in loop fails to compile.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+Integer eye = new Integer(42);
+Double d = new Double(42.0);
+int i = 42;
+double dd = 42.0;
+System.out.println(i==eye);        //1
+System.out.println(eye.equals(d)); //2
+System.out.println(eye == 42 );    //3
+System.out.println(i == 42);       //4
+System.out.println( i == dd );     //5
+</java>
+Which line prints false ?
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[1]]></Option>
+        <Option correct="true"><![CDATA[2]]></Option>
+        <Option correct="false"><![CDATA[3]]></Option>
+        <Option correct="false"><![CDATA[4]]></Option>
+        <Option correct="false"><![CDATA[5]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+The Integer Object is not an object of type Double so Line 2 prints false. Most equals methods will compare Object type and then their values.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+Which of the following modifiers can be used with a method local inner class ?
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[static]]></Option>
+        <Option correct="true"><![CDATA[abstract]]></Option>
+        <Option correct="true"><![CDATA[final]]></Option>
+        <Option correct="false"><![CDATA[private]]></Option>
+        <Option correct="false"><![CDATA[protected]]></Option>
+        <Option correct="false"><![CDATA[public]]></Option>
+        <Option correct="false"><![CDATA[default]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct options are @allcorrect@.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class test{ int x = 10; static test tester = this;
+   public static void main( String args[] ){
+      System.out.println( tester.x );
+   }
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Prints 10]]></Option>
+        <Option correct="false"><![CDATA[Prints 0]]></Option>
+        <Option correct="true"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime error]]></Option>
+        <Option correct="false"><![CDATA[None of the above]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+static and this don't go together. static test tester = this; will fail to compile
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+Integer i = new Integer(10);
+int i2 = 10; 
+System.out.println( i == i2 ); // 1
+</java>
+With source as 1.4 what does this code print ?
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Prints false]]></Option>
+        <Option correct="false"><![CDATA[Prints true]]></Option>
+        <Option correct="true"><![CDATA[Compile error at 1]]></Option>
+        <Option correct="false"><![CDATA[Runtime error at 1]]></Option>
+        <Option correct="false"><![CDATA[None of the above]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+There is no autoboxing or unboxing in java 1.4.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+interface face { void meth(); }
+class tester extends test implements face 
+{ public void meth(){System.out.println("hello");}}
+
+class test
+{
+   public static void main( String args[] )
+   {
+      test test_one = new tester();
+      face f = test_one; // 1
+      f.meth();
+      
+   }
+}
+
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[Compile error at 1]]></Option>
+        <Option correct="false"><![CDATA[Runtime error at 1]]></Option>
+        <Option correct="false"><![CDATA[Compiles without errors]]></Option>
+        <Option correct="true"><![CDATA[Will compile if line one includes a cast for face.]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct options are @allcorrect@.
+<p>
+test does not implement the interface face so a cast is needed. The output is hello after the changes are made.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+        <DragAndDropQuestion reuseFragments="true">
+      <QuestionText><![CDATA[
+<java>
+// Line 1:
+List<? super String> list = new ArrayList <String> (); 
+<slot>Compiles fine with no Runtime Exceptions</slot>
+
+// Line 2:
+list.add(new Object()); 
+<slot>Compile time error</slot>
+</java>
+Drag and Drop the following options over Line 1 and Line 2. Drag the relevant fragment over the line to indicate
+ whether or not the Line will not compile, or if will compile, whether it will throw Exceptions.
+]]></QuestionText>
+      <ExtraFragments>
+        <Fragment>Compiles fine but throws a Runtime Exception</Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[The correct answer is:
+<java>
+// Line 1:
+List < ? super String> list = new ArrayList <String> (); 
+<slot>Compiles fine with no Runtime Exceptions</slot>
+
+// Line 2:
+list.add(new Object()); 
+<slot>Compile time error</slot>
+
+</java>
+Line 1 compiles fine. Line 2 will not compile because you can only add a String object to the collection.
+There is no question of subclasses of String being added. String is after all... final.
+]]></ExplanationText>
+    </DragAndDropQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class test
+{
+   public static void main( String... args )
+   {
+      Byte b = new Byte(1);
+      System.out.println("" + b + "20" );
+   }
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime Exceptions are thrown.]]></Option>
+        <Option correct="false"><![CDATA[Prints 120]]></Option>
+        <Option correct="false"><![CDATA[Prints 12]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+Compile error. When passing data to a constructor/function the least data type that will be passed is an int. You have to explicitly cast the int to a byte before it can be sent to the constructor.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+public static void main(String [] args)
+{
+   System.out.println(m(2));
+}
+static int m(int i)
+{
+   int ret;
+   if( i == 2 )
+   {
+      ret = i;
+   }
+   return ret;
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Prints 2]]></Option>
+        <Option correct="false"><![CDATA[Prints 0]]></Option>
+        <Option correct="true"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime error]]></Option>
+        <Option correct="false"><![CDATA[None of the above]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+If m is called with any value other than 2 then ret will not be initialized. So the compiler complains.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <DragAndDropQuestion reuseFragments="true">
+      <QuestionText><![CDATA[
+<java>
+class superb {
+   int x=1;
+   static int x2=2;
+   void meth(){System.out.println("non static Superb");}
+   static void meth2(){System.out.println("static Superb");}
+}
+class test extends superb {
+   int x=3;
+   static int x2=4;
+   void meth(){System.out.println("non static test");}
+   static void meth2(){System.out.println("static test");}
+   public static void main(String [] args) {
+      test t = new test(); System.out.println(t.x + " " + t.x2);
+      superb s = new superb(); System.out.println(s.x + " " + s.x2);
+      t.meth(); t.meth2(); s.meth(); s.meth2();
+      superb st = new test();
+      System.out.println( st.x + " " + st.x2 );
+      st.meth(); st.meth2();
+   }
+}
+</java>
+Drag and Drop the 9 output literals in the order in which they appear.
+<ul>
+<li><slot>3 4</slot>
+<li><slot>1 2</slot>
+<li><slot>non static test</slot>
+<li><slot>static test</slot>
+<li><slot>non static Superb</slot>
+<li><slot>static Superb</slot>
+<li><slot>1 2</slot>
+<li><slot>non static test</slot>
+<li><slot>static Superb</slot>
+</ul>
+]]></QuestionText>
+      <ExtraFragments />
+      <ExplanationText><![CDATA[The correct answer is:
+<ul>
+<li><slot>3 4</slot>
+<li><slot>1 2</slot>
+<li><slot>non static test</slot>
+<li><slot>static test</slot>
+<li><slot>non static Superb</slot>
+<li><slot>static Superb</slot>
+<li><slot>1 2</slot>
+<li><slot>non static test</slot>
+<li><slot>static Superb</slot>
+</ul>
+static methods and member variables are not overridden, they are just hidden.
+]]></ExplanationText>
+    </DragAndDropQuestion>
+
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+package packed;
+public class pack
+{
+   static public int x1 = 7;
+   static protected int x2 = 8;
+   static int x3=9;
+   static private int x4 =10;
+}
+
+import packed.pack;
+class test extends pack
+{
+   public static void main( String args[] )
+   {
+      pack p = new pack();
+      System.out.println( pack.x2 );
+   }
+}
+
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[Prints 8]]></Option>
+        <Option correct="false"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime error]]></Option>
+        <Option correct="false"><![CDATA[Prints nothing]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+ Since the variable is static it can still be accessed from another package. If it were not static you would get an error saying protected member access error.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+int x=1;
+assert (x=2) : x;
+</java>
+This code...
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Compiles without errors when assertion is disabled by default]]></Option>
+        <Option correct="false"><![CDATA[Compiles without errors when the javac –da option is used.]]></Option>
+        <Option correct="false"><![CDATA[Will throw compile time errors when the –ea option is used.]]></Option>
+        <Option correct="false"><![CDATA[Will throw runtime exception.]]></Option>
+        <Option correct="true"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+ Whether assertions are turned on or off is a Runtime concept. Your assert statements are compiled never the less. The javac command does not support the -da or -ea flags. So the option is not c since you cannot specify the -ea option with javac.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+Queue q = new PriorityQueue();
+q.offer(new String("hello "));
+q.offer(new String("hi ") );
+q.offer(new String("bye "));
+for ( Object o : q )
+{
+   System.out.println(q.poll() + " " + q.size()); 
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Prints hello 3 hi 2 bye 1]]></Option>
+        <Option correct="false"><![CDATA[Prints hello 2 hi 1 bye 0]]></Option>
+        <Option correct="false"><![CDATA[Prints bye 3 hello 2 hi 1]]></Option>
+        <Option correct="false"><![CDATA[Prints bye 2 hello 1 hi 0]]></Option>
+        <Option correct="true"><![CDATA[Prints bye 2 followed by an Exception.]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+bye 2 followed by ConcurrentModificationException. When the loop is iterating through the queue, you are not allowed to poll it since it changes the contents of the data structure. The same goes for offer(). Both these methods will appear on the exam.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+int []arr = {1,2,3,4};
+for ( int i : arr )
+{
+   arr[i] = 0;
+}
+for ( int i : arr )
+{
+   System.out.println(i);
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Prints 0 1 2 3]]></Option>
+        <Option correct="false"><![CDATA[Prints 0 0 0 0]]></Option>
+        <Option correct="true"><![CDATA[Prints 0 0 3 0]]></Option>
+        <Option correct="false"><![CDATA[Prints 0 2 0 0 ]]></Option>
+        <Option correct="false"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime Exception occurs.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+This so happens because arr[3] was made 0 during an iteration of the first "for in loop". So during the final iteration of the first ��for in loop�� , we have 0 instead of 4 in the last index. It can be seen from the second loop why an ArrayIndexOutOfBoundsException was not thrown at runtime. The maximum number in the array is 3 which does not exceed the bound of the loop.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+import java.util.*;
+class test implements Comparator<test>
+{
+   private int x;
+   test(int input) { x = input; }
+   public static void main( String args[] )
+   {
+      List list = new ArrayList();
+      list.add(new test(2));
+      list.add(new test(2));
+      Collections.sort(list);
+   }
+   public int compare( test t1 , test t2 )
+   {
+      return t1.x - t2.x;
+   }
+}
+</java>This code...
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Sorts test instances based on variable x]]></Option>
+        <Option correct="false"><![CDATA[Sorts the instances in ascending order]]></Option>
+        <Option correct="false"><![CDATA[Sorts the instances in descending order.]]></Option>
+        <Option correct="true"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+This code will throw a ClassCastException. This version of Collections.sort() banks on the Comparable interface being implemented, not the Comparator interface. No comparator is passed to the sort() method.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+boolean [] arr = { true , false , true };
+Arrays.sort(arr);
+System.out.println( Arrays.binarySearch(arr,true) ) ;
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[Does not compile]]></Option>
+        <Option correct="false"><![CDATA[Compiles but has Runtime exceptions]]></Option>
+        <Option correct="false"><![CDATA[Prints 0]]></Option>
+        <Option correct="false"><![CDATA[Prints 2]]></Option>
+        <Option correct="false"><![CDATA[Prints 1]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+No one would want to sort a boolean array anyway ;) 
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+List l = Arrays.asList( new int[] {1,2,3,4} );
+for ( int i : l )
+{
+   System.out.println(i);
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Prints 1 2 3 4]]></Option>
+        <Option correct="false"><![CDATA[Prints 4 3 2 1]]></Option>
+        <Option correct="false"><![CDATA[Prints nothing]]></Option>
+        <Option correct="true"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime error]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+Every object in the legacy list is of type Object. Its type is incompatible with int.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <DragAndDropQuestion reuseFragments="true">
+      <QuestionText><![CDATA[
+<java>
+// Fragment 1
+List <Integer> l = Arrays.asList( new int[] {1,2,3,4} ); 
+<slot>Does not compile</slot>
+
+// Fragment 2
+List <Object> list  = new List <Object> ();
+<slot>Does not compile</slot>
+</java>
+Drag and drop the following options over the code fragments 1 and 2.
+]]></QuestionText>
+      <ExtraFragments>
+        <Fragment>Compiles</Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[The correct answer is:
+<java>
+// Fragment 1
+List <Integer> l = Arrays.asList( new int[] {1,2,3,4} ); 
+<slot>Does not compile</slot>
+
+// Fragment 2
+List <Object> list  = new List <Object> ();
+<slot>Does not compile</slot>
+</java>
+Both fragments will not compile. The <tt>asList()</tt> method takes a type <tt>T</tt> as an argument so <tt>int[]</tt> does not fit that description. You cannot instantiate the interface <tt>List</tt>.
+]]></ExplanationText>
+    </DragAndDropQuestion>
+
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+ArrayList <Exception> l2 = new ArrayList <Exception>();
+l2.add(new Exception());
+l2.add(new NumberFormatException() );
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[Compiles with no runtime exceptions]]></Option>
+        <Option correct="false"><![CDATA[Does not compile]]></Option>
+        <Option correct="false"><![CDATA[Compiles but has runtime exceptions.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+Exception is a class and it is being instantiated like any other class. Unless there is a throw clause, no exception is actually thrown.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class test
+{
+   int x; test(int input) { x = input; }
+   public static void main( String args[] )
+   {
+      System.out.println( new test(3).equals(new test(3)) );
+   }
+   public boolean equals( Object o)
+   {
+      return ( (test)o ).x == x;
+   }
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[Prints true]]></Option>
+        <Option correct="false"><![CDATA[Prints false]]></Option>
+        <Option correct="false"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime Exceptions are encountered]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+equals() has been overridden successfully.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+public static void main( String args[] )
+{
+   Map m = new HashMap();
+   String str = null;
+   m.put(new test() , "mill" );
+   m.put(new test() , "sill" );
+   System.out.println(m.size());
+}
+public boolean equals( Object o)
+{
+   return false;  // 1
+}
+public int hashCode()
+{
+   return 0;
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Prints 1]]></Option>
+        <Option correct="true"><![CDATA[Prints 2]]></Option>
+        <Option correct="true"><![CDATA[If Line 1 is replaced with return true; then m.size() returns 1.]]></Option>
+        <Option correct="true"><![CDATA[If hashCode() is not overridden then regardless of whether line 1 returns true or false 2 will be printed on the screen.]]></Option>
+        <Option correct="false"><![CDATA[Compile time error]]></Option>
+        <Option correct="false"><![CDATA[Runtime exception is encountered.]]></Option>
+        <Option correct="true"><![CDATA[If Line 1 is replaced with return true; then size() will not return any number greater than 1.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct options are @allcorrect@.
+<p>
+ For Maps to function properly when alien objects are added into them, the equals and hashCode methods MUST be overridden legally and must obey the equals and hashCode contracts ( it is not necessary that it is efficient ). Since false is returned all the time the code does not consider any two object to be equal so the size is 2.
+ If equals always returns true then only one object can be added to the map at any time. If the programmer tries to add any other object then the equals method is triggered and it return true, and the object is replaced with the newer one.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+System.out.println( Arrays.equals( new int[]{1,2,3,4} , new Integer[]{1,2,3,4} ));
+
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime Exception]]></Option>
+        <Option correct="false"><![CDATA[Prints true]]></Option>
+        <Option correct="false"><![CDATA[Prints false]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+Compile error. The arguments accepted by equals method of Arrays include ( primitive [] , primitive[] ) and ( any object[] , any object[] )
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+Which of the following <tt>Thread</tt> class methods are static ?
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[<tt>sleep</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>join</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>yield</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>wait</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>notify</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>notifyAll</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct methods are @allcorrect@.
+<p>
+sleep and yield are static methods defined in the Thread class.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+Given these two classes and that you want to promote better coupling between them. What changes are required to achieve good coupling ? Also given that the int variable main is to be used when initializing coupler’s variables.
+<java>
+class test {
+   int main=10;
+   public static void main ( String... blah ) {
+      coupler c = new coupler();
+      c.setMain( c.getMain() ); // 1
+   }
+   int getMain() { return main; }
+}
+class coupler {
+   int pain;
+   void setMain(int mane) { pain = mane; }
+   int getMain() { return new test().main; } // 2
+}</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Replace line 1 with main = c.getMain();]]></Option>
+        <Option correct="true"><![CDATA[Replace line 1 with a call to coupler’s setMain method with the argument - main.]]></Option>
+        <Option correct="false"><![CDATA[Replace line 2 with return pain; and make no other changes to the program.]]></Option>
+        <Option correct="false"><![CDATA[No changes are required.]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+You can directly pass the int variable main to class coupler's setMain method instead of the round about way. Option c is invalid. We need a main to initialize the coupler not a pain.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+public static void main( String args[] )
+{
+   Set <String> set = new HashSet<String>();
+   System.out.println(set.add("duplicate"));
+   System.out.println(set.add("duplicate"));
+}
+public boolean equals(Object o)
+{
+   return false;
+}
+public int hashCode()
+{
+   return 0;
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime error]]></Option>
+        <Option correct="false"><![CDATA[Prints <tt>true true</tt>]]></Option>
+        <Option correct="true"><![CDATA[Prints <tt>true false</tt>]]></Option>
+        <Option correct="false"><![CDATA[Prints <tt>false true</tt>]]></Option>
+        <Option correct="false"><![CDATA[Prints <tt>false false</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+<tt>String</tt> has its own <tt>equals</tt> method that no one can override since the <tt>String</tt> class is <tt>final</tt>. The overridden <tt>equals</tt> and <tt>hashCode</tt> are useful only if an instance of this class are added into the set.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+import java.util.regex.*;
+class test {
+   public static void main( String args[] ) {
+      search("asf jgds8 93 qn" , "\\d\\w");   // 1
+      search("asf jgds8 93 qn" , ".*\\d");    // 2
+      search("asf jgds8 93 qn" , "\\d.*");    // 3
+      search("asf jgds8 93 qn" , "\\w.*\\d"); // 4
+   }
+   public static void search(String mat , String pat) {
+      Pattern p = Pattern.compile(pat);
+      Matcher m = p.matcher(mat);
+      while(m.find()) {
+         System.out.println(m.group());
+      }
+   }
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[93<br>asf jgds8 93<br>8 93 qn<br>asf jgds8 93]]></Option>
+        <Option correct="false"><![CDATA[93<br>asf jgds8 93<br>8 93 qn<br>asf jgds8<br>]]></Option>
+        <Option correct="false"><![CDATA[93<br>asf jgds8 93<br>asf jgds8 93<br>asf jgds8<br>]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+ Line 2 should be interpreted as - find the last digit and print everything before it. Line 3 should read Find the first digit and print everything after it. Line 4 reads, find the word and digit that are at the extreme ends and print everything that is sandwiched between them.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+Which of the following are true about the meta characters used with the regex package ?
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[d searches for a digit]]></Option>
+        <Option correct="false"><![CDATA[w searches for a white space.]]></Option>
+        <Option correct="false"><![CDATA[s searches for a string.]]></Option>
+        <Option correct="false"><![CDATA[b searches for either 1 or 0.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class test
+{
+   public static void main ( String [] blah )
+   {
+      System.out.printf("%s", new test());
+   }
+   public String toString()
+   {
+      return "testing something";
+   }
+
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[Prints testing something]]></Option>
+        <Option correct="false"><![CDATA[Gives a runtime exception]]></Option>
+        <Option correct="false"><![CDATA[Prints nothing]]></Option>
+        <Option correct="false"><![CDATA[Prints test@13234 or something like that.]]></Option>
+        <Option correct="false"><![CDATA[Compile error.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+%s automatically invokes the toString() method of the class and even if there isnt one it should print object@1234 or something like that.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class test
+{
+   public static void main ( String [] blah )
+   {
+      System.out.printf("%1$b", "123");
+   }
+   public String toString()
+   {
+      return "testing something";
+   }
+
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Prints false]]></Option>
+        <Option correct="true"><![CDATA[Prints true]]></Option>
+        <Option correct="false"><![CDATA[Runtime Exception]]></Option>
+        <Option correct="false"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+This is an exception to the rule since any Boolean that takes a String argument would have processed the above to be false. These are the rules for %b.
+<ul>
+<li>If the argument is a boolean then use String.valueOf( boolean ). This returns the String to be displayed
+<li>If it is null then print false
+<li>For anything else print true.
+</ul>
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class sup
+{
+   static void method(){System.out.println("Super");} // 1
+}
+
+class test extends sup
+{
+   public static void main(String args[]) {}
+   static void method(){System.out.println("test");}
+}
+</java>
+What class modifier(s) can be inserted at line 1 to prevent method() from being overridden  (hidden ) without causing compile time errors  ?
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[final]]></Option>
+        <Option correct="true"><![CDATA[private]]></Option>
+        <Option correct="false"><![CDATA[protected]]></Option>
+        <Option correct="false"><![CDATA[default]]></Option>
+        <Option correct="false"><![CDATA[transient]]></Option>
+        <Option correct="false"><![CDATA[Hiding cannot be prevented.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+<tt>final</tt> methods cannot be overriden and <tt>private</tt> methods are never inherited so they are not overriden either. However option @1@ would cause a compile time error since a <tt>final</tt> method cannot be overridden.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class sup
+{ void method() throws Exception   {} }
+
+class test extends sup
+{
+   public static void main( String [] args) // 1
+   {
+      sup s = new test();
+      s.method();
+   }
+   void method()  // 2
+   {}
+}
+</java>
+What can be done to avoid a compile error ?
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[Add a “throws Exception” clause at line 1]]></Option>
+        <Option correct="false"><![CDATA[Add a “throws Exception” clause at line 2]]></Option>
+        <Option correct="true"><![CDATA[Use a try catch block when calling s.method().]]></Option>
+        <Option correct="false"><![CDATA[There is no compile error.]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct options are @allcorrect@.
+<p>
+Option @1@ wont help since main will have to handle the Exception anyway.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+enum num
+{BERT("CAFE") , KATHY("BABE")}
+</java>
+What happens when this enum is compiled ?
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Runtime Exceptions are thrown]]></Option>
+        <Option correct="true"><![CDATA[Compile time error]]></Option>
+        <Option correct="false"><![CDATA[BERT is equated to CAFÉ and KATHY is equated to BABE.]]></Option>
+        <Option correct="false"><![CDATA[Either, BERT is equalted to CAFÉ or KATHY is equated to BABE.]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+Remember that whenever you see a enum variable with a () it must have a matching constructor. Our constructor should take a String. However there is no constructor to begin with. So this enum will not compile.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+public class test
+{
+   public static void main( String [] args )
+   {
+      new test();
+   }
+   test()
+   {
+      test(2);
+   }
+   test(int x)
+   {
+      System.out.println(x);
+   }
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Prints 2]]></Option>
+        <Option correct="false"><![CDATA[Prints 0]]></Option>
+        <Option correct="true"><![CDATA[Does not compile]]></Option>
+        <Option correct="false"><![CDATA[Runtime Exception.]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+This invocation will searh for a function named test. It does not invoke the overloaded test() constructor.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class test
+{
+   public static void main( String args[] )
+   {
+      class ma
+      {
+         final int x;      
+         ma ()
+         {
+            x = 10;
+            System.out.println( this.x);
+         }
+      }
+      new ma();
+
+   }
+}
+</java>
+What is the output ?
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Fails to compile]]></Option>
+        <Option correct="false"><![CDATA[Runtime Exceptions are encountered]]></Option>
+        <Option correct="true"><![CDATA[Prints 10]]></Option>
+        <Option correct="false"><![CDATA[Prints 0]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+The code is legal and instantiates the final int to the value 10 after which it is printed onto the console.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+StringBuffer sb = new StringBuffer("abcdef");
+System.out.println( sb.append("123").delete(0,5).reverse().insert(1,"1") );
+</java>
+What is the output of this code fragment ?
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[321]]></Option>
+        <Option correct="false"><![CDATA[3121]]></Option>
+        <Option correct="true"><![CDATA[3121f]]></Option>
+        <Option correct="false"><![CDATA[321f]]></Option>
+        <Option correct="false"><![CDATA[This fragment will not compile]]></Option>
+        <Option correct="false"><![CDATA[This fragment will throw an IndexOutOfBoundsException]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+ After "123" Is appended the string is now abcdef123. Position 0 to 5-1 are deleted, so the new String is f123. This is reversed to 321f and "1" is inserted at position 1 to give 3121f.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+Which of the following are not legal identifiers?
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[<tt>String #baby;</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>char c123;</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Byte $wombat;</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>Long long;</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>Short ~english;</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+@allcorrect@ are illegal identifiers.
+<p>
+<tt>#</tt> and <tt>~</tt> are not allowed in identifiers because they are special characters. <tt>Long long</tt> is not allowed since they are both data types.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class test {
+   public static void main( String args[] ) {
+      new test().method((short)1);
+   }
+   void method(int... i) {
+      System.out.println("int");
+   }
+   void method(Integer i) {
+      System.out.println("pint");
+   }
+   void method(byte i) {
+      System.out.println("bite");
+   }
+}
+</java>What is printed ?
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[pint]]></Option>
+        <Option correct="false"><![CDATA[bite]]></Option>
+        <Option correct="true"><![CDATA[int]]></Option>
+        <Option correct="false"><![CDATA[Nothing is printed]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+A <tt>short</tt> can't be converted into a <tt>Short</tt> and then into an <tt>Integer</tt>. A <tt>short</tt> can't be converted into a <tt>byte</tt>. A <tt>short</tt> can however be converted into an <tt>int</tt> implicitly. Thus <tt>int</tt> is the answer.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+"Cow is an Animal and has a tail" is represented by which of these classes ?
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>Class cow is a Animal { tail t; }</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Class cow extends Animal { String tail; }</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>Class cow implements Animal { tail string; }</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Class cow extends tail { Animal ani; }</tt>]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+Option @2@ represents Cow is an Animal and has a String which is a tail. Option @1@ is total rubbish. Option @4@ represents Cow is a tail and has an animal which is a ani.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class test
+{
+   test tester;
+
+   test( test t )
+   {
+      tester = t;
+   }
+   test()
+   {}
+   public static void main( String args[] )
+   {
+      test t = null;
+      t = new test();
+      t = new test(t);
+      t = null; // 1
+   }
+}
+</java>
+How many objects are eligible for garbage collection after line //1 executes ?
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[One]]></Option>
+        <Option correct="true"><![CDATA[Two]]></Option>
+        <Option correct="false"><![CDATA[Zero]]></Option>
+        <Option correct="false"><![CDATA[This code will not compile]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+The class test has a variable tester that points to another test object. The reference to both objects are lost when variable t is nulled. Thus two objects are eligible for garbage collection.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class test {
+   test() {
+      try {
+         throw new RuntimeException();
+      } finally {
+         System.out.println("Damn !");
+      }
+   }
+   public static void main( String args[] ) {
+      try {
+         new test();
+      } catch ( Throwable t ) {
+         System.out.println("Caught");
+      }
+   }
+}
+</java>What is the output?
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Damn ! RuntimeException.]]></Option>
+        <Option correct="false"><![CDATA[Damn ! Caught RuntimeException]]></Option>
+        <Option correct="false"><![CDATA[RuntimeException caught]]></Option>
+        <Option correct="true"><![CDATA[Damn ! Caught]]></Option>
+        <Option correct="false"><![CDATA[Caught.]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+Throwable can hold an Exception class so the Exception will be caught properly. The finally block will run regardless of whether an Exception is thrown or not.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+Which of the following are valid declarations of a for in loop that loops through an int array named j ?
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[foreach ( int i : j ) {} ]]></Option>
+        <Option correct="false"><![CDATA[for( int I : []j ) {}]]></Option>
+        <Option correct="true"><![CDATA[for ( int I : j ) {}]]></Option>
+        <Option correct="false"><![CDATA[for ( int I : j[] ) {}]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+The first option is not java. b and c are ruled out because the "[]" does not belong in a for in loop.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <DragAndDropQuestion reuseFragments="false">
+      <QuestionText><![CDATA[
+Drag and drop the correct relation that is exhibited by this class.
+<java>
+class a extends b implements c { int d; long e; }
+</java>Drag the correct option to the slot below. Ignore the class names and member variable names. Choose the option based on is-a and has-a relationships.
+<slot>MonsterTruck is a truck, MonsterTruck is a Monster, MonsterTruck has 2 doors.</slot>]]></QuestionText>
+      <ExtraFragments>
+        <Fragment><![CDATA[Subaru is a car, Subaru is a vehicle, Subaru has a wheel.]]></Fragment>
+        <Fragment><![CDATA[Chocolate is a candy, Chocolate has a taste.]]></Fragment>
+        <Fragment><![CDATA[Girl is a hotchick, Girl is a barbie, Girl is a Girly.]]></Fragment>
+        <Fragment><![CDATA[None of the above.]]></Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[
+The correct answer is: "MonsterTruck is a truck, MonsterTruck is a Monster, MonsterTruck has 2 doors."
+<p>
+The answer would be as above even if the last few words read, "MonsterTruck has doors", since we are interested purely in the relationship and not the data type.
+]]></ExplanationText>
+    </DragAndDropQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+class test
+{
+   public static void main( String args[] )
+   {
+      new test().meth(new Integer(42));       // 1
+      new test<String>().meth("hello");       // 2
+      new test<String>().meth(new Object() ); // 3
+   }
+   public <T>void meth(T type)
+   {
+      System.out.println(type);
+   }  
+}
+</java>Compilation at which line(s) fail ?
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[1]]></Option>
+        <Option correct="true"><![CDATA[2]]></Option>
+        <Option correct="true"><![CDATA[3]]></Option>
+        <Option correct="false"><![CDATA[No compile errors]]></Option>
+        <Option correct="false"><![CDATA[Runtime error.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+The class does not have type <tt>>T&gt;</tt> so <tt>test&lt;String&gt;</tt> has no meaning.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+public <T> List<T> meth(List<?> type)
+{
+   System.out.println(type); // 1
+   return new ArrayList<String>(); // 2
+}
+</java>
+This code...
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Will compile]]></Option>
+        <Option correct="false"><![CDATA[Will not compile at Line 1]]></Option>
+        <Option correct="false"><![CDATA[Has runtime errors.]]></Option>
+        <Option correct="true"><![CDATA[Will not compile at Line 2]]></Option>
+        <Option correct="false"><![CDATA[Will not compile at Line 1 and 2.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+Does not compile at 2. List<T> is required.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+public <T> List<?> meth(List<T> type)
+{
+   System.out.println(type); // 1
+   return new ArrayList<String>(); // 2
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[Will compile]]></Option>
+        <Option correct="false"><![CDATA[Will not compile at Line 1]]></Option>
+        <Option correct="false"><![CDATA[Has runtime errors.]]></Option>
+        <Option correct="false"><![CDATA[Will not compile at Line 2]]></Option>
+        <Option correct="false"><![CDATA[Will not compile at Line 1 and 2.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+A List&lt;?&gt; is expected so it can be any Object.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+public <T> List<?> meth(List<?> type)
+{
+   System.out.println(type); // 1
+   return new ArrayList<?>();  // 2
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Will compile]]></Option>
+        <Option correct="false"><![CDATA[Will not Compile at Line 1]]></Option>
+        <Option correct="false"><![CDATA[Has Runtime errors.]]></Option>
+        <Option correct="true"><![CDATA[Will not Compile at Line 2]]></Option>
+        <Option correct="false"><![CDATA[Will not Compile at Line 1 and 2.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+The "?" cannot be used along with the new operator.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+import java.util.*;
+class test 
+{
+   List<? super String> tester = new ArrayList < String >();
+   public static void main( String args[] )
+   {
+      seth( tester ); // 2
+   }
+
+   public static <T> void seth(List<? super String> type)
+   {
+      type.add("hi"); // 1
+   }   
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Compile Error occurs when adding “hi” at Line 1]]></Option>
+        <Option correct="false"><![CDATA[Runtime error]]></Option>
+        <Option correct="false"><![CDATA[Compiles without warnings and adds “hi” successfully.]]></Option>
+        <Option correct="false"><![CDATA[Compiles with warnings and adds “hi” successfully.]]></Option>
+        <Option correct="true"><![CDATA[Compile Error occurs at 2.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+A non static variable is accessed from a static context. Otherwise this code will run pretty fine.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+List <? extends String> list = new ArrayList <String > ();
+for ( Object o : list )
+{
+   System.out.println(o);
+}
+</java>
+Choose all that are applicable.
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime error]]></Option>
+        <Option correct="true"><![CDATA[Nothing can be added to list]]></Option>
+        <Option correct="false"><![CDATA[Only a String reference can point to list. Hence a String reference is required in the loop.]]></Option>
+        <Option correct="false"><![CDATA[None of the above.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+You can always use an object to point to this list. Since the "?" wild character is present in the declaration, nothing can be added to the List.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+List <String> list = new ArrayList <String>; // 1
+list.add("hello"); // 2
+list.add("My dear"); // 3
+for ( Object o : list ) // 4
+{
+   System.out.println(o); // 5
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Prints hello My dear]]></Option>
+        <Option correct="false"><![CDATA[Prints My dear hello]]></Option>
+        <Option correct="false"><![CDATA[Cannot predict the sequence in which the strings are printed.]]></Option>
+        <Option correct="true"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime error.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+Line 1 is missing the () after &lt; String &gt;. The real exam also tests you on such errors in syntax.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+int []arr = new int[]{1,2,3,4};
+int []arr2 = new int[]{new Integer(1),2,3,4};
+System.out.println( Arrays.equals( arr,arr2 ));
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[Prints true]]></Option>
+        <Option correct="false"><![CDATA[Prints false]]></Option>
+        <Option correct="false"><![CDATA[Prints nothing]]></Option>
+        <Option correct="false"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime error.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+Unboxing enables the <tt>new Integer(1)</tt> statement to be error free.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[
+<java>
+int []arr = new int[]{1,2,3,4} ;
+String []arrstr = Arrays.toString(arr);
+for ( String s : arrstr )
+{
+   System.out.println(s);
+}
+</java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Prints 1 2 3 4]]></Option>
+        <Option correct="false"><![CDATA[Prints nothing]]></Option>
+        <Option correct="true"><![CDATA[Compile error]]></Option>
+        <Option correct="false"><![CDATA[Runtime error]]></Option>
+        <Option correct="false"><![CDATA[None of the above]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+The correct answer is @allcorrect@.
+<p>
+toString() returns a String not a String array. The String would be something like [ 1 , 2 ,3 ,4 ]
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+  </Questions>
+</QuestionSet>

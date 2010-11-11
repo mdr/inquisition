@@ -1,0 +1,22 @@
+Thanks for downloading JHighlight!
+
+JHighlight has been developed by Uwyn bvba/sprl (http://uwyn.com) with gracious source code donations of Omnicore Software (http://www.omnicore.com) that enabled the core structure and the initial lexers.
+
+JHighlight is an embeddable pure Java syntax highlighting library that supports Java, Groovy, C++, HTML, XHTML, XML and LZX languages and outputs to XHTML. It also supports RIFE (http://rifers.org) templates tags and highlights them clearly so that you can easily identify the difference between your RIFE markup and the actual marked up source.
+
+The javadocs contain details information about how to customize, execute and integrate JHighlight.
+
+On the commandline, you should call it like this (on one line):
+
+java com.uwyn.jhighlight.JHighlight [--verbose] [--fragment]
+                                    [-d destdir] file|dir ...
+--verbose   Output messages about what the parser is doing.
+--fragment  Output fragments instead of complete documents.
+-d          Specify the destination directory
+
+More information can be found on JHighlight's homepage at java.net:
+https://jhighlight.dev.java.net
+
+Have fun!
+
+Geert Bevin <gbevin[remove] at uwyn dot com>

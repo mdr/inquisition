@@ -1,0 +1,90 @@
+0.14 (12th June, 2008)
+----------------------
+
+New features:
+    * Added back a slightly more robust Question Editor
+
+Bundled questions:
+    * SCWCD questions on JSP basics
+
+Bug fixes:
+    * Opening a question set without a category now works
+
+0.13 (20th April, 2008)
+-----------------------
+
+New features:
+    * Save and restore in-progress quizzes
+    * Export a question set as an HTML document
+    * Multiple choice options are now identified by their position in the question, 
+      rather than being assigned an arbitrary ID
+    * Now specify a time per question, rather than a time for all questions, in a question set.  
+    * Double click in tree to begin quiz
+    
+Bug fixes: 
+    * Drag and drop questions weren't working for some people, should now be fixed
+
+Bundled questions:
+    * Revamped the demo quiz
+    * SCWCD exam from Jussi Lyytinen
+    * SCWCD questions on servlet lifecycle, request and response, attributes and listeners
+    
+Refactoring:
+    * Reworked quiz frame to use MVC
+    * GUI forms built with Netbeans Matisse now supplied as a library
+    
+0.12 (24th May, 2007)
+---------------------
+    
+New features:
+    * "<html><body>" tags are no longer necessary in options or descriptions
+    * Drag and drop questions have a cleaner syntax: <slot>foobar</slot> rather than
+      <input size="6" value="foobar">. Maximum width of slots is calculated
+      automatically, and the <form> slots are now inserted for you.
+    * A <CopyToExplanation> and <CopyFromQuestion> tag used in drag-and-drop questions; 
+      saves copying and pasting the correct answer
+    * Tree component to sort quizzes by category
+    * Quiz chooser now disables components if a question set is not selected
+	
+
+Refactoring:
+	* Restructured into packages
+	* BundledQuestions and Icons classes to handle resources
+    * Using Java logging facility rather then syserr
+    * Added unit tests for a few classes
+    * Moved to Question interface and AbstractQuestion
+	* Misc cleanups
+
+Bug fixes:
+    * Fixed a couple of problems in the web test importer
+    * Improved error handling for missing resources
+    
+Questions:
+    * Added hashCode() and equals() exam
+    * Bundled with the themuppeteer SCJP quiz
+   
+
+0.11 (11th of October, 2006)
+----------------------------
+
+New features:
+    * Added support for <java></java> tags in questions for automatic syntax highlighting
+    * Tick and cross icons in results table
+    * Lazy creation of QuestionPanels to improve start time of TestQuestionFrame
+    * Animations for dragged fragments returning to the fragment bin
+    * QuestionSet loader checks version number of XML file
+    * Only shows available L&Fs in the menu
+
+Bug fixes:
+    * Removed LAF menu from tester dialog (causes intractable bugs)
+    * MultipleChoiceEditor now sets the shuffle/single-mode checkboxes properly 
+      when editing questions
+    * Hack to mitigate the effects of MultipleChoicePanel's optionPanel sizing bug
+    * Consistency check for MultipleChoiceQuestions in singleOptionMode
+
+
+0.1 (4th of October, 2006)
+--------------------------
+
+* Initial release  
+

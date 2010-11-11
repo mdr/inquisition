@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="/home/matthew/Inquisition.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/Inquisition/jar-description.jardesc" exportErrors="false" exportWarnings="false" includeDirectoryEntries="true" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="false" mainClassHandleIdentifier="=Inquisition/src&lt;uk.co.bytemark.vm.enigma.inquisition.gui.quizchooser{Main.java[Main" manifestLocation="/Inquisition/manifest2" manifestVersion="1.0" reuseManifest="true" saveManifest="true" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <file path="/Inquisition/build.xml"/>
+        <javaElement handleIdentifier="=Inquisition/src"/>
+        <file path="/Inquisition/.classpath"/>
+        <file path="/Inquisition/make-package.sh"/>
+        <file path="/Inquisition/manifest.mf"/>
+        <folder path="/Inquisition/docs"/>
+        <file path="/Inquisition/manifest2"/>
+        <file path="/Inquisition/manifest"/>
+        <file path="/Inquisition/.project"/>
+        <file path="/Inquisition/Thumbs.db"/>
+    </selectedElements>
+</jardesc>

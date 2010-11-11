@@ -1,0 +1,42 @@
+// *** Code snippet: how to write out HTML, and insert bits using HTMLEditorKit                
+//                HTMLEditorKit kit = ((HTMLEditorKit) aboutTextPane.getEditorKit());
+//                try {
+//                    kit.write(System.out, doc, 0, doc.getLength());
+//                } catch (IOException ex) {
+//                    ex.printStackTrace();
+//                } catch (BadLocationException ex) {
+//                    ex.printStackTrace();
+//                }
+                //                try {
+                  
+//                    kit.insertHTML(doc, pos, "<B>hello</B>", 0, 0,HTML.Tag.B);
+//                } catch (IOException ex) {
+//                    ex.printStackTrace();
+//                } catch (BadLocationException ex) {
+//                    ex.printStackTrace();
+//                }
+
+ 
+//    public static ImageIcon smallTickIcon= null;
+//    public static ImageIcon smallCrossIcon = null;
+//    {
+//        Image tickImage = tickIcon.getImage();
+//        //Image smallTickImage = tickImage.getScaledInstance((int) (tickImage.getWidth() / 2), -1, true);
+//        Image smallTickImage = tickImage.getScaledInstance(16, -1, 1);
+//        smallTickIcon = new ImageIcon(smallTickImage);
+//
+//        Image crossImage = crossIcon.getImage();
+//        Image smallCrossImage = crossImage.getScaledInstance(16, -1, 0);
+//        smallCrossIcon = new ImageIcon(smallCrossImage);
+//
+//    
+//    }
+
+//                // Debug routine: Dump questionSet as XML
+//                Document doc = new Document(questionSet.asXML());
+//                XMLOutputter outputter = new XMLOutputter();
+//                Format format = Format.getPrettyFormat();
+//                outputter.setFormat(format);
+//                try {
+//                    outputter.output(doc, System.out);
+//                } catch (IOException e) { e.printStackTrace(); }

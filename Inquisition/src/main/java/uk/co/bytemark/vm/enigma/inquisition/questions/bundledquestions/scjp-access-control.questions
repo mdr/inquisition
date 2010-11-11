@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QuestionSet SYSTEM "inquisitionQuestions.dtd">
+<QuestionSet version="4">
+  <Name>SCJP 5/6: Access control</Name>
+  <Description><![CDATA[Mock questions on <tt>hashCode()</tt> and
+   <tt>equals()</tt> for the Sun Certified Java Programmer (SCJP) 5/6 exam.  
+<p>
+Resources:
+<hr>
+<b>Info:</b><br>
+<ul>
+<li>Maintainer: Matt Russell <tt><mattrusselluk@gmail.com></tt>
+<li>Home page: <a href="http://enigma.vm.bytemark.co.uk/inquisition">http://enigma.vm.bytemark.co.uk/inquisition</a>
+<li>Version: 0.1
+<li>Date published: 
+<li>License: Public domain
+</ul>]]></Description>
+  <RecommendedTimePerQuestion>120</RecommendedTimePerQuestion>
+  <Category>SCJP 5/6</Category>
+  <Questions>
+   <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[What is the result of attempting to compile and run the following code?
+<p>
+<tt>Bar.java</tt>:
+<java>
+package a;
+public class Bar { protected int val = 10; }
+</java>
+<br>
+<tt>Foo.java</tt>:
+<java>
+package b;
+import a.Bar;
+public class Foo extends Bar {
+    private void doStuff() {
+        System.out.print( this.val ); // <-- Line A 
+    }
+    private void doStuff(Bar bar) {
+        System.out.print( bar.val );  // <-- Line B
+    }
+    public static void main( String[] args ) {
+        Foo foo = new Foo();
+        foo.doStuff();
+        foo.doStuff(new Bar());
+    }
+}
+ </java>
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Compilation fails due to an error on "Line A" alone.]]></Option>
+        <Option correct="true"><![CDATA[Compilation fails due to an error on "Line B" alone.]]></Option>
+        <Option correct="false"><![CDATA[Compilation fails due to an error on both "Line A" and "Line B".]]></Option>
+        <Option correct="false"><![CDATA[Output is <tt>1010</tt>]]></Option>
+        <Option correct="false"><![CDATA[Output is <tt>null10</tt>]]></Option>
+        <Option correct="false"><![CDATA[An exception is thrown at runtime.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer. Code in a class in a different package from
+       its superclass is only able to access <tt>protected</tt> members defined in its superclass under certain
+       conditions. In particular, access to a protected member through a reference of the superclass type, 
+       such as <tt>bar.val</tt>, is not allowed. Access through a reference of type of the same class (or
+       a subtype) is permitted, so <tt>this.val</tt> is legal. 
+       <p>
+       The full rules are in the Java language specification: 
+ <a href="http://java.sun.com/docs/books/jls/third_edition/html/names.html#62587">http://java.sun.com/docs/books/jls/third_edition/html/names.html#62587</a>
+       ]]></ExplanationText>
+    </MultipleChoiceQuestion>
+  </Questions>
+</QuestionSet>

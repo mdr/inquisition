@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QuestionSet SYSTEM "inquisitionQuestions.dtd">
+<QuestionSet version="4">
+    <Name>Demo quiz</Name>
+    <Description><![CDATA[Questions to demonstrate Inquisition's features
+<hr>
+<b>Info:</b><br>
+<ul>
+<li>Maintainer: Matt Russell &lt;mattrusselluk@gmail.com&gt;
+<li>Home page: <a href="http://enigma.vm.bytemark.co.uk/inquisition/">http://enigma.vm.bytemark.co.uk/inquisition/</a>
+<li>Version: 0.2 (April 2008)
+<li>License: Public domain
+    </ul>]]></Description>
+    <RecommendedTimePerQuestion>120</RecommendedTimePerQuestion>
+    <Category>Demo questions</Category>
+    <Questions>
+        <MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+            <QuestionText><![CDATA[<h2>Multiple choice question with a single correct option</h2>     
+      Complete the following: We are the knights who say...
+            ]]></QuestionText>
+            <Options>
+                <Option correct="false">Noo</Option>
+                <Option correct="true">Ni</Option>
+                <Option correct="false">Nah</Option>
+                <Option correct="false">Nobble</Option>
+            </Options>
+            <ExplanationText><![CDATA[The correct answer is @2@. Now go fetch a shrubbery!]]></ExplanationText>
+        </MultipleChoiceQuestion>
+        <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+            <QuestionText><![CDATA[<h2>Multiple choice question with multiple correct options</h2>     
+      Which of the following euphemisms were deployed by John Cleese in various versions of Monty Python's Parrot Sketch?
+            ]]></QuestionText>
+            <Options>
+                <Option correct="true">His metabolic processes are now history!</Option>
+                <Option correct="true">He's kicked the bucket!</Option>
+                <Option correct="true">If you hadn't nailed him to the perch he'd be pushing up the daisies!</Option>
+                <Option correct="true">This is an ex-parrot!</Option>
+                <Option correct="false">He's popped his clogs!</Option>
+                <Option correct="false">He's bought the farm!</Option> 
+            </Options>
+            <ExplanationText><![CDATA[
+      You can refer to particular options in the explanation, even though the options have been randomly shuffled. For example, @5@ and @6@ are incorrect, while @allcorrect@ are correct.
+            ]]></ExplanationText>
+        </MultipleChoiceQuestion>
+        <DragAndDropQuestion reuseFragments="false">
+            <QuestionText><![CDATA[
+      <h2>Drag and drop question with non-reusable fragments</h2>
+Complete the following limerick using the fragments provided:
+<CopyToExplanation>
+<pre><i>
+    The limerick packs laughs <slot>anatomical</slot>
+    Into space that is quite <slot>economical</slot>
+        But the good ones I've <slot>seen</slot>
+        So seldom are <slot>clean</slot>
+    And the clean ones so seldom are <slot>comical</slot>
+
+                     -- Vyvyan Holland
+</i></pre>
+            </CopyToExplanation>]]></QuestionText>
+            <ExtraFragments>
+                <Fragment>Gordon</Fragment>
+                <Fragment>Popsicle</Fragment>
+            </ExtraFragments>
+            <ExplanationText><![CDATA[The correct answer is:
+<CopyFromQuestion/>
+            ]]></ExplanationText>
+        </DragAndDropQuestion>
+        <DragAndDropQuestion reuseFragments="true">
+            <QuestionText><![CDATA[
+      <h2>Drag and drop question with reusable fragments</h2>
+Complete the following menu using the fragments provided:
+<CopyToExplanation>
+<ul>
+<li>egg and bacon</li>
+<li>egg sausage and bacon</li>
+<li>egg and <slot>spam</slot></li>
+<li>egg bacon and spam</li>
+<li>egg bacon sausage and <slot>spam</slot></li>
+<li>spam bacon sausage and spam</li>
+<li>spam egg spam spam bacon and spam</li>
+<li>spam sausage <slot>spam</slot> spam bacon spam tomato and spam</li>
+<li>spam spam spam egg and spam</li>
+<li>spam spam spam <slot>spam</slot> spam spam <slot>baked beans</slot> spam spam spam</li>
+<li>Lobster Thermidor a Crevette with a mornay sauce served in a Provencale manner with shallots and aubergines garnished with truffle pate, brandy and with a fried egg on top and <slot>spam</slot></li>
+</ul>
+            </CopyToExplanation>]]></QuestionText>
+            <ExtraFragments>
+            </ExtraFragments>
+            <ExplanationText><![CDATA[The correct answer is:
+<CopyFromQuestion/>
+            ]]></ExplanationText>
+        </DragAndDropQuestion>
+    </Questions>
+</QuestionSet>

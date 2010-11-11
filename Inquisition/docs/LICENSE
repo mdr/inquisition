@@ -1,0 +1,36 @@
+Java.Inquisition is free software; more specifically, I've released Java.Inquisition
+into the public domain. In effect, this is like a perfectly free, non-copyleft licence.
+For example, you may:
+
+* redistribute the work;
+* create and distribute a derivative work;
+* translate the work and distribute the translation;
+* combine the work with other works and distribute the result;
+* aggregate the work in a distribution with other works;
+* whatever you like.
+
+It is ''requested'' that you give credit for this work if you reuse it, 
+and that you offer any derivative works to other people in the same spirit as 
+this work was offered to you: with as few conditions as possible (preferably 
+no conditions), and access to the source code. These above request cannot be
+ enforced legally; they are not requirements. It is essentially an ethical 
+decision, and you will have to decide for yourself.
+
+==Libraries==
+Java.Inquisition uses JDOM and a modified version of jhighlight as 
+external libraries. JDOM is available under an Apache-style license with the acknowledgement
+clause removed[http://www.jdom.org/docs/faq.html#a0030].
+jhighlight is available under the the common development and distribution license (CDDL), v1.0;
+or the GNU Lesser General Public License, v2.1 or later. See the copyright terms for those individual
+files.
+
+==Warranty==
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS 
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES 
+OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+DEALINGS IN THE SOFTWARE.
+
+<small>(Some of the above page is adapted from [http://math.ucr.edu/%7Etoby/copyright/Tony Bartel's "No Rights Reserved" page] and the [http://www.opensource.org/licenses/mit-license.php MIT license])</small>

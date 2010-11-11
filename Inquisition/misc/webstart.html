@@ -1,0 +1,85 @@
+<html>
+<head>
+</head>
+<body>
+
+<SCRIPT LANGUAGE="JavaScript"> 
+var javawsInstalled = 0;  
+var javaws142Installed=0;
+var javaws150Installed=0;
+isIE = "false"; 
+if (navigator.mimeTypes && navigator.mimeTypes.length) { 
+   x = navigator.mimeTypes['application/x-java-jnlp-file']; 
+   if (x) { 
+      javawsInstalled = 1; 
+      javaws142Installed=1;
+      javaws150Installed=1;
+   } 
+} 
+else { 
+   isIE = "true"; 
+} 
+</SCRIPT> 
+<SCRIPT LANGUAGE="VBScript">
+on error resume next
+If isIE = "true" Then
+  If Not(IsObject(CreateObject("JavaWebStart.isInstalled"))) Then
+     javawsInstalled = 0
+  Else
+     javawsInstalled = 1
+  End If
+  If Not(IsObject(CreateObject("JavaWebStart.isInstalled.1.4.2.0"))) Then
+     javaws142Installed = 0
+  Else
+     javaws142Installed = 1
+  End If 
+  If Not(IsObject(CreateObject("JavaWebStart.isInstalled.1.5.0.0"))) Then
+     javaws150Installed = 0
+  Else
+     javaws150Installed = 1
+  End If  
+End If
+</SCRIPT>
+<h1><a href="http://enigma.vm.bytemark.co.uk/inquisition/index.php/Main_Page">Java.Inquisition</a></h1>
+<h2>Download:</h2>
+
+<h4>Version 0.13 (development), 20/April/2008</h4>
+<ul>
+<li><SCRIPT language="Javascript">
+if (javawsInstalled || (navigator.userAgent.indexOf("Gecko") !=-1)) {
+    document.write("<a href='Inquisition-0.13/inquisition.jnlp'><img STYLE='border: none;' src='webstart.gif'> (Launch using Java Web Start)</a>");
+} else {
+    document.write("Click ");
+    document.write("<a href=http://java.sun.com/PluginBrowserCheck?pass=http://enigma.vm.bytemark.co.uk/download.html&fail=http://java.sun.com/j2se/1.5.0/download.html>here</a> ");
+    document.write("to download and install JRE 5.0 and the application.");
+}
+</SCRIPT> 
+</li>
+<li><a href="Inquisition-0.13/Inquisition-0.13.jar">Executable JAR</a></li>
+<li><a href="Inquisition-0.13/inquisition-0.13-sources.zip">Source code</a></li>
+</ul>
+<hr>
+
+<h3>Archive</h3>
+<h4>Version 0.12 (development), 24/May/2007</h4>
+<ul>
+</li>
+<li><a href="Inquisition-0.12.jar">Executable JAR</a></li>
+<li><a href="inquisition-0.12-sources.zip">Source code</a></li>
+</ul>
+
+<h4>Version 0.11</h4>
+<ul>
+<li><a href="inquisition-0.11.zip">ZIPped executable JAR</a>.
+<li>Sources and Netbeans project: <a href="inquisition-0.11-sources.zip">ZIP</a>
+</ul>
+
+<h4>Version 0.1</h4>
+<ul>
+<li> <a href="inquisition-0.1.zip">ZIPped executable JAR</a> (534k).
+<li>Sources and Netbeans project: <a href="inquisition-0.1-sources.zip">ZIP</a> (278k).
+</ul>
+
+<div align="center"><a href="http://enigma.vm.bytemark.co.uk/inquisition">Home</a></div>
+</body>
+</html>

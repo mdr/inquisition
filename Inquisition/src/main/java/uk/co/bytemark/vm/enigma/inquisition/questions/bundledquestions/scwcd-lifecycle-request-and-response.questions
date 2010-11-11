@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QuestionSet SYSTEM "inquisitionQuestions.dtd">
+<QuestionSet version="4">
+  <Name>SCWCD: Servlet Lifecycle, Request and Response</Name>
+  <Description><![CDATA[Mock questions on Servlet Lifecycle, Request and Response for the Sun Certified Web Component Developer (SCWCD) exam.
+<hr>
+<b>Info:</b><br>
+<ul>
+<li>Maintainer: Matt Russell <tt>&lt;mattrusselluk@gmail.com&gt;</tt>
+<li>Home page: <a href="http://enigma.vm.bytemark.co.uk/inquisition">http://enigma.vm.bytemark.co.uk/inquisition</a>
+<li>Version: 0.1
+<li>Date published: April 2008 
+<li>License: Public domain
+</ul>]]></Description>
+  <RecommendedTimePerQuestion>120</RecommendedTimePerQuestion>
+  <Category>SCWCD</Category>
+  <Questions>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[Which of the following are true about the servlet lifecycle?]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[The web container is obliged to create a new Servlet object to handle each client request.]]></Option>
+        <Option correct="false"><![CDATA[After the servlet object has been created using the no-argument constructor it is ready to service client requests.]]></Option>
+        <Option correct="false"><![CDATA[The last stage in the servlet lifecycle is for the container to call the servlet's <tt>finalize()</tt> method to indicate that it is being taken out of service.]]></Option>
+        <Option correct="true"><![CDATA[To handle a client request, a servlet's <tt>service()</tt> method is called, which takes both a <tt>ServletRequest</tt> and a <tt>ServletResponse</tt> as parameters.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.
+<ul>
+<li>@1@ is incorrect because, typically, the container creates a single Servlet instance to handle all the requests for that servlet.</li>
+<li>@2@ is incorrect because the <tt>init()</tt> method is called after construction</li>
+<li>@3@ is incorrect because the <tt>destroy()</tt> method is called by the container at the end of the servlet lifecycle; <tt>finalize</tt> is called by the JVM during garbage collection</li>
+</ul>
+]]></ExplanationText>
+</MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+      <QuestionText><![CDATA[Which HTTP method is used by default on submission of a form if the corresponding <tt>&lt;form&gt;</tt> tag is not supplied with a <tt>method</tt> attribute? ]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[PUT]]></Option>
+        <Option correct="false"><![CDATA[POST]]></Option>
+        <Option correct="true"><![CDATA[GET]]></Option>
+        <Option correct="false"><![CDATA[SUBMIT]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[GET (@allcorrect@) is the correct answer.]]></ExplanationText>
+</MultipleChoiceQuestion>
+    <DragAndDropQuestion reuseFragments="false">
+      <QuestionText><![CDATA[Complete the standard sequence of the servlet lifecycle (put the first action in slot 1, the last action in slot 5).<p>
+<CopyToExplanation>
+<table border="1" cellspacing="0">
+<tr>
+<td>1</td>
+<td><slot>Load the servlet class</slot></td>
+</tr>
+<tr>
+<td>2</td>
+<td><slot>Instantiate servlet</slot></td>
+</tr>
+<tr>
+<td>3</td>
+<td><slot>init()</slot></td>
+</tr>
+<tr>
+<td>4</td>
+<td><slot>service()</slot></td>
+</tr>
+<tr>
+<td>5</td>
+<td><slot>destroy()</slot></td>
+</tr>
+</table>
+</CopyToExplanation>
+]]>
+</QuestionText>
+      <ExtraFragments>
+         <Fragment>doService()</Fragment>
+         <Fragment>doInit()</Fragment>
+         <Fragment>initialize()</Fragment>
+         <Fragment>process()</Fragment>
+         <Fragment>passivate()</Fragment>
+         <Fragment>deactivate()</Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[The correct answer is:
+<CopyFromQuestion/>
+]]></ExplanationText>
+    </DragAndDropQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[Which of the following are idempotent HTTP methods?]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[GET]]></Option>
+        <Option correct="false"><![CDATA[POST]]></Option>
+        <Option correct="true"><![CDATA[DELETE]]></Option>
+        <Option correct="true"><![CDATA[PUT]]></Option>
+        <Option correct="false"><![CDATA[CREATE]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer. All the HTTP methods except POST are considered idempotent. CREATE is not an HTTP method. ]]></ExplanationText>
+</MultipleChoiceQuestion>
+
+    <DragAndDropQuestion reuseFragments="false">
+      <QuestionText><![CDATA[Complete the following table of HTTP methods by assigning the appropriate method to the description closest matching its meaning.<br>
+<CopyToExplanation>
+<table border="1" cellspacing="0">
+<tr>
+<td><slot>GET</slot></td>
+<td>Requests a resource</td>
+</tr>
+<tr>
+<td><slot>PUT</slot></td>
+<td>Uploads a resource</td>
+</tr>
+<tr>
+<td><slot>DELETE</slot></td>
+<td>Removes a resource</td>
+</tr>
+<tr>
+<td><slot>POST</slot></td>
+<td>Submits information to be given to a resource for processing</td>
+</tr>
+</table>
+</CopyToExplanation>
+]]>
+</QuestionText>
+      <ExtraFragments>
+         <Fragment>CREATE</Fragment>
+         <Fragment>READ</Fragment>
+         <Fragment>UPDATE</Fragment>
+         <Fragment>ECHO</Fragment>
+         <Fragment>UPLOAD</Fragment>
+         <Fragment>REMOVE</Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[The correct answer is:
+<CopyFromQuestion/>
+]]></ExplanationText>
+    </DragAndDropQuestion>
+        <DragAndDropQuestion reuseFragments="false">
+      <QuestionText><![CDATA[Complete the following table of HTTP methods by assigning the appropriate method to the description closest matching its meaning.<br>
+<CopyToExplanation>
+<table border="1" cellspacing="0">
+<tr>
+<td><slot>OPTIONS</slot></td>
+<td>Provides a list of HTTP methods that the resource will respond to</td>
+</tr>
+<tr>
+<td><slot>HEAD</slot></td>
+<td>Requests the header that would be given if the request was a GET, but without the response body</td>
+</tr>
+<tr>
+<td><slot>TRACE</slot></td>
+<td>Echos the request; used for testing and debugging</td>
+</tr>
+<tr>
+<td><slot>GET</slot></td>
+<td>Requests a resource</td>
+</tr>
+</table>
+</CopyToExplanation>
+]]>
+</QuestionText>
+      <ExtraFragments>
+         <Fragment>CREATE</Fragment>
+         <Fragment>READ</Fragment>
+         <Fragment>UPDATE</Fragment>
+         <Fragment>ECHO</Fragment>
+         <Fragment>UPLOAD</Fragment>
+         <Fragment>REMOVE</Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[The correct answer is:
+<CopyFromQuestion/>
+]]></ExplanationText>
+    </DragAndDropQuestion>
+        <DragAndDropQuestion reuseFragments="false">
+      <QuestionText><![CDATA[Complete the following fragments of code from two different servlets:
+<CopyToExplanation>
+<java>
+PrintWriter writer = response.<slot>getWriter</slot>()
+</java>
+
+<java>
+ServletOutputStream stream = response.<slot>getOutputStream</slot>()
+</java>
+</CopyToExplanation>
+]]>
+</QuestionText>
+      <ExtraFragments>
+         <Fragment>getPrintWriter</Fragment>
+         <Fragment>writer</Fragment>
+         <Fragment>getResponseWriter</Fragment>
+         <Fragment>getServletOutputStream</Fragment>
+         <Fragment>getPrintStream</Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[The correct answer is:
+<CopyFromQuestion/>
+]]></ExplanationText>
+    </DragAndDropQuestion>
+    <DragAndDropQuestion reuseFragments="false">
+      <QuestionText><![CDATA[Complete the following code for looping over the parameters of a 
+      request:
+<CopyToExplanation>
+<java>
+Enumeration names = request.<slot>getParameterNames</slot>();
+while (names.hasMoreElements()) {
+   String name = (String) names.nextElement();
+   String [] values = request.<slot>getParameterValues</slot>(name);
+   if (values.length == 1) {
+      String value = request.<slot>getParameterValue</slot>(name);
+   } 
+}
+</java>
+</CopyToExplanation>
+]]>
+</QuestionText>
+      <ExtraFragments>
+         <Fragment>getParameterMap</Fragment>
+         <Fragment>getParameters</Fragment>
+         <Fragment>parameterNames</Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[The correct answer is:
+<CopyFromQuestion/>
+]]></ExplanationText>
+    </DragAndDropQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[Which of the following <tt>getRequestDispatcher()</tt> calls will always return <tt>null</tt>? ]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>request.getRequestDispatcher("foo.jsp");</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>request.getRequestDispatcher("/foo.jsp");</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>request.getServletContext().getRequestDispatcher("foo.jsp");</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>request.getServletContext().getRequestDispatcher("/foo.jsp");</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer. The <tt>getRequestDispatcher()</tt> method in the 
+        <tt>ServletContext</tt> cannot take a relative path as an argument. Instead, it must always start with a <tt>/</tt>, 
+        which is interpreted as relative to the current context root.
+         ]]></ExplanationText>
+    </MultipleChoiceQuestion>
+</Questions>
+</QuestionSet>

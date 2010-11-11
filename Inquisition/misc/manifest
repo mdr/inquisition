@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Main-Class: uk.co.bytemark.vm.enigma.inquisition.gui.quizchooser.Main
+Class-Path: jars/swing-layout-1.0.1.jar 
+            jars/AbsoluteLayout.jar 
+            jars/javahighlite.jar
+            jars/jdom.jar jars/squareness.jar

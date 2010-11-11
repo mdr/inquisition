@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="/home/matthew/testInquisition.jar"/>
+    <options buildIfNeeded="true" compress="false" descriptionLocation="/Inquisition/misc/export-jar-description.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="true" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" mainClassHandleIdentifier="=Inquisition/src&lt;uk.co.bytemark.vm.enigma.inquisition.gui.quizchooser{Main.java[Main" manifestLocation="/Inquisition/manifest3" manifestVersion="1.0" reuseManifest="false" saveManifest="true" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="false" exportJavaFiles="true" exportOutputFolder="true">
+        <file path="/Inquisition/.fatjar"/>
+        <javaElement handleIdentifier="=Inquisition/src"/>
+        <file path="/Inquisition/.project"/>
+        <file path="/Inquisition/.classpath"/>
+    </selectedElements>
+</jardesc>

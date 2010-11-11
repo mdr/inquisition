@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QuestionSet SYSTEM "inquisitionQuestions.dtd">
+
+<QuestionSet version="4">
+  <Name>SCWCD: Attributes and Listeners</Name>
+  <Description><![CDATA[Mock questions on Attributes and Listeners for the Sun Certified Web Component Developer (SCWCD) exam.
+<hr>
+<b>Info:</b><br>
+<ul>
+<li>Maintainer: Matt Russell <tt>&lt;mattrusselluk@gmail.com&gt;</tt>
+<li>Home page: <a href="http://enigma.vm.bytemark.co.uk/inquisition">http://enigma.vm.bytemark.co.uk/inquisition</a>
+<li>Version: 0.1
+<li>Date published: April 2008
+<li>License: Public domain
+</ul>]]></Description>
+  <RecommendedTimePerQuestion>120</RecommendedTimePerQuestion>
+  <Category>SCWCD</Category>
+  <Questions>
+    <DragAndDropQuestion reuseFragments="true">
+      <QuestionText><![CDATA[Complete the following section of a deployment descriptor to 
+      specify a <tt>ServletContextListener</tt>:
+<CopyToExplanation>
+<pre>
+&lt;web-app ...&gt;
+...
+   &lt;<slot>listener</slot>&gt;
+      &lt;<slot>listener-class</slot>&gt;
+         com.foo.MyServletContextListener
+      &lt;/<slot>listener-class</slot>&gt;
+   &lt;/<slot>listener</slot>&gt;
+...
+&lt;/web-app&gt;
+</pre>
+</CopyToExplanation>
+<p>
+The type does not need to be specified as this is inferred by the container by inspecting the interfaces implemented by the <tt>listener-class</tt>.]]></QuestionText>
+      <ExtraFragments>
+        <Fragment><![CDATA[listener type="ServletContextListener"]]></Fragment>
+        <Fragment><![CDATA[listeners type="ServletContextListener"]]></Fragment>
+        <Fragment>listeners</Fragment>
+        <Fragment>listener-map</Fragment>
+        <Fragment>servlet-listeners</Fragment>
+        <Fragment>context-listener</Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[The correct answer is:
+<CopyFromQuestion/>]]></ExplanationText>
+    </DragAndDropQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText>Which of the following statements are true?</QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[There is at most one <tt>ServletConfig</tt> per web application.]]></Option>
+        <Option correct="true"><![CDATA[A <tt>ServletConfig</tt> cannot be used to store attributes.]]></Option>
+        <Option correct="false"><![CDATA[A <tt>ServletConfig</tt> contains methods to control the lifecycle of an <tt>HttpSession</tt>.]]></Option>
+        <Option correct="false"><![CDATA[A <tt>ServletConfig</tt> can be obtained by calling <tt>getServletContext().getServletConfig()</tt> within a servlet.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.
+<p>
+      @1@ is incorrect because each servlet has its own <tt>ServletConfig</tt>. There is at most one <tt>ServletContext</tt> per web application (per JVM).
+      <p>
+      @4@ is back to front: a <tt>ServletContext</tt> can be obtained by calling <tt>getServletConfig().getServletContext()</tt> within a servlet.]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <DragAndDropQuestion reuseFragments="true">
+      <QuestionText><![CDATA[Complete the following sections of a deployment descriptor and servlet code to retrieve an initialisation parameter named "<tt>X</tt>"
+      for the entire web application.
+      <p>
+<CopyToExplanation>
+<tt>web.xml</tt>:
+<pre>
+&lt;web-app ...&gt;
+   &lt;<slot>context-param</slot>&gt;
+      &lt;<slot>param-name</slot>&gt;X&lt;/<slot>param-name</slot>&gt;
+      &lt;<slot>param-value</slot>&gt;Y&lt;/<slot>param-value</slot>&gt;
+   &lt;/<slot>context-param</slot>&gt;
+   ...
+&lt;/web-app&gt;
+</pre>
+<p>
+Servlet code:
+<java>
+   <slot>getServletContext</slot>().getInitParameter("X");
+</java>
+</CopyToExplanation>]]></QuestionText>
+      <ExtraFragments>
+        <Fragment>init-param</Fragment>
+        <Fragment>servlet-param</Fragment>
+        <Fragment>getServletConfig</Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[The correct answer is:
+      <p>
+<CopyFromQuestion/>]]></ExplanationText>
+    </DragAndDropQuestion>
+    <DragAndDropQuestion reuseFragments="true">
+      <QuestionText><![CDATA[Complete the following sections of a deployment descriptor and servlet code to retrieve an initialisation 
+      parameter named "<tt>X</tt>" for a particular servlet.
+      <p>
+<CopyToExplanation>
+<tt>web.xml</tt>:
+<pre>
+&lt;web-app ...&gt;
+   &lt;servlet&gt;
+      &lt;<slot>init-param</slot>&gt;
+         &lt;<slot>param-name</slot>&gt;X&lt;/<slot>param-name</slot>&gt;
+         &lt;<slot>param-value</slot>&gt;Y&lt;/<slot>param-value</slot>&gt;
+      &lt;/<slot>init-param</slot>&gt;
+   ...
+   &lt;/servlet&gt;
+   ...
+&lt;/web-app&gt;
+</pre>
+<p>
+Servlet code:
+<java>
+   <slot>getServletConfig</slot>().getInitParameter("X");
+</java>
+</CopyToExplanation>]]></QuestionText>
+      <ExtraFragments>
+        <Fragment>context-param</Fragment>
+        <Fragment>servlet-param</Fragment>
+        <Fragment>getServletContext</Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[The correct answer is:
+      <p>
+<CopyFromQuestion/>]]></ExplanationText>
+    </DragAndDropQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText>Which of the following types contain methods to get and set attributes?</QuestionText>
+      <Options>
+        <Option correct="true">HttpSession</Option>
+        <Option correct="true">ServletRequest</Option>
+        <Option correct="true">ServletContext</Option>
+        <Option correct="false">ServletConfig</Option>
+        <Option correct="false">ServletResponse</Option>
+        <Option correct="false">RequestDispatcher</Option>
+      </Options>
+      <ExplanationText>@allcorrect@ is the correct answer.</ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+      <QuestionText>Which type of listener would be used to count the number of requests to a web application?</QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>HttpServletListener</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>ServletContextListener</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>ServletRequestListener</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>WebRequestListener</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>ServletAccessListener</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer. @1@, @4@ and @5@ are not real listener types. @2@ is a valid listener type, but
+      is notified for <tt>ServletContext</tt> lifecycle events, not individual requests.]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+      <QuestionText>Which type of listener would be the most appropriate choice for detecting the creation of a new session?</QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[<tt>HttpSessionListener</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>HttpSessionBindingListener</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>HttpSessionActivationListener</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>HttpSessionAttributeListener</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>HttpSessionCreatedListener</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer. @5@ is not a real listener type. The other <tt>Listener</tt>s are used for listening to other types of session-related events.]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+      <QuestionText><![CDATA[In which attribute scope would it be most appropriate to record items that a user  has placed in a "shopping basket" (that is, the items that a customer had selected while using an online shopping application).]]></QuestionText>
+      <Options>
+        <Option correct="true">Session</Option>
+        <Option correct="false">Page</Option>
+        <Option correct="false">Request</Option>
+        <Option correct="false">Application</Option>
+      </Options>
+      <ExplanationText>The correct answer is @allcorrect@.</ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText>Which of the following are true?</QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[The <tt>SingleThreadModel</tt> interface is the recommended approach for thread
+         safety in the presence of shared <b>session</b> attributes.]]></Option>
+        <Option correct="false"><![CDATA[The <tt>SingleThreadModel</tt> interface is the recommended approach for thread
+         safety in the presence of shared <b>context</b> attributes.]]></Option>
+        <Option correct="false"><![CDATA[<b>Session</b>-scoped attributes are considered thread-safe]]></Option>
+        <Option correct="true"><![CDATA[<b>Request</b>-scoped attributes are considered thread-safe]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct answer is @allcorrect@. A request is handled in a single thread, but a session can be 
+      accessed from multiple threads concurrently. The <tt>SingleThreadModel</tt> interface is deprecated
+      and not recommended.]]></ExplanationText>
+    </MultipleChoiceQuestion>
+  </Questions>
+</QuestionSet>
+

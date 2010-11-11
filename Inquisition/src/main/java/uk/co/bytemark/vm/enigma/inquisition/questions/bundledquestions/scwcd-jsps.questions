@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QuestionSet SYSTEM "inquisitionQuestions.dtd">
+
+<QuestionSet version="4">
+  <Name>SCWCD: JSP basics</Name>
+  <Description><![CDATA[Revision questions on JSP basics for the Sun Certified Web Component Developer (SCWCD) exam.
+<hr>
+<b>Info:</b><br>
+<ul>
+<li>Maintainer: Matt Russell <tt>&lt;mattrusselluk@gmail.com&gt;</tt>
+<li>Home page: <a href="http://enigma.vm.bytemark.co.uk/inquisition">http://enigma.vm.bytemark.co.uk/inquisition</a>
+<li>Version: 0.1
+<li>Date published: June 2008
+<li>License: Public domain
+</ul>]]></Description>
+  <RecommendedTimePerQuestion>120</RecommendedTimePerQuestion>
+  <Category>SCWCD</Category>
+  <Questions>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[Which is the correct syntax for importing the <tt>java.util.List</tt> class into a JSP?]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[<tt>&lt;%@ page import="java.util.List" %&gt;</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>&lt;%@ import="java.util.List" %&gt;</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>&lt;% import java.util.List; %&gt;</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>&lt;%! import java.util.List; %&gt;</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct answer is @allcorrect@. The <tt>page</tt> directive is used to import types into a JSP.]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <DragAndDropQuestion reuseFragments="false">
+      <QuestionText><![CDATA[Complete the following JSP element to import both <tt>java.util.Map</tt> and <tt>java.util.List</tt>:
+<CopyToExplanation>
+&lt;%<slot>@</slot> <slot>page import=</slot>"java.util.Map<slot>,</slot>java.util.List" %&gt;
+</CopyToExplanation>]]></QuestionText>
+      <ExtraFragments>
+        <Fragment>!</Fragment>
+        <Fragment>:</Fragment>
+        <Fragment>=</Fragment>
+        <Fragment>import</Fragment>
+        <Fragment>include</Fragment>
+        <Fragment>page</Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[The correct answer is:
+<CopyFromQuestion/>]]></ExplanationText>
+    </DragAndDropQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[Which of the following are valid JSP elements for displaying the output of a call to a static method <tt>Math.random()</tt>?]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[<tt>&lt;%= Math.Random() %&gt;</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>&lt;%= Math.Random(); %&gt;</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>&lt;% Math.Random() %&gt;</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>&lt;% Math.Random(); %&gt;</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>&lt;% out.println(Math.Random()) %&gt;</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>&lt;% out.println(Math.Random()); %&gt;</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct options are @allcorrect@. @2@ is invalid because an expression element, <tt>&lt;%=...%&gt;</tt>, must contain a valid Java expression, and therefore must not contain a semicolon. Conversely, @3@ and @5@ are invalid because a scriptlet element, <tt>&lt;%...%&gt;</tt>, must contain a Java statement, and therefore must end with a semicolon. @4@ is a valid JSP element, but will not display any output when the page is rendered; a call to <tt>out.println</tt> is needed.]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <DragAndDropQuestion reuseFragments="true">
+      <QuestionText><![CDATA[Complete the following section of a JSP which outputs the previous access time:
+<CopyToExplanation>
+<pre>
+&lt;<slot>%@</slot> page import="java.util.Date" %&gt;
+&lt;<slot>%!</slot> Date lastAccessedDate = new Date(); %&gt;
+&lt;<slot>%</slot> lastAccessedDate = new Date(); %&gt;
+Previous access time: &lt;<slot>%=</slot> lastAccessedDate %&gt;
+</pre>
+</CopyToExplanation>]]></QuestionText>
+      <ExtraFragments>
+        <Fragment>%%</Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[The correct answer is:
+<CopyFromQuestion/>]]></ExplanationText>
+    </DragAndDropQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText>Which of the following are true?</QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[The <tt>request</tt> implicit variable can be used within a JSP declaration element.]]></Option>
+        <Option correct="false"><![CDATA[A JSP comment, of the form <tt>&lt;%-- comment --&gt;</tt>, is passed through to the client.]]></Option>
+        <Option correct="true"><![CDATA[An HTML comment, of the form <tt>&lt;-- comment --&gt;</tt>, is passed through to the client.]]></Option>
+        <Option correct="false"><![CDATA[<tt>context</tt> is the implicit JSP object of type <tt>ServletContext</tt>.]]></Option>
+        <Option correct="true"><![CDATA[<tt>config</tt> is the implicit JSP object of type <tt>ServletConfig</tt>.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct answers are @allcorrect@.
+<p>
+@1@ if false because the <tt>request</tt> implicit object can be accessed from within scriptlets and expressions, but not declarations.
+<p>
+JSP comments are not passed through to the client (so @2@ is false), but HTML comments are, even though the browser will not render them as a visible part of the HTML document (hence @3@ is true).
+<p>
+@4@ is false because the implicit object of type <tt>ServletContext</tt> is called <tt>application</tt>, not <tt>context</tt>.]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <DragAndDropQuestion reuseFragments="false">
+      <QuestionText><![CDATA[Match the following JSP implicit objects with their types:<p>
+<CopyToExplanation>
+<table border='1'>
+<tr><td><tt>config</tt></td><td><slot>ServletConfig</slot></td></tr>
+<tr><td><tt>response</tt></td><td><slot>HttpServletResponse</slot></td></tr>
+<tr><td><tt>session</tt></td><td><slot>HttpSession</slot></td></tr>
+<tr><td><tt>out</tt></td><td><slot>JspWriter</slot></td></tr>
+</table>
+</CopyToExplanation>]]></QuestionText>
+      <ExtraFragments>
+        <Fragment>PrintWriter</Fragment>
+        <Fragment>ServletContext</Fragment>
+        <Fragment>Session</Fragment>
+        <Fragment>Config</Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[The correct answer is:
+<CopyFromQuestion/>]]></ExplanationText>
+    </DragAndDropQuestion>
+    <DragAndDropQuestion reuseFragments="false">
+      <QuestionText><![CDATA[Match the following JSP implicit objects with their types:<p>
+<CopyToExplanation>
+<table border='1'>
+<tr><td><tt>pageContext</tt></td><td><slot>PageContext</slot></td></tr>
+<tr><td><tt>exception</tt></td><td><slot>Throwable</slot></td></tr>
+<tr><td><tt>request</tt></td><td><slot>HttpServletRequest</slot></td></tr>
+<tr><td><tt>config</tt></td><td><slot>ServletConfig</slot></td></tr>
+</table>
+</CopyToExplanation>]]></QuestionText>
+      <ExtraFragments>
+        <Fragment>Context</Fragment>
+        <Fragment>ServletContext</Fragment>
+        <Fragment>Config</Fragment>
+        <Fragment>Exception</Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[The correct answer is:
+<CopyFromQuestion/>]]></ExplanationText>
+    </DragAndDropQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText>Which of the following statements are correct?</QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[The <tt>jspDestroy()</tt> method can be overridden.]]></Option>
+        <Option correct="false"><![CDATA[The <tt>_jspService()</tt> method can be overridden.]]></Option>
+        <Option correct="true"><![CDATA[There is a a <tt>ServletConfig</tt> object available from inside an overridden <tt>jspInit()</tt> method.]]></Option>
+        <Option correct="true"><![CDATA[There is a a <tt>ServletContext</tt> object available from inside an overridden <tt>jspInit()</tt> method]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct options are @allcorrect@. Both <tt>jspInit()</tt> and <tt>jspDestroy()</tt> can be overridden. <tt>jspInit()</tt> is called from the corresponding servlet's <tt>init()</tt> method, and a <tt>ServletContext</tt> and <tt>ServletConfig</tt> are available by that point.]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <DragAndDropQuestion reuseFragments="false">
+      <QuestionText><![CDATA[Identify the following types of code from a JSP:
+<p>
+<CopyToExplanation>
+<table>
+<tr><td><tt>&lt;%@ page import="java.util.HashSet" %&gt;</tt></td><td><slot>directive</slot></td></tr>
+<tr><td><tt>&lt;%= "wibble" %&gt;</tt></td><td><slot>expression</slot></td></tr>
+<tr><td><tt>&lt;%! int foo; %&gt;</tt></td><td><slot>declaration</slot></td></tr>
+<tr><td><tt>${foo}</tt></td><td><slot>EL</slot></td></tr>
+</table>
+</pre>
+</CopyToExplanation>]]></QuestionText>
+      <ExtraFragments>
+        <Fragment>action</Fragment>
+        <Fragment>comment</Fragment>
+        <Fragment>scriptlet</Fragment>
+        <Fragment>template text</Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[The correct answer is:
+<CopyFromQuestion/>]]></ExplanationText>
+    </DragAndDropQuestion>
+    <DragAndDropQuestion reuseFragments="false">
+      <QuestionText><![CDATA[Identify the following types of code from a JSP:
+<p>
+<CopyToExplanation>
+<table>
+<tr><td><tt>&lt;% out.println("Hello world"); %&gt;</tt></td><td><slot>scriptlet</slot></td></tr>
+<tr><td><tt>&lt;%-- out.println("wobble")  --%&gt;</tt></td><td><slot>comment</slot></td></tr>
+<tr><td><tt>&lt;h1&gt;Hello!&lt;/h1&gt;</tt></td><td><slot>template text</slot></td></tr>
+<tr><td><tt>&lt;jsp:include page="header.jsp"/&gt;</tt></td><td><slot>action</slot></td></tr>
+</table>
+</pre>
+</CopyToExplanation>]]></QuestionText>
+      <ExtraFragments>
+        <Fragment>EL</Fragment>
+        <Fragment>expression</Fragment>
+        <Fragment>directive</Fragment>
+        <Fragment>declaration</Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[The correct answer is:
+<CopyFromQuestion/>]]></ExplanationText>
+    </DragAndDropQuestion>
+    <DragAndDropQuestion reuseFragments="false">
+      <QuestionText><![CDATA[Place the given JSP lifecycle steps in chronological order (earliest first):
+<p>
+<CopyToExplanation>
+<table>
+<tr><td>1</td><td><slot>Translate JSP into a servlet</slot></td></tr>
+<tr><td>2</td><td><slot>Compile the servlet</slot></td></tr>
+<tr><td>3</td><td><slot>Instantiate a servlet object</slot></td></tr>
+<tr><td>4</td><td><slot>Call <tt>jspInit()</tt></slot></td></tr>
+<tr><td>5</td><td><slot>Call <tt>_jspService()</tt></slot></td></tr>
+<tr><td>6</td><td><slot>Call <tt>jspDestroy()</tt></slot></td></tr>
+</table>
+
+</CopyToExplanation>]]></QuestionText>
+      <ExtraFragments />
+      <ExplanationText><![CDATA[The correct answer is:
+<CopyFromQuestion/>]]></ExplanationText>
+    </DragAndDropQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+      <QuestionText>How can a JSP be provided with servlet initialisation parameters?</QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[Use the same mechanism as ordinary servlets, but add a <tt>&lt;jsp-file&gt;</tt> tag under a <tt>&lt;servlet&gt;</tt> section in the deployment descriptor instead of <tt>&lt;servlet-class&gt;</tt>.]]></Option>
+        <Option correct="false">Use the same mechanism as ordinary servlets.</Option>
+        <Option correct="false"><![CDATA[Add a <tt>&lt;@ page servlet='...'%&gt;</tt> directive to the top of the JSP page.]]></Option>
+        <Option correct="false"><![CDATA[Call <tt>getServletContext()</tt> from within an overridden <tt>jspInit()</tt> method.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct answer is @1@. @4@ is false because the <tt>jspInit()</tt> method would call <tt>getServletConfig()</tt>, not <tt>getServletContext</tt>, to access servlet init parameters.]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[Given that the current session scope has an attribute <tt>wibble</tt>, and that the attribute exists in none of the other scopes, which of the following can be used in a JSP expression to fetch the value of the attribute?]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[pageContext.getAttribute("wibble")]]></Option>
+        <Option correct="true"><![CDATA[pageContext.findAttribute("wibble")]]></Option>
+        <Option correct="false"><![CDATA[session.findAttribute("wibble")]]></Option>
+        <Option correct="true"><![CDATA[session.getAttribute("wibble")]]></Option>
+        <Option correct="true"><![CDATA[pageContext.getAttribute("wibble", PageContext.SESSION_SCOPE)]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct answers are @allcorrect@. The <tt>findAttribute</tt> method of <tt>PageContext</tt> searches the scopes in order to find the first containing the attribute. @1@ will only search the page scope. @3@ is incorrect as <tt>HttpSession</tt> does not have a <tt>findAttribute</tt> method.]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <DragAndDropQuestion reuseFragments="true">
+      <QuestionText><![CDATA[Complete the following <tt>web.xml</tt> fragment to disable scripting for all <tt>*.jsp</tt> files:
+<CopyToExplanation>
+<pre>
+&lt;web-app ...&gt;
+  &lt;<slot>jsp-config</slot>&gt;
+    &lt;<slot>jsp-property-group</slot>&gt;
+      &lt;<slot>url-pattern</slot>&gt;*.jsp&lt;/<slot>url-pattern</slot>&gt;
+      &lt;<slot>scripting-invalid</slot>&gt;<slot>true</slot>&lt;/<slot>scripting-invalid</slot>&gt;
+    &lt;/<slot>jsp-property-group</slot>&gt;
+  &lt;/<slot>jsp-config</slot>&gt;
+  ...
+&lt;/web-app&gt;
+</pre>
+</CopyToExplanation>]]></QuestionText>
+      <ExtraFragments>
+        <Fragment>jsp-file</Fragment>
+        <Fragment>false</Fragment>
+        <Fragment>scripting-valid</Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[The correct answer is:
+<CopyFromQuestion/>]]></ExplanationText>
+    </DragAndDropQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText>Which of the following statements are correct?</QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Setting <tt>&lt;el-ignored&gt;true&lt;/el-ignored&gt;</tt> in the appropriate part of the deployment descriptor will guarantee that EL is ignored for the specified JSP pages]]></Option>
+        <Option correct="false"><![CDATA[Scripting can be disabled in a JSP by using the <tt>isScriptingEnabled="false"</tt> page directive.]]></Option>
+        <Option correct="true"><![CDATA[Setting <tt>&lt;scripting-invalid&gt;true&lt;/scripting-invalid&gt;</tt> in the appropriate part of the deployment descriptor will guarantee that scripting is invalid for the specified JSP pages]]></Option>
+        <Option correct="true"><![CDATA[EL can be disabled in a JSP by using the <tt>isELIgnored="true"</tt> page directive.]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct answers are @allcorrect@. @1@ is false because there is no <tt>isScriptingEnabled<tt> page directive. @2@ is false because specifying <tt>&lt;el-ignored&gt;</tt> in the deployment descriptor will not <i>guarantee</i> that EL is ignored, since the individual page can override with an <tt>isELIgnored</tt> page directive which takes precedence.]]></ExplanationText>
+    </MultipleChoiceQuestion>
+  </Questions>
+</QuestionSet>
+

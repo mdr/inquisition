@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QuestionSet SYSTEM "inquisitionQuestions.dtd">
+<QuestionSet version="4">
+  <Name>SCWCD Practice Exam by Jussi Lyytinen</Name>
+  <Description><![CDATA[Practice questions for the for the Sun Certified Web Component Developer (CX-310-081) exam
+<p>
+I wrote this question set while I was preparing for the SCWCD examination in January 2008. Therefore it is not meant as a mock examination as it cannot
+reflect the difficulty level of the real examination. Nevertheless, I hope it helps you in your certification process.<br><br>
+</p>
+<ul>
+<li>Maintainer: Jussi Lyytinen <tt>&lt;jussi@lyytinen.org&gt;</tt></li>
+<li>Version: 0.1</li>
+<li>Date published: 28th of January 2008</li>
+<li>License: Creative Commons License (Attribution-Noncommercial 3.0)</li>
+</ul>]]></Description>
+  <RecommendedTimePerQuestion>120</RecommendedTimePerQuestion>
+  <Category>SCWCD</Category>
+  <Questions>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[Which of the following methods appear in the in the HttpServlet interface? (Choose all that apply)]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[void init(ServletContext context)]]></Option>
+        <Option correct="true"><![CDATA[protected void service(ServletRequest req, ServletResponse res)]]></Option>
+        <Option correct="true" ><![CDATA[void service(HttpServletRequest req, HttpServletResponse resp)]]></Option>
+        <Option correct="true"><![CDATA[protected void doGet(HttpServletRequest req, HttpServletResponse resp)]]></Option>
+        <Option correct="false"><![CDATA[protected void doUpdate(HttpServletRequest req, HttpServletResponse resp)]]></Option>
+        <Option correct="false"><![CDATA[public String getHeader(String name)]]></Option>
+        <Option correct="false"><![CDATA[public HttpSession getSession()]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.
+<p>
+@1@ is incorrect. Correct initialization method signatures are <tt>void init()</tt> and <tt>void init(ServletConfig config)</tt>.
+<p>
+HttpServlet interface specifies a handler method for each of the HTTP 1.1 methods. Valid HTTP 1.1 methods are
+<tt>GET</tt>, <tt>POST</tt>, <tt>HEAD</tt>, <tt>TRACE</tt>, <tt>PUT</tt>, <tt>DELETE</tt>, <tt>OPTIONS</tt> and <tt>CONNECT</tt>. Corresponding
+handler methods in the HttpServlet interface are <tt>doGet(..)</tt>, <tt>doPost(..)</tt>, <tt>doHead(..)</tt>
+and so on. Therefore, alternative @4@ is correct but @5@ is incorrect as there is no no such HTTP method as <tt>UPDATE</tt>.
+<p>
+@6@ and @7@ are incorrect because they belong to the HttpServletRequest interface.
+<p>
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+      <QuestionText><![CDATA[Assume that the following servlets have been correctly configured in the deployment descriptor and that they
+respond to requests to <tt>myServlet.do</tt> and <tt>mySecondServlet.do</tt>?<br><br>
+
+<java>
+public class MyServlet extends HttpServlet {
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+  throws IOException, ServletException {
+    PrintWriter out = response.getWriter();
+    out.print("Hello from MyServlet! ");
+    response.sendRedirect("mySecondServlet.do");
+  }
+}
+</java>
+<br>
+<java>
+public class MySecondServlet extends HttpServlet {
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+  throws IOException {
+    PrintWriter out = response.getWriter();
+    out.print("Hello from MySecondServlet!");
+  }
+}
+</java>
+<br>
+What will the browser print out when user requests the <tt>myServlet.do</tt> resource?
+      ]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Nothing]]></Option>
+        <Option correct="false"><![CDATA[<tt>Hello from MyServlet!</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>Hello from MySecondServlet!</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Hello from MyServlet! Hello from MySecondServlet!</tt>]]></Option>
+        <Option correct="false"><![CDATA[An error message, because <tt>MyServlet</tt> will throw an <tt>IllegalStateException</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.<br>
+<p>
+@5@ is incorrect because <tt>IllegalStateException</tt> is thrown only when the container is already commited to the response and redirect is attempted.
+<p>
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[Given the following deployment descriptor:<br>
+<tt><pre>
+&lt;web-app&gt;
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;DogServlet&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.lyytinen.scwcd.servlets.DogServlet&lt;/servlet-class&gt;
+  &lt;/servlet&gt;
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;DogServlet&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;dogServlet.do&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+  &lt;init-param&gt;
+    &lt;param-name&gt;DogBreed&lt;/param-name&gt;
+    &lt;param-value&gt;Dalmatian&lt;/param-value&gt;
+  &lt;/init-param&gt;
+&lt;/web-app&gt;
+</pre></tt>
+<br>
+Which of the following statements are true? (Choose all that apply)]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>DogServlet</tt> can access the <tt>DogBreed</tt> parameter in the servlet's constructor through <tt>ServletConfig</tt> object]]></Option>
+        <Option correct="false"><![CDATA[<tt>DogServlet</tt> can access the <tt>DogBreed</tt> parameter in the servlet's constructor through <tt>ServletContext</tt> object]]></Option>
+        <Option correct="false"><![CDATA[<tt>DogServlet</tt> can access the <tt>DogBreed</tt> parameter in the servlet's <tt>init()</tt> method through <tt>ServletConfig</tt> object]]></Option>
+        <Option correct="false"><![CDATA[<tt>DogServlet</tt> can access the <tt>DogBreed</tt> parameter in the servlet's <tt>init()</tt> method through <tt>ServletContext</tt> object]]></Option>
+        <Option correct="true"><![CDATA[None of the above]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[
+@5@ is correct because the deployment descriptor is constructed incorrectly.<br><br>
+
+Servlet's initialization parameters are defined with the <tt>&lt;init-param&gt;</tt> tag but it must be placed inside the
+<tt>&lt;servlet&gt;</tt> tag. These parameters can be accessed in this specific servlet through the <tt>ServletConfig</tt> object
+but this cannot be done in the servlet's constructor as the reference to <tt>ServletConfig</tt> object will not exist at that point.<br><br>
+
+Application's initialization parameters are defined with the <tt>&lt;context-param&gt;</tt> tag and it must be defined inside the
+<tt>&lt;web-app&gt;</tt> tag. These parameters can be accessed from any servlet through the <tt>ServletContext</tt> object but this cannot
+be done in the servlet's constructor as the reference to <tt>ServletContext</tt> object will not exist at that point.<br><br>
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[Which of the following statements are true about the <tt>SingleThreadModel</tt> interface? (choose all that apply)<br><br>
+      Assume that the application in question is non distributable.]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[The container must create a new servlet instance for each request if the servlet does not implement the <tt>SingleThreadModel</tt> interface]]></Option>
+        <Option correct="true"><![CDATA[Servlets implementing the <tt>SingleThreadModel</tt> interface are guaranteed to have only one thread running in their <tt>service()</tt>
+        method at a time]]></Option>
+        <Option correct="false"><![CDATA[The container will not create multiple instances from a servlet that implements the <tt>SingleThreadModel</tt> interface]]></Option>
+        <Option correct="false"><![CDATA[<tt>SingleThreadModel</tt> is the recommended way to handle concurrency issues]]></Option>
+        <Option correct="false"><![CDATA[None of the above]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.<br><br>
+
+@1@ is incorrect because the servlet container must create only one instance per servlet declaration. Servlets implementing the
+<tt>SingleThreadModel</tt> make an exception to this rule and therefore alternative @3@ is also incorrect.<br><br>
+
+@4@ is incorrect because the <tt>SingleThreadModel</tt> is deprecated in the 2.4 version of the servlet specification.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[Which of the following statements are true about listeners and the types of events they process? (choose all that apply)]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[<tt>HttpSessionAttributeListener</tt> listens to events of type <tt>HttpSessionBindingEvent</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>HttpSessionAttributeListener</tt> listens to events of type <tt>HttpSessionAttributeEvent</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>HttpSessionBindingListener</tt> listens to events of type <tt>HttpSessionAttributeEvent</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>HttpSessionBindingListener</tt> listens to events of type <tt>HttpSessionBindingEvent</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>HttpSessionActivationListener</tt> listens to events of type <tt>HttpSessionActivationEvent</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>ServletContextAttributeListener</tt> listens to events of type <tt>ServletContextAttributeEvent</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.<br><br>
+
+There's no such event as <tt>HttpSessionAttributeEvent</tt>. Both <tt>HttpSessionAttributeListener</tt> and <tt>HttpSessionBindingListener</tt>
+listen to events of type <tt>HttpSessionBindingEvent</tt>. Therefore @1@ and @4@ are both true and @2@ and @3@ are both false.<br><br>
+
+There's no such event as <tt>HttpSessionActivationEvent</tt> because <tt>HttpSessionActivationListener</tt> listens for events of type
+<tt>HttpSessionEvent</tt>. Therefore statement @5@ is false.<br><br>
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+<MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[With following implementations of <tt>first.jsp</tt> and <tt>second.jsp</tt>, what will be printed when a request is made to <tt>first.jsp</tt>? (choose one)<br><br>
+
+<tt>first.jsp:</tt><br>
+<tt><pre>
+  &lt;%@ page errorPage="/WEB-INF/second.jsp"  %&gt;
+  &lt;html&gt;
+    &lt;body&gt;
+      &lt;%
+        try {
+          throw new Throwable("Throwing exceptions is fun!");
+        } catch (Exception exception) {
+          out.println("Throwing exceptions is not fun!");
+        }
+      %&gt;
+    &lt;/body&gt;
+  &lt;/html&gt;
+</pre></tt><br>
+
+<tt>/WEB-INF/second.jsp:</tt><br>
+<tt><pre>
+  &lt;html&gt;
+    &lt;body&gt;
+      &lt;%= exception.getMessage() %&gt;
+    &lt;/body&gt;
+  &lt;/html&gt;
+</pre></tt>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>Throwing exceptions is fun!</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Throwing exceptions is not fun!</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>first.jsp</tt> cannot be compiled into a servlet and this will cause an error message]]></Option>
+        <Option correct="true"><![CDATA[<tt>second.jsp</tt> cannot be compiled into a servlet and this will cause an error message]]></Option>
+        <Option correct="false"><![CDATA[None of the above]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.<br><br>
+
+<tt>first.jsp</tt> is implemented correctly but the catch block will not catch the <tt>Throwable</tt> object. Because of the leaking exception, the container
+will forward the request to <tt>second.jsp</tt> but it will fail to compile. The implicit <i>exception</i> object is available only on such JSP pages where
+the page directives <tt>isErrorPage</tt> is set to true.<br><br>
+
+Adding the following line to <tt>second.jsp</tt> would fix the problem and make @1@ the correct answer:<br><br>
+
+<tt>&lt;%@ page isErrorPage="true" %&gt;</tt><br><br>
+
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+<MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[With following fragment in the deployment descriptor:<br><br>
+<tt><pre>
+&lt;servlet&gt;
+  &lt;servlet-name&gt;DogServlet&lt;/servlet-name&gt;
+  &lt;jsp-file&gt;/Dog.jsp&lt;/jsp-file&gt;
+  &lt;init-param&gt;
+    &lt;param-name&gt;DogBreed&lt;/param-name&gt;
+    &lt;param-value&gt;Dalmatian&lt;/param-value&gt;
+  &lt;/init-param&gt;
+&lt;/servlet&gt;
+</pre></tt><br>
+
+and with the following implementation of <tt>Dog.jsp</tt>:<br><br>
+<tt><pre>
+&lt;%@ page isELIgnored="false" %&gt;
+DogBreed is ${initParam.DogBreed}.
+</pre></tt><br>
+
+What will the <tt>Dog.jsp</tt> print out?
+      ]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>DogBreed is Dalmatian.</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>DogBreed is ${initParam.DogBreed}.</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>DogBreed is .</tt>]]></Option>
+        <Option correct="false"><![CDATA[An error message will be printed out because there is no such implicit object as <tt>initParam</tt>]]></Option>
+        <Option correct="false"><![CDATA[An error message will be printed out because the deployment descriptor is incorrectly constructed]]></Option>
+        <Option correct="false"><![CDATA[None of the above]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.<br><br>
+      
+The deployment descriptor is correctly constructed and it is possible to define initialization parameters for JSP pages.
+The page directive in <tt>Dog.jsp</tt> ensures that EL expressions are evaluated.<br><br>
+
+There is an implicit object called <tt>initParam</tt> but the catch was that it refers to the context initialization parameters (NOT
+to the servlet initialization parameters).
+]]></ExplanationText>
+</MultipleChoiceQuestion>
+<MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[Which of the following classes can store attributes? (Choose all that apply)]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>ServletConfig</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>ServletContext</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>RequestDispatcher</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>HttpServletRequest</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>HttpServletResponse</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>HttpSession</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.<br><br>
+@1@ is incorrect because ServletConfig stores <i>parameters</i> not <i>attributes</i>. ServletConfig parameters are defined staticly in the
+deployment descriptor whereas attributes are bound at runtime.
+]]></ExplanationText>
+</MultipleChoiceQuestion>
+<MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[With the following correctly located implementations of <tt>MessageTag.java</tt>, <tt>message.tld</tt> and <tt>message.jsp</tt>:<br><br>
+
+<tt>MessageTag.java:</tt><br>
+<java>
+  public class MessageTag extends SimpleTagSupport implements DynamicAttributes {
+    HashMap attributes = new HashMap();
+    public void doTag() throws JspException, IOException {
+      getJspContext().getOut().print(attributes.get("message"));
+    }
+    public void setDynamicAttribute(String uri, String localName, Object value) throws JspException {
+      attributes.put(localName,value);
+    }
+  }
+</java>
+
+<tt>message.tld:</tt><br>
+<tt><pre>
+  &lt;taglib&gt;
+    &lt;tlib-version&gt;1.0&lt;/tlib-version&gt;
+    &lt;jsp-version&gt;2.0&lt;/jsp-version&gt;
+    &lt;uri&gt;message&lt;/uri&gt;
+    &lt;tag&gt;
+    &lt;name&gt;message&lt;/name&gt;
+      &lt;tag-class&gt;org.lyytinen.scwcd.tags.MessageTag&lt;/tag-class&gt;
+      &lt;dynamic-attributes&gt;true&lt;/dynamic-attributes&gt;
+      &lt;body-content&gt;empty&lt;/body-content&gt;
+    &lt;/tag&gt;
+  &lt;/taglib&gt;
+</pre></tt><br>
+
+<tt>message.jsp:</tt><br>
+<tt><pre>
+  &lt;%@ taglib prefix="message" uri="message" %&gt;
+  &lt;html&gt;
+    &lt;body&gt;
+      &lt;message:message message="message" /&gt;
+    &lt;/body&gt;
+  &lt;/html&gt;
+</pre></tt><br>
+
+What will the <tt>message.jsp</tt> print out?]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[<tt>message</tt>]]></Option>
+        <Option correct="false"><![CDATA[Nothing]]></Option>
+        <Option correct="false"><![CDATA[A container generated error message stating that the <tt>message</tt> attribute is invalid]]></Option>
+        <Option correct="false"><![CDATA[A container generated error message stating that the translation of <tt>message.jsp</tt> failed]]></Option>
+        <Option correct="false"><![CDATA[A container generated error message stating that the compilation of <tt>message.jsp</tt> failed]]></Option>
+        <Option correct="false"><![CDATA[The tag implementation won't even compile]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer. Everything is in order here!<br><br>
+]]></ExplanationText>
+</MultipleChoiceQuestion>
+<MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[Which of the following statements about authentication are true? (choose all that apply)]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[<tt>BASIC</tt> authentication uses Base64 encoding when transferring the login information]]></Option>
+        <Option correct="false"><![CDATA[The J2EE specifications require containers to support the following authentication types: <tt>BASIC</tt>, <tt>DIGEST</tt>, <tt>CLIENT-CERT</tt> and <tt>FORM</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>FORM</tt> authentication provides the weakest guarantees for data integrity and confidentiality when used over insecure transfer layer]]></Option>
+        <Option correct="true"><![CDATA[<tt>CLIENT-CERT</tt> authentication provides the strongest guarantees for data integrity and confidentiality when used over insecure transfer layer]]></Option>
+        <Option correct="false"><![CDATA[The strong encryption mechanisms in <tt>CLIENT-CERT</tt> authentication make it an ideal alternative for consumer services]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.<br><br>
+
+@2@ is incorrect. The J2EE specifications do define all of the four authentication types mentioned but does not require vendors to support the DIGEST authentication type.<br><br>
+
+@3@ and @4@ are both correct. <tt>FORM</tt> authentication does not provide any encryption and should therefore be used only with secured transfer layer.
+<tt>CLIENT-CERT</tt> authentication provides the strongest encryption because it uses public key certificates. Unfortunately, this also makes it
+the least usable alternative for consumer services because it requires consumers to have these certificates. Therefore @5@ is incorrect.
+
+]]></ExplanationText>
+</MultipleChoiceQuestion>
+<MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[Which of the following statements about filters are true? (choose all that apply)]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[A filter must always call the <tt>doFilter</tt> method on the <tt>FilterChain</tt> object and never block the further request processing]]></Option>
+        <Option correct="false"><![CDATA[Filters can only be used with the HTTP protocol]]></Option>
+        <Option correct="false"><![CDATA[The only thing that affects the filter chain order is the order of the filter declarations in the deployment descriptor]]></Option>
+        <Option correct="true"><![CDATA[Filter aren't applied to forwards and includes by default]]></Option>
+        <Option correct="false"><![CDATA[Filters aren't allowed to alter the request headers of the original request]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.<br><br>
+
+It is completely valid for a filter to block further request processing and therefore the call to <tt>doFilter</tt> method is not mandatory.
+Thus, alternative @1@ is incorrect.<br><br>
+
+@2@ is incorrect because filters can be used with other protocols than HTTP because the <tt>Filter</tt> interface uses <tt>ServletRequest</tt>s and
+<tt>ServletResponse</tt>s instead of <tt>HttpServletRequest</tt>s and <tt>HttpServletResponse</tt>s.<br><br>
+
+@3@ is incorrect because filters using <tt>url-pattern</tt> based mapping are handled before filters using the <tt>servlet-name</tt> based mapping.<br><br>
+
+@4@ is correct. If you want to apply filters to forwards and includes, you'll need to explicitly declare this in the deployment descriptor
+by using the <tt>dispatcher</tt> tag in the filter mapping.
+]]></ExplanationText>
+</MultipleChoiceQuestion>
+<MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[Given the following servlet and filter mappings:<br><br>
+<tt><pre>
+&lt;servlet-mapping&gt;
+  &lt;servlet-name&gt;MyServlet&lt;/servlet-name&gt;
+  &lt;url-pattern&gt;/myServlet.do&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+&lt;filter-mapping&gt;
+  &lt;filter-name&gt;MyFirstFilter&lt;/filter-name&gt;
+  &lt;url-pattern&gt;*.do&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;
+&lt;filter-mapping&gt;
+  &lt;filter-name&gt;MySecondFilter&lt;/filter-name&gt;
+  &lt;servlet-name&gt;MyServlet&lt;/servlet-name&gt;
+&lt;/filter-mapping&gt;
+&lt;filter-mapping&gt;
+  &lt;filter-name&gt;MyThirdFilter&lt;/filter-name&gt;
+  &lt;url-pattern&gt;/myServlet.do&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;
+</pre></tt><br>
+
+What is the order of the filters in the filter chain when the <tt>myServlet</tt> resource is requested?
+]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>MyFirstFilter</tt>, <tt>MySecondFilter</tt>, <tt>MyThirdFilter</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>MySecondFilter</tt>, <tt>MyFirstFilter</tt>, <tt>MyThirdFilter</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>MyFirstFilter</tt>, <tt>MyThirdFilter</tt>, <tt>MySecondFilter</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>MyFirstFilter</tt>, <tt>MyThirdFilter</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>MyFirstFilter</tt>]]></Option>
+        <Option correct="false"><![CDATA[None of the filters will be applied because the deployment descriptor is incorrectly constructed]]></Option>
+        <Option correct="false"><![CDATA[The order of the filters cannot be predicted]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.<br><br>
+
+When applying filters, the container first locates all filters using the <tt>url-pattern</tt> based mapping and places them to the same order in which they
+appear in the deployment descriptor. After this the container locates all filters using the <tt>servlet-name</tt> based mapping and again uses the
+same order in which they appear in the deployment descriptor. Therefore, @3@ is correct and @1@, @2@, @4@, @5@ and @7@ are all incorrect.<br><br>
+
+@6@ is incorrect because there's nothing wrong in the syntax used.
+]]></ExplanationText>
+</MultipleChoiceQuestion>
+<MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[Which of the following statements are false about enterpise design patterns? (choose all that apply)]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[The <tt>Transfer Object</tt> pattern is the same thing as the <tt>Data Transfer Object</tt> pattern but different from the <tt>Value Object</tt> pattern]]></Option>
+        <Option correct="true"><![CDATA[The <tt>Data Transfer Object</tt> pattern is also known as the <tt>Data Access Object</tt> pattern]]></Option>
+        <Option correct="false"><![CDATA[The <tt>MVC</tt> pattern used in web applications differs from the original <tt>MVC</tt> pattern because in the latter version the view cannot be automatically updated when the model changes]]></Option>
+        <Option correct="true"><![CDATA[The <tt>Front Controller</tt> pattern cannot be used in conjunction with the <tt>Model View Controller</tt> pattern]]></Option>
+        <Option correct="true"><![CDATA[The performance and decoupling the <tt>Business Delegate</tt> pattern can be further enhanced by combining it with the <tt>Front Controller</tt> pattern]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.<br><br>
+
+<tt>Transfer Object</tt>, <tt>Data Transfer Object</tt> and <tt>Value Object</tt> all refer to the same pattern. The purpose of this
+object is to minimize traffic between different layers of the system by providing a way to transfer data in large chunks. In J2EE environment,
+this object usually needs to be serializable so that it can easily be transferred between different JVMs.
+Therefore, alternative @1@ is false.<br><br>
+
+<tt>Data Transfer Object</tt> pattern is not the same thing as <tt>Data Access Object</tt> pattern. The author thinks that this topic is a bit subjective,
+but his opinion is that the responsibility of a <tt>Data Access Object</tt> is to provide an additional layer of abstraction between the
+business and resource layers whereas the responsibility of a <tt>Data Transfer Object</tt> is described above.
+Therefore, alternative @2@ is false.<br><br>
+
+Alternative @3@ is true. This is the main difference between the original <tt>MVC</tt> pattern and it's web adaptation. Think about it, traditionally 
+there was no way for the web application to push content to the browser when the model changed. Novadays this actually can be done with Ajax and Comet
+but that's a bit out of scope.<br><br>
+
+Alternative @4@ is false because it is actually common for <tt>MVC</tt> architechtures to utilize also the <tt>Front Controller</tt> pattern.<br><br>
+
+Alternative @5@ is false because the <tt>Business Delegate</tt> and <tt>Front Controller</tt> patterns aren't related. You can enchance the
+the <tt>Business Delegate</tt> pattern by combining it with the <tt>Service Locator</tt> pattern. This way you don't have fill your
+business delegates with redundant service lookup code. In real life, you might wan't to consider using an inversion of control container
+instead of service locators.<br><br>
+
+]]></ExplanationText>
+</MultipleChoiceQuestion>
+<MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[Which of the following fragments is the correct way to forward a request to an error page if an <tt>ArithmeticException</tt> occurs while processing the request?<br><br>
+
+<tt><pre>
+A. &lt;error-page&gt;
+     &lt;exception&gt;java.lang.ArithmeticException&lt;/exception&gt;
+     &lt;location&gt;/ArithmeticException.jsp&lt;/location&gt;
+   &lt;/error-page&gt;
+
+B. &lt;error-mapping&gt;
+     &lt;exception&gt;java.lang.ArithmeticException&lt;/exception&gt;
+     &lt;location&gt;/ArithmeticException.jsp&lt;/location&gt;
+   &lt;/error-mapping&gt;
+
+C. &lt;error-page&gt;
+     &lt;exception-type&gt;java.lang.ArithmeticException&lt;/exception-type&gt;
+     &lt;location&gt;/ArithmeticException.jsp&lt;/location&gt;
+   &lt;/error-page&gt;
+
+D. &lt;error-page&gt;
+     &lt;exception-class&gt;java.lang.ArithmeticException&lt;/exception-class&gt;
+     &lt;location&gt;/ArithmeticException.jsp&lt;/location&gt;
+   &lt;/error-page&gt;
+   
+E. &lt;error-mapping&gt;
+     &lt;exception-class&gt;java.lang.ArithmeticException&lt;/exception-class&gt;
+     &lt;page&gt;/ArithmeticException.jsp&lt;/page&gt;
+   &lt;/error-mapping&gt;
+</pre></tt>]]></QuestionText>
+
+      <Options>
+        <Option correct="false"><![CDATA[Fragment A]]></Option>
+        <Option correct="false"><![CDATA[Fragment B]]></Option>
+        <Option correct="true"><![CDATA[Fragment C]]></Option>
+        <Option correct="false"><![CDATA[Fragment D]]></Option>
+        <Option correct="false"><![CDATA[Fragment E]]></Option>
+        <Option correct="false"><![CDATA[None of the fragments is correct]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.<br><br>
+
+The <tt>location</tt> tag is mandatory and it must be used in conjunction either with the <tt>exception-type</tt> tag or the with  <tt>error-code</tt> tag.
+Also remember that the path of the error page must begin with a backslash.
+]]></ExplanationText>
+</MultipleChoiceQuestion>
+<MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[The <tt>ServletContext</tt>, <tt>HttpSession</tt> and <tt>HttpServletRequest</tt> interfaces
+all contain a method for accessing attribute names. What is the correct signature of that method?<br><br>
+
+Forget the fact that only the method in <tt>HttpSession</tt> can throw an <tt>IllegalStateException</tt>.
+]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[<tt>public java.util.Enumeration getAttributeNames()</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>public java.lang.String[] getAttributeNames()</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>public java.lang.Object[] getAttributeNames()</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>public java.util.Iterator getAttributes()</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>public java.util.List getAttributes()</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>public java.util.Map getAttributes()</tt>]]></Option>
+        <Option correct="false"><![CDATA[None of the above]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.<br><br>
+
+The correct method signature is <tt>public java.util.Enumeration getAttributeNames()</tt>.
+]]></ExplanationText>
+</MultipleChoiceQuestion>
+<MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[Which of the following are valid implicit objects in JSP scripting? (Choose all that apply)]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[<tt>request</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>requestParam</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>error</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>config</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>context</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>pageContext</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>page</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>initParam</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.<br><br>
+
+Below is a list of implicit objects and the corresponding classes. Memorize it and don't confuse these with the EL implicit objects!<br><br>
+
+<tt><pre>
+application   ServletContext
+config        ServletConfig
+exception     JspException
+page          Object
+pageContext   PageContext
+request       HttpServletRequest
+response      HttpServletResponse
+session       HttpSession
+out           JspWriter
+</pre></tt>
+
+]]></ExplanationText>
+</MultipleChoiceQuestion>
+<MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[Which of the following are valid implicit objects in EL? (Choose all that apply)]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>request</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>requestParam</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>param</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>headers</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>context</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>pageContext</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>cookie</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.<br><br>
+
+Below is a list of implicit objects. Memorize it and don't confuse these with the JSP implicit objects!<br><br>
+
+<tt><pre>
+applicationScope
+cookie
+header
+headerValues
+initParam
+pageContext
+pageScope
+param
+paramValues
+requestScope
+sessionScope
+</pre></tt>
+
+]]></ExplanationText>
+</MultipleChoiceQuestion>
+<MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+      <QuestionText><![CDATA[Assume that <tt>/myApp</tt> is the root of the context. Which of the following servlet mapping will take precedence when <tt>/myApp/myDirectory/myServlet.do</tt> is
+      requested?<br><br>
+
+<tt><pre>
+&lt;servlet-mapping&gt;
+  &lt;servlet-name&gt;MyServlet&lt;/servlet-name&gt;
+  &lt;url-pattern&gt;*.do&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+&lt;servlet-mapping&gt;
+  &lt;servlet-name&gt;MySecondServlet&lt;/servlet-name&gt;
+  &lt;url-pattern&gt;/myDirectory/*&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+&lt;servlet-mapping&gt;
+  &lt;servlet-name&gt;MyThirdServlet&lt;/servlet-name&gt;
+  &lt;url-pattern&gt;/myServlet.do&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+&lt;servlet-mapping&gt;
+  &lt;servlet-name&gt;MyFourthServlet&lt;/servlet-name&gt;
+  &lt;url-pattern&gt;/&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+</pre></tt>
+
+      ]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>MyServlet</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>MySecondServlet</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>MyThirdServlet</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>MyFourthServlet</tt>]]></Option>        
+        <Option correct="false"><![CDATA[None, the servlet container will throw an exception because the mapping is unambigious]]></Option>
+        <Option correct="false"><![CDATA[None, the deployment descriptor fragment is incorrectly constructed]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.<br><br>
+
+Mapping is resolved by using the following precedences:<br><br>
+
+1. Exact match (<tt>/myServlet.do</tt>)<br><br>
+2. Path match (<tt>/myDirectory/*</tt>). Note: If two path mappings match, the one with the longest path takes precedence.<br><br>
+3. Extension match (<tt>*.do</tt>)<br><br>
+4. Default match (<tt>/</tt>)<br><br>
+
+See Servlet Specification v 2.4 chapter SRV.11.1 for details.
+
+
+]]></ExplanationText>
+</MultipleChoiceQuestion>
+<MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[Which of the following statements about sessions are true? (choose all that apply)]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[Setting session timeout to 0 in the deployment descriptor has the same effect as setting the timeout to 0 in servlet code.]]></Option>
+        <Option correct="false"><![CDATA[Setting session timeout to -1 in the deployment descriptor does not have the same effect as setting the timeout to -1 in servlet code.]]></Option>
+        <Option correct="false"><![CDATA[The name of the cookie that is used to track sessions is not dictated by the servlet specification]]></Option>
+        <Option correct="false"><![CDATA[Sessions cannot migrate from one JVM to another]]></Option>
+        <Option correct="true"><![CDATA[None of the above]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.<br><br>
+
+@1@ is incorrect. If session timeout is set to zero in the deployment descriptor, the session will never expire. However, if session timeout
+is set to zero in servlet code, the session will expire immediately.<br><br>
+
+@2@ is incorrect. The session will never expire in both of the mentioned cases.<br><br>
+
+]]></ExplanationText>
+</MultipleChoiceQuestion>
+<MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[Which of the following statements about JSP tags are true? (choose all that apply)]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[If a classic tag has a body, the body will be translated into a JSP Fragment and passed to the <tt>setJspBody</tt> method in the tag's
+        interface]]></Option>
+        <Option correct="true"><![CDATA[The body content of a simple tag cannot be <tt>JSP</tt> because JSP Fragments do not support scriplets]]></Option>
+        <Option correct="false"><![CDATA[Simple tag instances can be cached and reused by the container]]></Option>
+        <Option correct="false"><![CDATA[Simple and classic tags cannot be packaged into same JAR file]]></Option>
+        <Option correct="false"><![CDATA[None of the above]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.<br><br>
+
+@1@ is incorrect. The statement is true for simple tags.<br><br>
+
+]]></ExplanationText>
+</MultipleChoiceQuestion>
+  </Questions>
+</QuestionSet>

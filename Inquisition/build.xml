@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<project name="inquisition" default="compile" basedir="."> 
+    
+     <property name="version" value="0.14"/>
+     <property name="srcDir" value="src"/> 
+     <property name="buildDir" value="build"/>
+     <property name="classesDir" value="${buildDir}/classes"/>
+     <property name="jarDir"     value="${buildDir}/jar"/>
+     <property name="libDir"   value="jars"/>
+     <property name="main-class"  value="uk.co.bytemark.vm.enigma.inquisition.gui.quizchooser.InquisitionMain"/>
+     <property name="unitDir" value="unit"/> 
+     <property name="screensDir" value="InquisitionScreens"/> 
+     <property name="screensJar" value="InquisitionScreens.jar"/> 
+     <property name="distDir"   value="Inquisition-${version}"/>
+     <property name="miscDir"   value="misc"/>
+
+     <path id="classpath">
+        <fileset dir="${libDir}" includes="**/*.jar"/>
+     </path>
+
+	<target name="InquisitionScreens">
+		<mkdir dir="${screensDir}/jars"/>
+		<copy todir="${screensDir}/jars" file="${libDir}/swing-layout-1.0.3.jar"/>
+		<ant dir="${screensDir}" target="jar" inheritAll="false" />
+		<copy todir="${libDir}" file="${screensDir}/dist/${screensJar}"/> 
+		
+	</target>
+	
+    <target name="compile" depends="InquisitionScreens"> 
+         <mkdir dir="${classesDir}"/>
+         <javac srcdir="${srcDir}" destdir="${classesDir}" classpathref="classpath"/>
+         <copy todir="${classesDir}">
+           <fileset dir="${srcDir}" excludes="**/*.java"/>
+       </copy>
+    </target>
+	
+    <target name="compile-test" depends="compile"> 
+         <mkdir dir="${classesDir}"/>
+         <javac srcdir="${unitDir}" destdir="${classesDir}" classpathref="classpath"/>
+    </target>
+
+     <target name="jar" depends="compile">
+        <mkdir dir="${jarDir}"/>
+        <jar destfile="${jarDir}/${ant.project.name}.jar" basedir="${classesDir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main-class}"/>
+                <attribute name="Class-Path" value="lib/InquisitionScreens.jar lib/javahighlite.jar lib/jdom.jar lib/squareness.jar lib/substance.jar lib/swing-layout-1.0.3.jar lib/google-collect-snapshot-20080530.jar lib/miglayout-swing.jar"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="jar">
+        <java fork="true" classname="${main-class}">
+            <classpath>
+                <path refid="classpath"/>
+                <path location="${jarDir}/${ant.project.name}.jar"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="clean">
+        <delete dir="${buildDir}"/>
+        <delete dir="${distDir}"/>
+        <delete dir="${screensDir}/jars"/>
+    	<delete file="${libDir}/${screensJar}"/>
+		<ant dir="${screensDir}" target="clean" inheritAll="false" />
+    </target>
+    <target name="junit" depends="compile">
+        <junit printsummary="yes" fork="yes">
+			  <jvmarg value="-Dawt.toolkit=sun.awt.motif.MToolkit"/>
+            <classpath>
+                <path refid="classpath"/>
+            </classpath>
+            <batchtest>
+                <fileset dir="${unitDir}" includes="**/*.java"/>
+            </batchtest>
+        </junit>
+    </target>
+	
+	<target name="signjars" depends="jar">
+		<mkdir dir="${distDir}"/>
+		<mkdir dir="${distDir}/lib"/>
+		<signjar destDir="${distDir}/lib"
+		    alias="mykey" 
+		    storepass="password"
+		    keypass="password"
+		    preservelastmodified="true">
+		  <path>
+		    <fileset dir="${libDir}" includes="**/*.jar" />
+		  </path>
+		  <flattenmapper />
+		</signjar>
+		<signjar destDir="${distDir}"
+		    alias="mykey" 
+		    storepass="password"
+		    keypass="password"
+		    preservelastmodified="true">
+		  <path>
+		  	<filelist files="${jarDir}/${ant.project.name}.jar"></filelist>
+		  </path>
+		  <flattenmapper />
+		</signjar>
+		</target>
+	
+	<target name="dist" depends="signjars">
+		<copy todir="${distDir}" file="${miscDir}/inquisition.jnlp"/>
+	</target>
+	
+</project>

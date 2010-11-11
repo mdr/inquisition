@@ -1,0 +1,18 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+Project("{85B0C3CB-4F8C-465B-A944-62ABB0F7F898}") = "jhighlight", "jhighlight.javaproj", "{A35BDB38-D0AF-4D0B-B495-13A4B2A8D0DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A35BDB38-D0AF-4D0B-B495-13A4B2A8D0DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A35BDB38-D0AF-4D0B-B495-13A4B2A8D0DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A35BDB38-D0AF-4D0B-B495-13A4B2A8D0DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A35BDB38-D0AF-4D0B-B495-13A4B2A8D0DF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

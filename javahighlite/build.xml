@@ -1,0 +1,168 @@
+<!--
+  -  Copyright 2004-2006 Uwyn bvba/sprl <info[remove] at uwyn dot com>
+  -  Distributed under the terms of either:
+  -  * the common development and distribution license (CDDL), v1.0; or
+  -  * the GNU Lesser General Public License, v2.1 or later
+  -  $Id: build.xml 3106 2006-03-13 17:53:50Z gbevin $
+  -->
+<project default="package" basedir=".">
+
+	<property name="name" value="jhighlight"/>
+	<property name="screenname" value="JHighlight"/>
+	<property name="year" value="2004-2006"/>
+	<property name="packageroot" value="com/uwyn/jhighlight"/>
+
+	<property environment="env"/>
+
+	<property name="fork" value="false"/>
+	<property name="executable" value="javac"/>
+	<property name="debug" value="on"/>
+	<property name="optimize" value="off"/>
+	<property name="deprecation" value="on"/>
+
+	<property name="bin.dir" value="${basedir}/bin"/>
+	<property name="docs.dir" value="${basedir}/docs"/>
+	<property name="lib.dir" value="${basedir}/lib"/>
+	<property name="src.dir" value="${basedir}/src"/>
+
+	<property name="build.dir" value="${basedir}/build"/>
+	<property name="build.classes" value="${build.dir}/classes"/>
+	<property name="build.dist" value="${build.dir}/dist"/>
+	<property name="build.javadocs" value="${build.dir}/javadocs"/>
+
+	<path id="lib.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+
+	<taskdef classname="JFlex.anttask.JFlexTask" name="jflex" classpathref="lib.classpath"/>
+	
+	<!-- =================================================================== -->
+	<!-- Initialization target                                               -->
+	<!-- =================================================================== -->
+
+	<target name="init">
+		<tstamp/>
+		<loadfile property="version" srcFile="${src.dir}/JHIGHLIGHT_VERSION">
+			<filterchain>
+				<striplinebreaks/>
+			</filterchain>
+		</loadfile>
+
+		<echo message="=== ${screenname} ${version} [${year}] ==="/>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Help on usage                                                       -->
+	<!-- =================================================================== -->
+	<target name="usage">
+		<echo message=""/>
+		<echo message=""/>
+		<echo message="${screenname} Build file"/>
+		<echo message="-------------------------------------------------------------"/>
+		<echo message=""/>
+		<echo message=" available targets are:"/>
+		<echo message=""/>
+		<echo message="   package --&gt; generates the jar and the javadocs"/>
+		<echo message="   clean   --&gt; cleans up the directory"/>
+		<echo message=""/>
+		<echo message=" See the comments inside the build.xml file for more details."/>
+		<echo message="-------------------------------------------------------------"/>
+		<echo message=""/>
+		<echo message=""/>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Clean targets                                                       -->
+	<!-- =================================================================== -->
+	<target name="clean" depends="init">
+		<delete dir="${build.dir}/debug"/>
+		<delete dir="${build.dir}/release"/>
+		<delete dir="${build.classes}"/>
+		<delete dir="${build.dist}"/>
+		<delete dir="${build.javadocs}"/>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Prepares the build directory                                        -->
+	<!-- =================================================================== -->
+	<target name="prepare" depends="init">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${build.classes}"/>
+	</target>
+	
+	<!-- =================================================================== -->
+	<!-- Generates the java scanner sources                                  -->
+	<!-- =================================================================== -->
+	<target name="flex">
+		<jflex file="${src.dir}/com/uwyn/jhighlight/highlighter/JavaHighlighter.flex"
+			destdir="${src.dir}"
+			verbose="on"
+			nobak="on"/>
+		<jflex file="${src.dir}/com/uwyn/jhighlight/highlighter/XmlHighlighter.flex"
+			destdir="${src.dir}"
+			verbose="on"
+			nobak="on"/>
+	</target>
+    
+	<!-- =================================================================== -->
+	<!-- Compiles the java sources                                           -->
+	<!-- =================================================================== -->
+	<target name="compile" depends="prepare,flex">
+		<javac destdir="${build.classes}"
+				includes="${packageroot}/**"
+				fork="${fork}"
+				executable="${executable}"
+				debug="${debug}"
+				source="1.4">
+			<src path="${src.dir}"/>
+			<compilerarg value="-encoding"/>
+			<compilerarg value="UTF-8"/>
+			<classpath refid="lib.classpath"/>
+		</javac>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Creates the JAR packages                                            -->
+	<!-- =================================================================== -->
+	<target name="jar" depends="compile">
+		<mkdir dir="${build.dist}"/>
+		<jar jarfile="${build.dist}/${name}-${version}.jar">
+			<fileset dir="${build.classes}" includes="**"/>
+			<fileset dir="${src.dir}">
+				<include name="*"/>
+			</fileset>
+		</jar>
+	</target>
+	
+	<!-- =================================================================== -->
+	<!-- Creates the api javadoc                                             -->
+	<!-- =================================================================== -->
+	<target name="javadocs" depends="init">
+ 		<javadoc destdir="${build.javadocs}/${name}-javadocs-${version}/docs/api" author="true" version="true" use="true" windowtitle="${screenname} API" source="1.4">
+			<packageset dir="${src.dir}" defaultexcludes="yes">
+				<include name="com/uwyn/**" />
+				<exclude name="com/uwyn/jhighlight/pcj/**" />
+			</packageset>
+			<classpath refid="lib.classpath"/>
+			<doctitle><![CDATA[<h1>${screenname}</h1>]]></doctitle>
+			<bottom><![CDATA[<i>Copyright &#169; ${year} Uwyn bvba/sprl and Omnicore Software. All Rights Reserved.</i>]]></bottom>
+			<link href="http://java.sun.com/j2se/1.5.0/docs/api/"/>
+			<link href="http://jakarta.apache.org/tomcat/tomcat-5.0-doc/servletapi/"/>
+			<arg value="-encoding"/>
+			<arg value="UTF-8"/>
+			<arg value="-use"/>
+			<arg value="-linksource"/>
+		</javadoc>
+		<mkdir dir="${build.dist}"/>
+		<zip destfile="${build.dist}/${name}-javadocs-${version}.zip" basedir="${build.javadocs}/${name}-javadocs-${version}"/>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Package the library                                             -->
+	<!-- =================================================================== -->
+	<target name="package" depends="jar,javadocs"/>
+
+</project>
+

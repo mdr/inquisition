@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Sun Apr 20 11:33:19 BST 2008
+onejar.license.required=false
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=true
+jarname=Inquisition-0.13.jar
+manifest.mergeall=true
+manifest.mainclass=uk.co.bytemark.vm.enigma.inquisition.gui.quizchooser.InquisitionMain
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=<jar|junit.jar>;<jar|substance.jar>;<jar|uispec4j-1.5.jar>;<jar|MRJToolkitStubs-1.0.jar>;<jar|fest-assert-1.0a1.jar>;<jar|fest-reflect-0.4.jar>;<jar|fest-swing-1.0a1.jar>;<jar|fest-util-0.4.jar>
+includes=

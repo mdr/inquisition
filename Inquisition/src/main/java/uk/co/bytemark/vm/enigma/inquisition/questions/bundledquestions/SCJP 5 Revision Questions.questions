@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QuestionSet SYSTEM "inquisitionQuestions.dtd">
+<QuestionSet version="4">
+  <Name>SCJP 5: Tough revision questions</Name>
+  <Description><![CDATA[A set of revision questions on some of the topics covered by the SCJP 5 exam, somewhat 
+  trickier than the real thing.
+<p>
+The topics can be studied in Kathy Sierra and Bert Bates
+<i>SCJP Sun Certified Programmer for Java 5 Study Guide (Exam 310-055)</i> (2006), McGraw-Hill.
+<hr>
+<b>Info:</b><br>
+<ul>
+<li>Maintainer: Matt Russell <tt>&lt;mattrusselluk@gmail.com&gt;</tt>
+<li>Home page: <a href="http://enigma.vm.bytemark.co.uk/inquisition">http://enigma.vm.bytemark.co.uk/inquisition</a>
+<li>Version: 0.13
+<li>Date published: 25/May/2007
+<li>License: Public domain
+<li>Contributors: Charith Fernando <tt>&lt;charithf@gmail.com&gt;</tt>
+</ul>]]></Description>
+  <Category>SCJP 5/6</Category>
+  <RecommendedTimePerQuestion>120</RecommendedTimePerQuestion>
+  <Questions>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[What will be the result of compiling and executing this code?
+<java>
+interface Mungeable {
+   void munge(short i);
+}
+public class Munger implements Mungeable {
+   void munge(long l)  {
+      System.out.println("Munge Long");
+   }
+   void munge(short i) {
+      System.out.println("Munge Int");
+   }
+   public static void main(String[] args) {
+      new Munger().munge(1);
+   }
+}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>Munge Long</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Munge Int</tt>]]></Option>
+        <Option correct="false">Run-time exception</Option>
+        <Option correct="true">Compilation error</Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct answer is @allcorrect@.
+<p>
+The interface method <tt>munge()</tt> is implicitly <tt>public</tt>, even though it is not explicitly marked so. The definition of <tt>munge()</tt> in <tt>Munger</tt> has default "package" access, which is more restrictive than <tt>public</tt> access. This is not allowed, and causes an error at compile time.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <DragAndDropQuestion reuseFragments="false">
+      <QuestionText><![CDATA[Given the following code in a source file named <tt>Splurge.java</tt>, fill in all the gaps using the available fragments so that
+the file can compile and run to produce an output of <tt>Hello</tt>.
+<java>
+<slot>package zombie</slot>;
+<slot>import javax.swing.*</slot>;
+public class Splurge { 
+    <slot>private</slot> int bint;
+    public <slot>final</slot> static void main(String [] args) {       
+        System.out.println("Hello");
+    }
+}
+abstract <slot>strictfp</slot> class Bargle extends Splurge { }
+</java>]]></QuestionText>
+      <ExtraFragments>
+        <Fragment>abstract</Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[The correct answer is:
+<hr>
+<java>
+<slot>package zombie</slot>;
+<slot>import javax.swing.*</slot>;
+public class Splurge { 
+    <slot>private</slot> int bint;
+    public <slot>final</slot> static void main(String [] args) {       
+        System.out.println("Hello");
+    }
+}
+abstract <slot>strictfp</slot> class Bargle extends Splurge { }
+</java><hr>
+The following rules can be used to deduce the position of the fragments:
+<ul>
+<li>A <tt>package</tt> statement must come before any <tt>import</tt> statements.
+<li>The modifiers <tt>abstract</tt> and <tt>final</tt> cannot be used together.
+<li>A method cannot be marked <tt>abstract</tt> and provide an implementation.
+<li>A top-level class cannot be marked <tt>private</tt>, but only <tt>public</tt> or left without an access modifier (for default "package" access).
+<li>It is an error to use the same modifier twice on a class.
+<li><tt>strictfp</tt> can be applied only to classes or to methods, not to variables.
+</ul>]]></ExplanationText>
+    </DragAndDropQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText>Which of the following are legal identifiers in Java 5?</QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>default</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>$_3_4__</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>0_element</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>$</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>strict_fp</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>.X</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>my-variable</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>_</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct options are @allcorrect@.
+<p>
+Identifiers must start with a letter, currency character (such as <tt>$</tt>) or connecting character 
+(such as <tt>_</tt>). In subsequent characters, any letter, number, currency symbol or connecting character is allowed. 
+Accordingly, <tt>.X</tt> is not a legal identifier (it starts with a 
+punctuation character), nor is <tt>0_element</tt> (begins with a number character), nor 
+<tt>my-variable</tt> (contains a punctuation character).
+<p>
+<tt>default</tt> is not legal as it is a keyword. <tt>strict_fp</tt> is not a keyword so is legal 
+(<tt>strictfp</tt> is a keyword).
+<p>
+<tt>$</tt>, <tt>$_3_4__</tt> and <tt>_</tt> are legal identifiers.]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText>Which of these are valid JavaBeans method signatures?</QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>int getFooNumber()</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>public boolean getActive()</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>public boolean isActive()</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>public void removeWibbleListener(BurbleListener w)</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>public long size()</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>public void addElement(Element e)</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct options are @allcorrect@.
+
+With regards to the JavaBeans naming conventions:
+<ul>
+<li>@1@ is incorrect because getter and setter methods must be <tt>public</tt>.
+<li>@6@ is incorrect because an <tt>add...</tt> or <tt>remove...</tt> method must end in <tt>...Listener</tt>.
+<li>@4@ is incorrect because a <tt>removeWibbleListener</tt> method must take a <tt>WibbleListener</tt> as its argument.
+<li>@5@ is incorrect because <tt>size()</tt> does not match any of the naming conventions. 
+To get a <tt>size</tt> property, the corresponding getter would be <tt>getSize()</tt>.
+<li>Both @2@ and @3@ are valid signatures of getter methods for a boolean property named <tt>active</tt>.
+</ul>]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[Given the following code in a file called <tt>MySplurt.java</tt>:
+<java>
+public class Splurt {
+    int it = 66;
+    public int getIt() {
+        return it;
+    }
+}
+public class MySplurt extends Splurt {
+    int it = 101;
+    public static void main(String... args) {
+        System.out.print(new Splurt().getIt());
+        System.out.print(new MySplurt().getIt());
+    }
+}</java>What is the result of attempting to compile and run the file in a typical Java environment?]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>6666</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>66101</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>101101</tt>]]></Option>
+        <Option correct="false"><![CDATA[An exception is thrown at runtime]]></Option>
+        <Option correct="true"><![CDATA[Compilation fails]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct option is @allcorrect@.
+<p>
+In most, if not all, Java implementations, in a single source code file, only one top-level class can be marked <tt>public</tt>. (This is not, however, a mandatory part of the Java specification).]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText>Which of the following classes will compile?</QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[<tt>abstract class Nodule { abstract void node(); }</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>abstract class Nodule { abstract void node() { } }</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>abstract class Nodule {          void node(); }</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>abstract class Nodule {          void node() { } }</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>         class Nodule { abstract void node(); }</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>         class Nodule { abstract void node() { } }</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>         class Nodule {          void node(); }</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>          class Nodule {          void node() { } }</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct options are @allcorrect@.
+<ul>
+<li>A class that is not marked <tt>abstract</tt> must contain no <tt>abstract</tt> methods (ruling out @2@ and @6@).
+<li>A method declaration marked <tt>abstract</tt> must end with a semicolon, rather than an implementation body between a pair of curly <tt>"{ }"</tt> braces (ruling out @5@ and @6@).
+<li>Conversely, a class method which is not marked <tt>abstract</tt> must provide an implementation body (ruling out @3@ and @4@).
+<li>It is legal for an <tt>abstract</tt> class to contain no <tt>abstract</tt> methods.
+</ul>
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[Given the following code:
+<java>
+interface Bilbo {
+    // << insert code here
+}
+</java>Which methods can be declared at the position indicated and not cause a compile-time error?]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>public static void drawSting();</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>void drawSting();</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>strictfp void drawSting();</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>public abstract void drawSting();</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>protected void drawSting()</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct options are @allcorrect@.
+<p>
+Interface method declarations are implicitly <tt>public</tt> and <tt>abstract</tt>, and these modifiers can be omitted. Interface methods cannot be <tt>static</tt> (ruling out @2@), nor can they be marked <tt>strictfp</tt> (ruling out @4@), <tt>final</tt> or <tt>native</tt>. Marking @5@ <tt>protected</tt> conflicts with the restriction that interface methods must be <tt>public</tt>.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <DragAndDropQuestion reuseFragments="true">
+      <QuestionText><![CDATA[Fill in all the gaps using the available fragments:
+<java>
+interface Bashable { };
+
+interface Smiteable <slot>extends</slot> Bashable {
+    <slot>static</slot> int smiteForce = 11;
+    <slot>abstract</slot> void beginSmiting();
+}
+</java>]]></QuestionText>
+      <ExtraFragments>
+        <Fragment>implements</Fragment>
+        <Fragment>strictfp</Fragment>
+        <Fragment>native</Fragment>
+        <Fragment>private</Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[The correct answer is:
+<java>
+interface Bashable { };
+
+interface Smiteable <slot>extends</slot> Bashable {
+    <slot>static</slot> int smiteForce = 11;
+    <slot>abstract</slot> void beginSmiting();
+}
+</java>
+<ul>
+<li>An interface can only extend another interface, not implement one.
+<li>An interface method cannot be marked <tt>static</tt>, <tt>strictfp</tt> or <tt>native</tt>
+<li>Interface methods and variables are always <tt>public</tt>, and so cannot be marked <tt>private</tt>.
+</ul>
+]]></ExplanationText>
+    </DragAndDropQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[Given the following code:
+<java>
+interface Countable {
+    byte count = 0;
+    void increment();
+}
+class Counter implements Countable {
+    public void increment() {
+        // << Add code here
+    }
+}
+</java>Which of the following statements will be compilable without error if added to the indicated position?]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>count++;</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>count += 1;</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>count = count + 1;</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>count = (byte) (count + 1);</tt>]]></Option>
+        <Option correct="true">None of the above</Option>
+      </Options>
+      <ExplanationText><![CDATA[@allcorrect@ is the correct answer.
+<p>
+<tt>count</tt> is an interface variable, which are always <tt>public</tt>, <tt>static</tt> and <tt>final</tt> (i.e., a constant), even when the markers are omitted in the declaration. 
+Attempting to assign a new value to a <tt>final</tt> variable will result in a compile-time error.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[<java>
+class A {}
+class B extends A {}
+      
+class Base {
+    A getA() { return new A(); }
+    int getInt() { return 2; }
+}
+public class Foo extends Base{
+    B getA() { return new B(); }         // line 1
+    short getInt() { return (short) 2; } // line 2    
+}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false">Compilation succeeds</Option>
+        <Option correct="false">Compilation fails only because of an error on line 1</Option>
+        <Option correct="true">Compilation fails only because of an error on line 2</Option>
+        <Option correct="false">Compilation fails because of an error on both lines 1 and 2</Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct option is @allcorrect@.
+<p>
+The return type of an overriding method must be the same as, or a subclass of, the return type of the overridden method. 
+<tt>B</tt> is a subclass of <tt>A</tt>, so line 1 is a legal override. <tt>short</tt> and <tt>int</tt> 
+are different primitive types (and are not in any class hierachy, let alone subclasses of each other),
+ and accordingly line 2 is an illegal override.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText>Which of the following are legal statements?</QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[<tt>int array[] = new int[3];</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>int [] array = new int[] {1, 2, 3};</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>int [] array = {1, 2, 3};</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>int [] array  = {'a', 'b', 'c'};</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>int [] [] array = new int [3] [];</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>int [] [] array = new int [3] [3];</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>int [] [] array = new int [] [3];</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>int [] array = new short [3];</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>int[3] array = {3, 4, 5};</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>Object [] array = new Integer [3];</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>int array = new int [3] {1, 2, 3};</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct options are @allcorrect@.
+<ul>
+<li>@10@ is incorrect because an array type declaration (the bit before the variable name) cannot contain the size of the array (unlike in <i>C</i> and <i>C++</i>, for example).
+<li>@9@ is incorrect because a variable of one primitive array type (<tt>int</tt>) cannot be assigned a value which has a different primitive array type (<tt>short</tt>). By contrast, @8@ is correct because if a variable is declared to be an array of some class (here <tt>Object</tt>), it can be assigned a value of an array of any subclass (here <tt>Integer</tt>).
+<li>@5@ and @6@ are correct, and @7@ is incorrect, because in the array construction syntax of a multidimensional array only the first dimension needs to be specified.
+<li>@11@ is incorrect because the size of the array is not indicated between the square brackets when using anonymous array creation; the size is deduced from the list of elements given.
+<li>@4@ is correct because the elements of a primitive array can be specified to be of any type that can be promoted implicitly to the type of the array; <tt>char</tt>'s can be implicitly promoted to <tt>int</tt>'s.
+</ul>
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <DragAndDropQuestion reuseFragments="false">
+      <QuestionText><![CDATA[Fill in all of the gaps using any of the available fragments:
+<java>
+public class Wrinkly {  
+   public static void main(String [] args) {
+       Integer i1 = <slot>new Integer</slot>(3);
+       String s = <slot>Integer.valueOf</slot>("11110000", 2).toString();
+       i1 = <slot>Integer.parseInt</slot>(s);
+       int i2 = i1.<slot>intValue</slot>();
+   }
+}
+</java>
+</pre>]]></QuestionText>
+      <ExtraFragments>
+        <Fragment>Integer.intValue</Fragment>
+        <Fragment>parseInt</Fragment>
+        <Fragment>valueOf</Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[The correct answer is:
+<java>
+public class Wrinkly {  
+   public static void main(String [] args) {
+       Integer i1 = <slot>new Integer</slot>(3); // line 1
+       String s = <slot>Integer.valueOf</slot>("11110000", 2).toString(); // line 2
+       i1 = <slot>Integer.parseInt</slot>(s); // line 3
+       int i2 = i1.<slot>intValue</slot>(); // line 4
+   }
+}
+</java>
+The slot in line 2 can needs to call something which produces an </tt>Integer</tt>, rather than an <tt>int</tt>, in order to call <tt>toString()</tt>; that narrows the choice to <tt>Integer.valueOf</tt> and <tt>new Integer</tt>. <tt>Integer</tt> does not have a constructor with a <tt>String</tt> and radix argument, which leaves <tt>Integer.valueOf</tt>.
+<p>
+Similarly, in line 1, the only fragments which can take a single <tt>int</tt> argument are <tt>new Integer</tt> and <tt>Integer.valueOf</tt>. The latter has already been used in line 2, so line 1 must be <tt>new Integer</tt>.
+<p>
+For line 3, the only remaining fragment which takes a <tt>String</tt> argument is <tt>Integer.parseInt</tt>.
+<p>
+Finally, for line 4, <tt>intValue()</tt> is the only fragment which takes no options.
+]]></ExplanationText>
+    </DragAndDropQuestion>
+    <DragAndDropQuestion reuseFragments="true">
+      <QuestionText><![CDATA[Fill in the table to indicate which <tt>Exception</tt> and <tt>Error</tt> classes are typically 
+thrown programatically and which by the JVM.<br>
+<table border="1">
+<tr>
+<th>Exception/Error class</th>
+<th>Typically thrown...?</th>
+</tr>
+<tr>
+<td><tt>ArrayIndexOutOfBoundsException</tt></td>
+<td><slot>By the JVM</slot></td>
+</tr>
+<tr>
+<td><tt>ClassCastException</tt></td>
+<td><slot>By the JVM</slot></td>
+</tr>
+<tr>
+<td><tt>IllegalArgumentException</tt></td>
+<td><slot>Programatically</slot></td>
+</tr>
+<tr>
+<td><tt>IllegalStateException</tt></td>
+<td><slot>Programatically</slot></td>
+</tr>
+<tr>
+<td><tt>NullPointerException</tt></td>
+<td><slot>By the JVM</slot></td>
+</tr>
+<tr>
+<td><tt>NumberFormatException</tt></td>
+<td><slot>Programatically</slot></td>
+</tr>
+<tr>
+<td><tt>AssertionError</tt></td>
+<td><slot>Programatically</slot></td>
+</tr>
+<tr>
+<td><tt>ExceptionInInitializerError</tt></td>
+<td><slot>By the JVM</slot></td>
+</tr>
+<tr>
+<td><tt>StackOverflowError</tt></td>
+<td><slot>By the JVM</slot></td>
+</tr>
+<tr>
+<td><tt>NoClassDefFoundError</tt></td>
+<td><slot>By the JVM</slot></td>
+</tr>
+</table>]]></QuestionText>
+      <ExtraFragments />
+      <ExplanationText><![CDATA[The correct answer is:
+
+<table border="1">
+<tr>
+<th>Exception/Error class</th>
+<th>Typically thrown...?</th>
+</tr>
+<tr>
+<td><tt>ArrayIndexOutOfBoundsException</tt></td>
+<td><slot>By the JVM</slot></td>
+</tr>
+<tr>
+<td><tt>ClassCastException</tt></td>
+<td><slot>By the JVM</slot></td>
+</tr>
+<tr>
+<td><tt>IllegalArgumentException</tt></td>
+<td><slot>Programatically</slot></td>
+</tr>
+<tr>
+<td><tt>IllegalStateException</tt></td>
+<td><slot>Programatically</slot></td>
+</tr>
+<tr>
+<td><tt>NullPointerException</tt></td>
+<td><slot>By the JVM</slot></td>
+</tr>
+<tr>
+<td><tt>NumberFormatException</tt></td>
+<td><slot>Programatically</slot></td>
+</tr>
+<tr>
+<td><tt>AssertionError</tt></td>
+<td><slot>Programatically</slot></td>
+</tr>
+<tr>
+<td><tt>ExceptionInInitializerError</tt></td>
+<td><slot>By the JVM</slot></td>
+</tr>
+<tr>
+<td><tt>StackOverflowError</tt></td>
+<td><slot>By the JVM</slot></td>
+</tr>
+<tr>
+<td><tt>NoClassDefFoundError</tt></td>
+<td><slot>By the JVM</slot></td>
+</tr>
+</table>]]></ExplanationText>
+    </DragAndDropQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[What is the result of attempting to compile and run this class?
+<java>
+public class Zobb {
+    public static void main(String [] args) {
+       StringBuilder sb = new StringBuilder("Foo");
+       sb.append("bar").delete(2, 4).reverse().insert(2, "tt");
+       String s = sb.toString().substring(1, 5);
+       s.toUpperCase();
+       System.out.println(s);
+    }
+}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>OTTF</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>TTAO</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>ROTTF</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>atto</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>ttao</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>ottf</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>rottF</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>rattoF</tt>]]></Option>
+        <Option correct="false">Compile time error</Option>
+        <Option correct="false">Compiles and outputs a String not listed above</Option>
+        <Option correct="false">An exception is thrown at run time</Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct answer is @allcorrect@.
+<p>
+The methods <tt>delete</tt> and <tt>subString</tt> can be confusing as they take a zero-based first argument and a one-based second argument. A simpler way to think about them is to consider the arguments to be referring to the gaps between the characters in a string. For example,
+<pre>
+" s t r i n g "
+ | | | | | | | 
+ 0 1 2 3 4 5 6
+</pre>
+Then something like <tt>"string".substring(1,4)</tt> evaluates as <tt>"tri"</tt>, all the characters between the "1" gap and the "4" gap. <tt>insert</tt> can be thought of the same way.
+<p>
+<tt>s.toUpperCase()</tt> calculates the uppercase string of <tt>s</tt>, but then throws it away; the result is not assigned to any variable, and <tt>String</tt>'s are immutable; <tt>s</tt> is unchanged. In contrast, <tt>sb</tt> is a mutable <tt>StringBuilder</tt>, and its method calls act in-place, modifying <tt>sb</tt>.
+<p>
+After the fourth line, <tt>sb</tt> holds the string <tt>"rattoF"</tt>.
+
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText><![CDATA[After the statements:
+<java>
+String s1 = "hello world";
+String s2 = "hello world";
+StringBuffer sb1 = new StringBuffer("hello world");
+StringBuffer sb2 = new StringBuffer("hello world");
+</java>
+Which of the following expressions would evaluate as <tt>true</tt>?]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>sb1.equals(sb2)</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>sb1 == sb2</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>s1 == s2</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>s1.equals(s2)</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct options are @allcorrect@.
+<p>
+@3@ is <tt>true</tt> as the two <tt>String</tt> references both point to the same literal in the <tt>String</tt> pool.
+<p>
+@2@ is <tt>false</tt> because <tt>sb1</tt> and <tt>sb2</tt> are distinct objects created using <tt>new</tt>.
+<p>
+@4@ is <tt>true</tt>, while @1@ is <tt>false</tt>, because <tt>String</tt> overrides <tt>equals()</tt> to compare the values of two strings, while <tt>StringBuffer</tt> does not.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[<java>
+String str1 = new String("charith");
+String str2 = new String("charith");
+
+String str3 = "charith";
+String str4 = "charith";
+
+System.out.print((str1==str2) + " ");
+System.out.print(str3==str4);
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>false false</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>true true</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>true false</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>false true</tt>]]></Option>
+        <Option correct="false">Compilation fails</Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct answer is @allcorrect@.
+<p>
+<tt>new</tt> always creates a new object. References to string literals are stored in the string literal pool.
+
+<h3>Further reading</h3>
+<i>Strings, Literally</i> by Corey McGlone, <a href="http://www.javaranch.com/journal/200409/ScjpTipLine-StringsLiterally.html">http://www.javaranch.com/journal/200409/ScjpTipLine-StringsLiterally.html</a>
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[Given the following class:
+<java>
+import java.io.*;
+public class FileTwiddler {
+    public static void main(String[] args) throws IOException {
+        File d = new File("test-dir");
+        d.mkdir();
+        File f = new File(d, "test-file");
+        f.createNewFile();
+        File d2 = new File("test-dir2");
+        System.out.print(d.renameTo(d2) + " ");
+        System.out.print(d2.delete() + " ");
+    }   
+}
+</java>
+Assuming that neither <tt>test-dir</tt> nor <tt>test-dir2</tt> exist in the 
+current directory (and that there are no unpredictable I/O problems) what is the
+result of running the class?]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>false false</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>false true</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>true false</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>true true</tt>]]></Option>
+        <Option correct="false">Runtime exception</Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct option is @allcorrect@.
+<p>
+<tt>renameTo()</tt> can rename a non-empty directory, but <tt>delete()</tt> cannot remove one. These methods 
+return either <tt>true</tt> or <tt>false</tt> depending on whether or not they succeed.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[<java>
+ Set set = new TreeSet();
+ set.add("F");
+ set.add("B");
+ set.add("E");
+ set.add("A");
+ int count=0;
+ while(set.iterator().hasNext()){
+     System.out.print(set.iterator().next()+" ");
+     count++;
+     if(count==3)break;
+ }
+</java>
+What is the output when this code is executed?]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>F B E</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>A B E</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>A B E F</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>F E B</tt>]]></Option>
+        <Option correct="true">None of the above</Option>
+      </Options>
+      <ExplanationText><![CDATA[The correct option is @allcorrect@.
+<p>
+The program output will output <tt>A A A</tt> because when <tt>set.iterator()</tt> 
+is called it returns a new iterator object. Each time the loop runs it creates 
+and examines a new iterator object, but never advances beyond the first item.
+If we didn't <tt>break</tt> out of the loop after three iterations it would go on forever.
+]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <DragAndDropQuestion reuseFragments="false">
+      <QuestionText><![CDATA[Fill in all the blanks in the following code so that
+      when executed it will produce an output of "<tt>zebra apple</tt>":
+<pre>
+...
+</pre><java>
+<slot>Queue</slot><String> collection = new <slot>LinkedList</slot><String>();
+collection.add("zebra");
+collection.<slot>offer</slot>("apple");
+String one = collection.<slot>remove</slot>();
+String two = collection.<slot>remove</slot>();
+String three = collection.<slot>poll</slot>();
+System.out.println(one + " " + two);
+</java><pre>
+...
+</pre>
+]]></QuestionText>
+      <ExtraFragments>
+        <Fragment>List</Fragment>
+        <Fragment>ArrayList</Fragment>
+        <Fragment>Set</Fragment>
+        <Fragment>HashSet</Fragment>
+        <Fragment>PriorityQueue</Fragment>
+      </ExtraFragments>
+      <ExplanationText><![CDATA[The correct answer is:
+<java>
+<slot>Queue</slot><String> collection = new <slot>LinkedList</slot><String>();
+collection.add("zebra");
+collection.<slot>offer</slot>("apple");
+String one = collection.<slot>remove</slot>();
+String two = collection.<slot>remove</slot>();
+String three = collection.<slot>poll</slot>(); // <-- line 6
+System.out.println(one + " " + two);
+</java>
+<p>
+<tt>offer(element)</tt>, <tt>poll()</tt> and <tt>remove()</tt> and methods of the <tt>Queue</tt> interface.
+<tt>LinkedList</tt> implements the <tt>Queue</tt> interface, returning its elements in a first in, first out (FIFO) order.
+<tt>PriorityQueue</tt> also implements the <tt>Queue</tt> interface; however, this class is not suitable here because it 
+returns its elements in sorted order: first <tt>"apple"</tt> then <tt>"zebra"</tt>.
+<p>
+<tt>poll()</tt> and <tt>remove()</tt> both return the head of the queue, but differ in their behaviour if the queue is
+empty, as is the case by line 6: <tt>remove()</tt> throws a <tt>NoSuchElementException</tt>, while <tt>poll()</tt> 
+returns <tt>null</tt>.
+]]></ExplanationText>
+    </DragAndDropQuestion>
+
+</Questions>
+</QuestionSet>

@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QuestionSet SYSTEM "inquisitionQuestions.dtd">
+
+<QuestionSet version="4">
+  <Name>SCJP 5 quiz by Mark Dechamps</Name>
+  <Description><![CDATA[SCJP 5.0 themuppeteer Quiz
+<hr>
+<b>Info:</b>
+<ul>
+<li>Maintainer: ... &lt;themuppeteer@hotmail.com&gt;
+<li>Please! Subject start your subject with "SCJP5"
+<li>Home page: http://users.telenet.be/free_quiz
+<li>Version: 1.2
+<li>Date published: December 2006, revised June 2008
+<li>License: Public domain
+</ul>
+All the best to you and good luck with your studies!<br>
+Best regards,<br>
+Mark Dechamps<br>
+Belgium<br>]]></Description>
+  <RecommendedTimePerQuestion>84</RecommendedTimePerQuestion>
+  <Category>SCJP 5/6</Category>
+  <Questions>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+      <QuestionText><![CDATA[<java>package ohsogreatpackage;
+import java.util.Arrays;
+import java.util.List;
+
+public class Testing123 {
+	public static void main(String... args)
+	{
+		String[]sa = new String[]{"the","thing","that","should","not","be"};
+		List asList= Arrays.asList(sa);
+		asList.set(1,"4");sa[2]="5";
+		for(String s:sa){
+			System.out.print(s+" ");
+		}
+		for(String s:asList){
+			System.out.print(s+" ");
+		}
+	}
+
+}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>the 4 5 should not be the 4 5 should not be </tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>4 5 that should not be 4 5 that should not be  </tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Throws classcast exception at runtime</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>Does not compile</tt>]]></Option>
+      </Options>
+      <ExplanationText>A regular List contains Objects, not Strings</ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+      <QuestionText>The add method of a Set implementation, returns a boolean.</QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[<tt>True</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>False</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Maybe</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[This is true, if the item is added it returns true. Remember, List, Map, Set and Queue are interfaces. We were talking about 'a' set.]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+      <QuestionText><![CDATA[<java>
+package ohsogreatpackage;
+
+import java.util.Set;
+import java.util.TreeSet;
+
+
+public class Testing123 {
+
+	public static void main(String... args)
+	{
+		Set t = new TreeSet();
+		t.add("a");t.add("b");t.add(666);
+		for(Object o:t)System.out.print(o);
+	}
+
+}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[This doesn't compile]]></Option>
+        <Option correct="false"><![CDATA[<tt>ab666</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>ab</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>throws an exception at runtime</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[Every collection with 'Tree' in it, need objects that implement Comparable.
+Next to that they have to be mutually comparable and Integer (666 is autoboxed) and String are not.]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+      <QuestionText><![CDATA[The interface <tt>Set</tt> has an <tt>indexOf</tt> method.]]></QuestionText>
+      <Options>
+        <Option correct="false">true</Option>
+        <Option correct="true">false</Option>
+        <Option correct="false">euch..</Option>
+      </Options>
+      <ExplanationText><![CDATA[False. Only <tt>List</tt> has an <tt>indexOf</tt> method.]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+      <QuestionText><![CDATA[Consider this piece of code, what comes on screen when this runs?
+<java>
+int[]a = new int[]{1};
+int[]b = new int[]{1};
+System.out.println(a.equals(b));
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>true</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>false</tt>]]></Option>
+      </Options>
+      <ExplanationText />
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+      <QuestionText><![CDATA[What comes on screen ?
+<java>
+public static void main(String... args)
+	{
+		List<Integer> s = new ArrayList<Integer>();
+		s.add(1);s.add(2);s.remove(1);
+		for(int i:s){
+			System.out.println(i);
+		}
+	}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[<tt>1</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>2</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[Tricky isn't it ;)]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[What comes on screen?
+<java>
+public static void main(String... args)
+	{
+		int[]a = {1};
+		int[]b = new int[]{1};
+		System.out.println(Arrays.equals(a,b));
+	}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[<tt>true</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>false</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>doesn't compile</tt>]]></Option>
+      </Options>
+      <ExplanationText />
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+      <QuestionText>Static methods are always public.</QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>true</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>false</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[Of course not. If you don't believe this, try it out.]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[<java>
+public static void main(String... args)
+	{
+		Set s = new HashSet();
+		s.add(1);
+		Object o = s.get(1);
+		System.out.println(o);
+	}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>1</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>[I@360be0  (or something similar)</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>does not compile</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[Doesn't compile. Set does not have a get method.]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+      <QuestionText><![CDATA[Compiling with "-XLint:unchecked" removes warnings from generics]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>true</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>false</tt>]]></Option>
+      </Options>
+      <ExplanationText>It shows more info on the warning.</ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+      <QuestionText><![CDATA[<java>
+public static void main(String... args)
+	{
+		ArrayList a = new ArrayList();
+		a.add(5);
+		Integer i= a.get(0);
+		System.out.println(i);
+	}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>5</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>throws IndexOutOfBoundsException</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>Doesn't compile</tt>]]></Option>
+      </Options>
+      <ExplanationText>Plain old ArrayList returns Objects, not Integers</ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+      <QuestionText><![CDATA[<java>
+public static void main(String... args)
+	{
+		ArrayList a = new ArrayList();
+		a.add(5);a.add("Wohow someone smells stinky!");
+		ArrayList<Integer> biebabeloeba = a;
+		Integer i = biebabeloeba.get(0);
+		System.out.println(i);
+		Integer i2 = biebabeloeba.get(1);
+		System.out.println(i);
+	}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>Doesn't compile</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Exception at:ArrayList&lt;Integer&gt; biebabeloeba = a;</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>Exception at:Integer i2 = biebabeloeba.get(1);</tt>]]></Option>
+      </Options>
+      <ExplanationText />
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[<java>
+package ohsogreatpackage;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Testing123 {
+class Parent{
+	public String toString(){
+		return "cause I watched them fall away";
+	}
+}
+class Child extends Parent{
+	String s;
+	Child(String s){
+		this.s = s;
+	}
+	public String toString(){
+		return s;
+	}
+}	
+	public static void main(String... args)
+	{
+		List<Parent>l = new ArrayList<Parent>();
+		l.add(new Child("I"));
+		l.add(new Child("know"));
+		l.add(new Child("the"));
+		l.add(new Child("pieces"));
+		l.add(new Child("fit"));
+		for(Parent p:l){
+			System.out.println(p);
+		}
+	}
+
+}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>I know the pieces fit</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>cause I watched them fall away<br>cause I watched them fall away<br>cause I watched them fall away<br>cause I watched them fall away<br>cause I watched them fall away</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Exception it thrown at Runtime</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>Compilation fails</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[Child is an inner class, so instead of 'new Child', you must do 'new Testing123().new Child("...");']]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[What comes on screen?
+<java>
+public class Testing123 {
+
+
+	public static void main(String... args)
+	{
+		Number[]na = new Integer[3];
+		System.out.println(na[0]);
+	}
+
+}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>0</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>some garbage</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>3</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Compilation fails</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>null</tt>]]></Option>
+      </Options>
+      <ExplanationText />
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[<java>
+package ohsogreatpackage;
+
+class Transport{}
+class Plain extends Transport{}
+class Car extends Transport{}
+public class Testing123 {
+	public static void main(String... args)
+	{
+		Plain[]na = {new Plain(),new Plain(), };
+		evilMethod(na);
+	}
+	
+	public static void evilMethod(Transport[] ar){
+		ar[0]= new Car();
+	}
+
+}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>Compiles and runs without problem</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>Exception is thrown at runtime</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Compiler Error</tt>]]></Option>
+      </Options>
+      <ExplanationText>ar[0]= new Car(); generates an ArrayStoreException</ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+      <QuestionText><![CDATA[ArrayList&lt;?&gt; is equal to ArrayList&lt;Object&gt;?]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>true</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>false</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[No, &lt;?&gt; means any type, while &lt;Object&gt; means only ArrayLists of generic type &lt;Object&gt;.]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[<java>
+public class Testing123 {
+	public static void main(String... args)
+	{		
+		final long l=10;
+		switch(l)
+		{
+			case 10:System.out.print("10 it is then");	
+			case 9:System.out.print("9 isn't bad either");
+			default:System.out.print("oops");
+			case 8:System.out.print("It's a sad sad planet");
+		}
+	}	
+}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>10 it is then</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>10 it is then 9 isn't bad either oops It's a sad sad planet </tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Exception is thrown at runtime</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>Doesn't compile</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[You can't use a long in a switch. Only int's , everything below (byte,char,short) and enums.]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+      <QuestionText><![CDATA[What does this print on the screen ?
+<java>
+System.out.println(1+1+""+1+1);
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>1111</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>211</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>22</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt> 4</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Doesn't compile</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[Only from the first "" the argument is considered a String]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[Consider these 4 statements:
+<ol>
+<li>Boolean b = Boolean.parseBoolean("true");
+<li>Boolean c = Boolean.valueOf("true");
+<li>Float f = Float.valueOf("1011",2);
+<li>Every wrapper has a public void toString(); method
+</ol>
+How many compilable or true (in case of 4) statements do you see ?]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>0</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>1</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>2</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>3</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>4</tt>]]></Option>
+      </Options>
+      <ExplanationText>The first 2 are true.
+Via autoboxing 1) goes into the variable.
+The valueOf returns a Boolean object anyhow.
+A little trick to remember the return type is: if you hear the primitive in it (pareInt, pareShort, intValue, shortValue...) then it returns a primitive, else an Object.</ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[<java>
+public static void main(String... args)
+	{		
+		Integer x=5;
+		Integer y=x;
+		y++;
+		System.out.println(x);
+	}	
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>6</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>5</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Exception is  thrown at runtime</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Doesn't compile</tt>]]></Option>
+      </Options>
+      <ExplanationText />
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[<java>
+public class Testing123 {
+	public static void handle(String[]a){
+		System.out.println("a:"+(a[0]));
+	}
+	
+	public static void main(String... args)
+	{		
+		handle(new String['a']);
+	}	
+}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[<tt>a:null</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>An exception is thrown at runtime</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Compiler Error</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA['a' is a character. Characters can be promoted to ints so this creates an array with length 97 (value of a).]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+      <QuestionText><![CDATA[<java>
+package ohsogreatpackage;
+
+class Transport{
+	{System.out.println("Transport");}
+	Transport(){}
+	Transport(String s){}
+}
+class Plain extends Transport{
+	{System.out.println("Plain");}
+	Plain(){};
+}
+
+public class Testing123 {	
+	public static void main(String... args)
+	{		
+		Transport c = new Plain("Snakes! on a plain!");
+	}	
+}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>Plain<br>Transport</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Transport<br>Plain</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>An exception is thrown at runtime</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>Doesn't compile</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[Plain doesn't have a constructor that takes a String. Remember, constructors are 
+not inherited!]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[How many lines don't compile ?
+<java>
+byte a = 127+1;
+byte b = (byte)25768;
+char c = 127;
+c+= 12345;
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>0</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>1</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>2</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>3</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>4</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>5</tt>]]></Option>
+      </Options>
+      <ExplanationText>127 is the max value of a byte.
+Casting makes everything ok. Remember += does an automatic cast.</ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[Which lines don't compile?
+<java>
+class A{
+synchronized{System.out.println("Chess");} //1
+{System.out.println("is");} //2
+void hi(){System.out.println("a cool")} //3
+static{System.out.println("game");} //4
+}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[<tt>1</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>2</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>3</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>4</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[For, @1@ the <tt>synchronized</tt> is wrong.<br>
+@3@ misses a <tt>;</tt>]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[What is put on screen?
+<java>
+public static void main(String... args)
+	{		
+		final int x=5;
+		System.out.println("x is:"+x);
+		int y= x++;
+		System.out.println(""+2+y);		
+	}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>x is 5<br>25</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>x is 5<br>26</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>x is 5<br>7</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>x is 5<br>8</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>Doesn't compile</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[You can't change static x]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[What is put on screen ?
+<java>
+public static void main(String... args)
+	{		
+		unsigned int x = 1000000;
+		System.out.println(""+x+5);
+	}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>1000005</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>10000005</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>Doesn't compile</tt>]]></Option>
+      </Options>
+      <ExplanationText>No unsigned in java</ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[<java>
+public class Testing123 {
+	static public void main(String...arg)
+	{
+		boolean b=true;
+		boolean c=true;
+		if((b=false)|(c=true)){
+			System.out.println("Owkay!");
+		}else{
+			System.out.println("oops");
+		}
+	}
+}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="true"><![CDATA[<tt>Owkay!</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>oops</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Doesn't compile</tt>]]></Option>
+      </Options>
+      <ExplanationText>b=false is an assignment</ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="false">
+      <QuestionText>Select the true statements and those that compile.</QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>Integer i = Character.intValue("c");</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>System.out.println(new Byte("5").floatValue()); prints 5</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Every wrapper class has 6 parseXXX methods</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>A wrappers parseXXX can have a String as argument, and sometimes a radix too</tt>]]></Option>
+      </Options>
+      <ExplanationText />
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="true" singleOptionMode="true">
+      <QuestionText><![CDATA[<java>
+package ohsogreatpackage;
+
+class Transport{
+	static String i= "666 Number of the beast";
+	static String getString(){return "Transport:"+i;}
+	Transport(){}
+}
+class Plain extends Transport{
+	static String i= "667 Neighbour of the beast";
+	static String getString(){return "Plain:"+i;}
+	Plain(){};
+}
+
+public class Testing123 {
+	static public void main(String...arg)
+	{
+		Transport t = new Plain();
+		System.out.println(t.getString());		
+	}
+}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>Plain:667 Neighbour of the beast </tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Transport:667 Number of the beast </tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>Transport:666 Number of the beast </tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Plain:666 Neighbour of the beast </tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>Doesn't compile</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[For static methods/variables, it is the reference type that determines the class that is called.]]></ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="true">
+      <QuestionText><![CDATA[What is put on screen ?
+<java>
+static public void main(String...arg)
+	{
+		Byte snake = 5;		
+		switch(snake){
+		case 5:System.out.println("me Tarzan");
+		default:System.out.println("in the jungle");
+		case 5:System.out.println("you Jane");
+		}		
+	}
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>me Tarzan<br>you Jane</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>me Tarzan<br>in the jungle<br>you Jane</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>you Jane</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>Doesn't compile</tt>]]></Option>
+      </Options>
+      <ExplanationText>A switch can not have duplicates</ExplanationText>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion shufflable="false" singleOptionMode="false">
+      <QuestionText><![CDATA[Which line(s) should be removed for this code to compile?
+<java>
+	static public void main(String...arg)
+	{
+		Byte snake = 5;
+		final int b;
+		b=2;
+		Integer i=5;
+		switch(snake){
+		case 128:System.out.println("Shouldn't it freeze in December ?");//1 
+		default:System.out.println("White Christmas?");//2
+		case b:System.out.println("An Inconvenient truth...");//3
+		case i:break;//4
+		}		
+	}
+
+</java>]]></QuestionText>
+      <Options>
+        <Option correct="false"><![CDATA[<tt>no lines, this code is ok</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>1</tt>]]></Option>
+        <Option correct="false"><![CDATA[<tt>2</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>3</tt>]]></Option>
+        <Option correct="true"><![CDATA[<tt>4</tt>]]></Option>
+      </Options>
+      <ExplanationText><![CDATA[<ul>
+<li>1 is bigger than a byte
+<li>3 it must be a compile time constant. final int i=5; is one but final int i;i=5; is not a compile time constant.
+<li>4 you cannot convert an Integer to a Byte
+<ul>]]></ExplanationText>
+    </MultipleChoiceQuestion>
+  </Questions>
+</QuestionSet>
+

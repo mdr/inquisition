@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp
+  spec="1.5+"
+  codebase="http://enigma.vm.bytemark.co.uk"
+  href="Inquisition-0.14/inquisition.jnlp">
+  <information>
+    <title>Inquisition</title>
+    <vendor>Matthew D. Russell</vendor>
+    <homepage href="inquisition"/>
+    <description>Mock exam simulator</description>
+    <description kind="short">A simulator for mock exams/description>
+    <offline-allowed/> 
+    <shortcut online="false">
+      <desktop/>
+      <menu submenu="Inquisition"/>
+    </shortcut>
+  </information> 
+  <security>
+      <all-permissions/>
+  </security>
+  <resources>
+    <j2se version="1.5.0+"/>
+    <jar href="Inquisition-0.14/inquisition.jar" main="true"/>
+    <jar href="Inquisition-0.14/lib/jdom.jar"/>
+    <jar href="Inquisition-0.14/lib/javahighlite.jar"/>
+    <jar href="Inquisition-0.14/lib/squareness.jar"/>
+    <jar href="Inquisition-0.14/lib/swing-layout-1.0.3.jar"/>
+    <jar href="Inquisition-0.14/lib/InquisitionScreens.jar"/>
+    <jar href="Inquisition-0.14/lib/google-collect-snapshot-20080530.jar"/>
+    <jar href="Inquisition-0.14/lib/miglayout-swing.jar"/>
+    <property name="sun.java2d.noddraw" value="true"/>
+  </resources>
+  <application-desc main-class="uk.co.bytemark.vm.enigma.inquisition.gui.quizchooser.InquisitionMain"/>
+</jnlp> 

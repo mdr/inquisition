@@ -1,0 +1,45 @@
+==Question Editor==
+* Preview and edit box for MCQ options, maybe D&D extra fragments 
+* Abstract common behaviour for MCQ & DADQ editors
+* MRU list for files
+* Toolbar
+* Key shortcuts, esp Ctrl-S
+* XML tab versus GUI form tab
+* Tooltips over main question list
+* Clone questions, options, fragments
+* Numbers next to questions
+* Anchoring of left question/explanation stuff
+
+
+== Bugs ==
+* Layout of Options versus QuestionText in the multiple choice question panel is buggy
+* Rendering artifacts from drag and drop questions if you advance too quickly through the questions
+* Question editor lets you export question sets with no questions
+* When fragments aren't reused, and a fragment is in a slot, dragging the fragment out of the slot 
+  and letting go causes the fragment to animate back to the fragment bin, but the fragment appears
+  back in the bin too early.
+* Starting a question or explanation with // causes stuff to not get rendered in the JTextPane..!??
+== Features / improvements ==
+* Menu keybindings
+* Memory for last open dialog position
+* Extension point for highlighting (e.g. XML syntax)
+* Drag and Drop:
+** support repeated but finite drag and drop fragments?
+** support empty-string drag and drop fragments?
+** button to clear current answer
+** bound slots (for matching XML tags)
+* New navigation arrow icons to match Squareness LAF
+* Question number column should be centred in the score table
+* Bring up browser if user clicks a hypertext link (JDIC?)
+* Web front-end
+* Question editor
+* Tag certain questions for future review
+* Commenting system for questions
+* Switch to Flying Saucer for HTML rendering?
+* Give better feedback for problematic XML documents
+* Escaping story for option references and copy tags etc
+  
+==Refactoring==
+* Rewrite layout code for DragAndDropPanel
+* Improve jhighlight hackery
+* Extract shared code between QuestionPanels and HTMLQuizRenderer

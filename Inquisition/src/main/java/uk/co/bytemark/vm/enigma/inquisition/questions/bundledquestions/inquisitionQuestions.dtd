@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+
+<!ELEMENT QuestionSet (Questions|Category|RecommendedTimePerQuestion|Description|Name)*>
+<!ATTLIST QuestionSet
+    version CDATA #REQUIRED
+  >
+
+<!ELEMENT Name (#PCDATA)>
+
+<!ELEMENT Description (#PCDATA)>
+
+<!ELEMENT RecommendedTimePerQuestion (#PCDATA)>
+
+<!ELEMENT Category (#PCDATA)>
+
+<!ELEMENT Questions (DragAndDropQuestion|MultipleChoiceQuestion)*>
+
+<!ELEMENT MultipleChoiceQuestion (ExplanationText|Options|QuestionText)*>
+<!ATTLIST MultipleChoiceQuestion
+    singleOptionMode (true|false) #REQUIRED
+    shufflable (true|false) #REQUIRED
+  >
+
+<!ELEMENT QuestionText (#PCDATA)>
+
+<!ELEMENT Options (Option)*>
+
+<!ELEMENT Option (#PCDATA)>
+<!ATTLIST Option
+    correct (true|false) #REQUIRED
+  >
+
+<!ELEMENT ExplanationText (#PCDATA)>
+
+<!ELEMENT DragAndDropQuestion (ExplanationText|ExtraFragments|QuestionText)*>
+<!ATTLIST DragAndDropQuestion
+    reuseFragments (true|false) #REQUIRED
+  >
+
+<!ELEMENT ExtraFragments (Fragment)*>
+
+<!ELEMENT Fragment (#PCDATA)>
